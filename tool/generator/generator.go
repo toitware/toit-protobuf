@@ -199,7 +199,7 @@ func (g *generator) generateFile(file *descriptor.FileDescriptorProto) (*plugin.
 
 	// create imports
 	g.imports[file.GetName()] = ""
-	w.ImportAs("encoding.protobuf", "_protobuf")
+	w.ImportAs("protobuf", "_protobuf")
 	w.ImportAs("core", "_core")
 	importNames := util.NewStringSet("_protobuf", "_core")
 
