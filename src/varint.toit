@@ -1,50 +1,34 @@
 // Copyright (C) 2021 Toitware ApS. All rights reserved.
 // Use of this source code is governed by an MIT-style license that can be
-// found in the lib/LICENSE file.
+// found in the LICENSE file.
 
 MSB_ ::= 0b10000000
 MASK_ ::= ~(MSB_-1)
 
-/**
-Deprecated.
-*/
-encode --offset=0 p/ByteArray i/int -> int:
-  return encode p offset i
-
 encode p/ByteArray offset/int i/int -> int:
-  #primitive.core.varint_encode:
-    // We hit this Toit fallback if the offset is out of bounds or the
-    // worst-case analysis says we are too near the end of the byte array.
-    if i & 0x7f == i:
-      p[offset] = i
-      return 1
-    cnt := 0
-    while i & MASK_ != 0:
-      p[offset++] = i | MSB_
-      i >>>= 7
-      cnt++
-
+  if i & 0x7f == i:
     p[offset] = i
-    return cnt + 1
+    return 1
+  cnt := 0
+  while i & MASK_ != 0:
+    p[offset++] = i | MSB_
+    i >>>= 7
+    cnt++
 
-/**
-Deprecated.
-*/
-decode --offset/int=0 p/ByteArray -> int:
-  return decode p offset
+  p[offset] = i
+  return cnt + 1
 
 decode p/ByteArray offset/int -> int:
-  #primitive.core.varint_decode:
-    result := 0
-    b := p[offset++]
-    bits := 0
-    while b & MSB_ != 0:
-      result += (b & 0x7F) << bits
-      bits += 7
-      b = p[offset++]
+  result := 0
+  b := p[offset++]
+  bits := 0
+  while b & MSB_ != 0:
+    result += (b & 0x7F) << bits
+    bits += 7
+    b = p[offset++]
 
-    result += b << bits
-    return result
+  result += b << bits
+  return result
 
 // Returns the byte size of the varint on the position
 byte_size --offset/int=0 p/ByteArray -> int:
