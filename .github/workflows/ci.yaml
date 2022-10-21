@@ -1,4 +1,8 @@
-on: [push, pull_request]
+on:
+  push:
+  release:
+    types: [published]
+
 name: CI
 jobs:
   test:
