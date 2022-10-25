@@ -1,4 +1,4 @@
-module github.com/toitware/protoc-gen-toit
+module github.com/toitware/toit-protobuf/tool
 
 go 1.13
 

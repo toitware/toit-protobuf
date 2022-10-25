@@ -8,7 +8,7 @@ import (
 	"bytes"
 	"io"
 
-	"github.com/toitware/protoc-gen-toit/util"
+	"github.com/toitware/toit-protobuf/tool/util"
 )
 
 var (

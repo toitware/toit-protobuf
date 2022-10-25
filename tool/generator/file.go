@@ -8,7 +8,7 @@ import (
 	"path"
 	"strings"
 
-	"github.com/toitware/protoc-gen-toit/toit"
+	"github.com/toitware/toit-protobuf/tool/toit"
 )
 
 func protoToFile(f string) string {

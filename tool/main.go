@@ -10,7 +10,7 @@ import (
 
 	"github.com/gogo/protobuf/proto"
 	plugin "github.com/gogo/protobuf/protoc-gen-gogo/plugin"
-	"github.com/toitware/protoc-gen-toit/generator"
+	"github.com/toitware/toit-protobuf/tool/generator"
 )
 
 func main() {

@@ -13,8 +13,8 @@ import (
 
 	"github.com/gogo/protobuf/protoc-gen-gogo/descriptor"
 	plugin "github.com/gogo/protobuf/protoc-gen-gogo/plugin"
-	"github.com/toitware/protoc-gen-toit/toit"
-	"github.com/toitware/protoc-gen-toit/util"
+	"github.com/toitware/toit-protobuf/tool/toit"
+	"github.com/toitware/toit-protobuf/tool/util"
 )
 
 const (
