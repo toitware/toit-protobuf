@@ -42,7 +42,7 @@ interface Reader:
     return Reader_ in
 
 interface Writer:
-  write_primitive type/int value/any --as_field/int?=null --oneof/bool=false -> int
+  write_primitive type/int value/any --as_field/int?=null --oneof/bool=false --in_array/bool=false -> int
   write_array value_type/int array/List --as_field/int?=null --oneof/bool=false [serialize_value] -> int
   write_map key_type/int value_type/int map/Map --as_field/int?=null --oneof/bool=false [serialize_key] [serialize_value] -> none
   write_message_header msg/Message --as_field/int?=null --oneof/bool=false -> none
@@ -333,10 +333,9 @@ class Writer_ implements Writer:
     out_.grow size
     return offset
 
-  write_primitive protobuf_type/int value/any --oneof/bool=false --as_field/int?=null -> none:
-    if as_field == null:
-      as_field = collection_field
-    can_skip := not oneof and as_field != null
+  write_primitive protobuf_type/int value/any --oneof/bool=false --as_field/int?=null --in_array/bool=false -> none:
+    as_field = as_field or collection_field
+    can_skip := not oneof and as_field and not in_array
     if protobuf_type == PROTOBUF_TYPE_DOUBLE:
       if can_skip and value == 0.0:
         return
@@ -493,11 +492,11 @@ size_array protobuf_value_type/int array/List --as_field/int?=null -> int:
   array.do:
     if should_pack:
       // Note we can never pack a type message
-      size += size_primitive protobuf_value_type it
+      size += size_primitive protobuf_value_type it --in_array
     else:
       size += protobuf_value_type == PROTOBUF_TYPE_MESSAGE ?
         size_embedded_message it.protobuf_size --as_field=as_field :
-        size_primitive protobuf_value_type it --as_field=as_field
+        size_primitive protobuf_value_type it --as_field=as_field --in_array
 
   if should_pack:
     return size_embedded_message size --as_field=as_field
@@ -522,48 +521,47 @@ size_embedded_message msg_size/int --as_field/int?=null -> int:
     return msg_size
   return (size_key_ as_field) + (varint.size msg_size) + msg_size
 
-size_primitive protobuf_type/int value/any --as_field/int?=null -> int:
+size_primitive protobuf_type/int value/any --as_field/int?=null --in_array/bool=false -> int:
   header_size := as_field != null ? (size_key_ as_field) : 0
   if protobuf_type == PROTOBUF_TYPE_DOUBLE:
-    if value == 0.0:
+    if value == 0.0 and not in_array:
       return 0
     return header_size + 8
   else if protobuf_type == PROTOBUF_TYPE_FLOAT:
-    if value == 0.0:
+    if value == 0.0 and not in_array:
       return 0
     return header_size + 4
   else if PROTOBUF_TYPE_INT64 <= protobuf_type <= PROTOBUF_TYPE_INT32 or
           PROTOBUF_TYPE_UINT64 <= protobuf_type <= PROTOBUF_TYPE_UINT32:
-    if value == 0:
+    if value == 0 and not in_array:
       return 0
     return header_size + (varint.size value)
   else if PROTOBUF_TYPE_SINT64 <= protobuf_type <= PROTOBUF_TYPE_SINT32:
-    if value == 0:
+    if value == 0 and not in_array:
       return 0
     return header_size + (varint.size ((value >> 63) ^ (value << 1)))
   else if protobuf_type == PROTOBUF_TYPE_FIXED32 or protobuf_type == PROTOBUF_TYPE_SFIXED32:
-    if value == 0:
+    if value == 0 and not in_array:
       return 0
     return header_size + 4
   else if protobuf_type == PROTOBUF_TYPE_FIXED64 or protobuf_type == PROTOBUF_TYPE_SFIXED64:
-    if value == 0:
+    if value == 0 and not in_array:
       return 0
     return header_size + 8
   else if protobuf_type == PROTOBUF_TYPE_ENUM:
-    if value == 0:
+    if value == 0 and not in_array:
       return 0
     return header_size + (varint.size value)
   else if protobuf_type == PROTOBUF_TYPE_BOOL:
-    if not value:
+    if not value and not in_array:
       return 0
     return header_size + 1
   else if protobuf_type == PROTOBUF_TYPE_STRING:
-    if value == "":
+    if value == "" and not in_array:
       return 0
-      if value == 0:
     return header_size + (varint.size value.size) + value.size
   else if protobuf_type == PROTOBUF_TYPE_BYTES:
-    if value.is_empty:
+    if value.is_empty and not in_array:
       return 0
     return header_size + (varint.size value.size) + value.size
   else:
