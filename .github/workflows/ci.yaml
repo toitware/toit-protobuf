@@ -81,6 +81,16 @@ jobs:
         cd "$DOWNLOAD_DIR"
         tar x -f *.tar.gz
 
+    - name: Run cmake
+      shell: bash
+      run: |
+        make rebuild-cmake
+        cmake "-DTOIT_EXEC=$TOIT_EXEC" "-DTPKG_EXEC=$TPKG_EXEC" build
+
+    - name: Install packages
+      run: |
+        make install-pkgs
+
     - name: Test
       shell: bash
       run: |
