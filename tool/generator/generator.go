@@ -182,7 +182,7 @@ func uniqueName(name string, namespace util.StringSet, prefix string) string {
 }
 
 var (
-	reservedFieldNames = util.NewStringSet("operator", "static", "class", "constructor", "interface")
+	reservedFieldNames = util.NewStringSet("operator", "static", "class", "constructor", "interface", "catch")
 )
 
 func (g *generator) generateFile(file *descriptor.FileDescriptorProto) (*plugin.CodeGeneratorResponse_File, error) {
@@ -448,6 +448,12 @@ func (g *generator) writeMessage(w *toit.Writer, msg *descriptor.DescriptorProto
 		if err != nil {
 			return err
 		}
+
+		// TODO(florian): implement default values.
+		// if field.DefaultValue != nil {
+		// 	defaultValue = field.GetDefaultValue()
+		// }
+
 		w.Variable(fieldName, t, defaultValue)
 	}
 	w.NewLine()
@@ -854,7 +860,7 @@ func (g *generator) writeSerializeMethod(w *toit.Writer, fields []*fieldType, on
 					return err
 				}
 			} else {
-				if err := g.writeSerializeField(w, fieldType, "", nil, nil, nil); err != nil {
+				if err := g.writeSerializeField(w, fieldType, "", nil, nil, nil, false); err != nil {
 					return err
 				}
 			}
@@ -878,9 +884,9 @@ func (g *generator) writeSerializeList(w *toit.Writer, fieldName string, fieldTy
 		w.StartCall("w.write_array"),
 		w.Argument("_protobuf."+protoType),
 		w.Argument(g.getSerializeFieldName(fieldName, oneofFieldName, nil)),
-		writeSerializeNamedArguments(w, asField, oneofFieldName != nil),
+		writeSerializeNamedArguments(w, asField, oneofFieldName != nil, false),
 		w.StartBlock(false, "value/"+toitType),
-		g.writeSerializeField(w, fieldType.valueType, "value", nil, nil, &fieldName),
+		g.writeSerializeField(w, fieldType.valueType, "value", nil, nil, &fieldName, true),
 		w.EndBlock(false),
 		w.EndCall(true),
 	)
@@ -908,18 +914,18 @@ func (g *generator) writeSerializeMap(w *toit.Writer, fieldName string, fieldTyp
 		w.Argument("_protobuf."+keyProtoType),
 		w.Argument("_protobuf."+valueProtoType),
 		w.Argument(g.getSerializeFieldName(fieldName, oneofFieldName, nil)),
-		writeSerializeNamedArguments(w, asField, oneofFieldName != nil),
+		writeSerializeNamedArguments(w, asField, oneofFieldName != nil, false),
 		w.StartBlock(true, "key/"+keyToitType),
-		g.writeSerializeField(w, fieldType.keyType, "key", nil, nil, &fieldName),
+		g.writeSerializeField(w, fieldType.keyType, "key", nil, nil, &fieldName, false),
 		w.EndBlock(true),
 		w.StartBlock(true, "value/"+valueToitType),
-		g.writeSerializeField(w, fieldType.valueType, "value", nil, nil, &fieldName),
+		g.writeSerializeField(w, fieldType.valueType, "value", nil, nil, &fieldName, false),
 		w.EndBlock(true),
 		w.EndCall(true),
 	)
 }
 
-func writeSerializeNamedArguments(w *toit.Writer, asField *string, oneof bool) error {
+func writeSerializeNamedArguments(w *toit.Writer, asField *string, oneof bool, inArray bool) error {
 	if asField != nil {
 		if err := w.NamedArgument("--as_field", *asField); err != nil {
 			return err
@@ -927,6 +933,11 @@ func writeSerializeNamedArguments(w *toit.Writer, asField *string, oneof bool) e
 	}
 	if oneof {
 		if err := w.NamedArgument("--oneof", ""); err != nil {
+			return err
+		}
+	}
+	if inArray {
+		if err := w.NamedArgument("--in_array", ""); err != nil {
 			return err
 		}
 	}
@@ -961,7 +972,7 @@ func (g *generator) writeSerializeMessage(w *toit.Writer, fieldType *fieldType, 
 				w.StartCall(fnName),
 				w.Argument(fieldName),
 				w.Argument("w"),
-				writeSerializeNamedArguments(w, asField, oneofFieldName != nil),
+				writeSerializeNamedArguments(w, asField, oneofFieldName != nil, false),
 				w.EndCall(true),
 			)
 		}
@@ -970,12 +981,12 @@ func (g *generator) writeSerializeMessage(w *toit.Writer, fieldType *fieldType, 
 	return util.FirstError(
 		w.StartCall(g.getSerializeFieldName(fieldName, oneofFieldName, collectionField)+".serialize"),
 		w.Argument("w"),
-		writeSerializeNamedArguments(w, asField, oneofFieldName != nil),
+		writeSerializeNamedArguments(w, asField, oneofFieldName != nil, false),
 		w.EndCall(true),
 	)
 }
 
-func (g *generator) writeSerializePrimitive(w *toit.Writer, fieldName string, fieldType *fieldType, asField *string, oneofFieldName *string, collectionField *string) error {
+func (g *generator) writeSerializePrimitive(w *toit.Writer, fieldName string, fieldType *fieldType, asField *string, oneofFieldName *string, collectionField *string, inArray bool) error {
 	ft := fieldType.field.GetType()
 	protoType, err := protobufTypeConst(ft)
 	if err != nil {
@@ -985,7 +996,7 @@ func (g *generator) writeSerializePrimitive(w *toit.Writer, fieldName string, fi
 		w.StartCall("w.write_primitive"),
 		w.Argument("_protobuf."+protoType),
 		w.Argument(g.getSerializeFieldName(fieldName, oneofFieldName, collectionField)),
-		writeSerializeNamedArguments(w, asField, oneofFieldName != nil),
+		writeSerializeNamedArguments(w, asField, oneofFieldName != nil, inArray),
 		w.EndCall(true),
 	)
 }
@@ -998,13 +1009,13 @@ func (g *generator) writeSerializeOneofField(w *toit.Writer, fieldType *fieldTyp
 		w.StartCall("if"),
 		w.Argument(oneof.CaseName+" == "+fieldConstant),
 		w.StartBlock(false),
-		g.writeSerializeField(w, fieldType, oneof.FieldName, &fieldConstant, &fieldName, nil),
+		g.writeSerializeField(w, fieldType, oneof.FieldName, &fieldConstant, &fieldName, nil, false),
 		w.EndBlock(false),
 		w.EndCall(true),
 	)
 }
 
-func (g *generator) writeSerializeField(w *toit.Writer, fieldType *fieldType, fieldName string, asField *string, oneofFieldName *string, collectionField *string) error {
+func (g *generator) writeSerializeField(w *toit.Writer, fieldType *fieldType, fieldName string, asField *string, oneofFieldName *string, collectionField *string, inArray bool) error {
 	if fieldName == "" {
 		fieldName = uniqueName(fieldType.field.GetName(), reservedFieldNames, "_")
 		fieldNumber := strconv.Itoa(int(fieldType.field.GetNumber()))
@@ -1018,9 +1029,9 @@ func (g *generator) writeSerializeField(w *toit.Writer, fieldType *fieldType, fi
 	case fieldTypeClassObject:
 		return g.writeSerializeMessage(w, fieldType, fieldName, asField, oneofFieldName, collectionField)
 	case fieldTypeClassPrimitive:
-		return g.writeSerializePrimitive(w, fieldName, fieldType, asField, oneofFieldName, collectionField)
+		return g.writeSerializePrimitive(w, fieldName, fieldType, asField, oneofFieldName, collectionField, inArray)
 	default:
-		return fmt.Errorf("unkonwn fieldType: %v for field: %s", fieldType.class, fieldType.field.GetName())
+		return fmt.Errorf("unknown fieldType: %v for field: %s", fieldType.class, fieldType.field.GetName())
 	}
 }
 

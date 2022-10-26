@@ -1,0 +1,108 @@
+// Copyright (C) 2022 Toitware ApS.
+// Use of this source code is governed by a Zero-Clause BSD license that can
+// be found in the tests/TESTS_LICENSE file.
+
+syntax = "proto2";
+
+message TestAllTypes {
+  message NestedMessage {
+    optional int32 field = 1;
+  }
+
+  enum NestedEnum {
+    FOO = 1;
+    BAR = 2;
+    GEE = 3;
+    NEGATIVE = -1;
+  }
+
+  optional    int32 optional_int32    =  1;
+  optional    int64 optional_int64    =  2;
+  optional   uint32 optional_uint32   =  3;
+  optional   uint64 optional_uint64   =  4;
+  optional   sint32 optional_sint32   =  5;
+  optional   sint64 optional_sint64   =  6;
+  optional  fixed32 optional_fixed32  =  7;
+  optional  fixed64 optional_fixed64  =  8;
+  optional sfixed32 optional_sfixed32 =  9;
+  optional sfixed64 optional_sfixed64 = 10;
+  optional    float optional_float    = 11;
+  optional   double optional_double   = 12;
+  optional     bool optional_bool     = 13;
+  optional   string optional_string   = 14;
+  optional    bytes optional_bytes    = 15;
+
+  required    int32 required_int32    = 16;
+  required    int64 required_int64    = 17;
+  required   uint32 required_uint32   = 18;
+  required   uint64 required_uint64   = 19;
+  required   sint32 required_sint32   = 20;
+  required   sint64 required_sint64   = 21;
+  required  fixed32 required_fixed32  = 22;
+  required  fixed64 required_fixed64  = 23;
+  required sfixed32 required_sfixed32 = 24;
+  required sfixed64 required_sfixed64 = 25;
+  required    float required_float    = 26;
+  required   double required_double   = 27;
+  required     bool required_bool     = 28;
+  required   string required_string   = 29;
+  required    bytes required_bytes    = 30;
+
+  repeated    int32 repeated_int32    = 31 [packed=true];
+  repeated    int64 repeated_int64    = 32 [packed=true];
+  repeated   uint32 repeated_uint32   = 33 [packed=true];
+  repeated   uint64 repeated_uint64   = 34 [packed=true];
+  repeated   sint32 repeated_sint32   = 35 [packed=true];
+  repeated   sint64 repeated_sint64   = 36 [packed=true];
+  repeated  fixed32 repeated_fixed32  = 37 [packed=true];
+  repeated  fixed64 repeated_fixed64  = 38 [packed=true];
+  repeated sfixed32 repeated_sfixed32 = 39 [packed=true];
+  repeated sfixed64 repeated_sfixed64 = 40 [packed=true];
+  repeated    float repeated_float    = 41 [packed=true];
+  repeated   double repeated_double   = 42 [packed=true];
+  repeated     bool repeated_bool     = 43 [packed=true];
+  repeated   string repeated_string   = 44;
+  repeated    bytes repeated_bytes    = 45;
+
+  optional    int32 default_int32    = 61 [default =  61  ];
+  optional    int64 default_int64    = 62 [default =  62  ];
+  optional   uint32 default_uint32   = 63 [default =  63  ];
+  optional   uint64 default_uint64   = 64 [default =  64  ];
+  optional   sint32 default_sint32   = 65 [default = -65  ];
+  optional   sint64 default_sint64   = 66 [default = -66  ];
+  optional  fixed32 default_fixed32  = 67 [default =  67  ];
+  optional  fixed64 default_fixed64  = 68 [default =  68  ];
+  optional sfixed32 default_sfixed32 = 69 [default = -69  ];
+  optional sfixed64 default_sfixed64 = 70 [default = -70  ];
+  optional    float default_float    = 71 [default =  71.1];
+  optional   double default_double   = 72 [default =  72.2];
+  optional     bool default_bool     = 73 [default = true ];
+  optional   string default_string   = 74 [default = "string-default"];
+  optional    bytes default_bytes    = 75 [default = "byte-default"  ];
+
+  optional NestedMessage optional_nested_message = 76;
+  required NestedMessage required_nested_message = 77;
+  repeated NestedMessage repeated_nested_message = 78;
+
+  optional NestedEnum optional_nested_enum = 79;
+  required NestedEnum required_nested_enum = 80;
+  repeated NestedEnum repeated_nested_enum = 81 [packed=true];
+  optional NestedEnum default_nested_enum  = 82 [default = BAR ];
+
+  optional string optional_string_piece = 83 [ctype=STRING_PIECE];
+  required string required_string_piece = 84 [ctype=STRING_PIECE];
+  repeated string repeated_string_piece = 85 [ctype=STRING_PIECE];
+  optional string default_string_piece  = 86 [ctype=STRING_PIECE, default="foo"];
+
+  optional string optional_cord = 87 [ctype=CORD];
+  required string required_cord = 88 [ctype=CORD];
+  repeated string repeated_cord = 89 [ctype=CORD];
+  optional string default_cord =  90 [ctype=CORD, default="bar"];
+
+  oneof oneof_field {
+    uint32 oneof_uint32 = 91;
+    NestedMessage oneof_nested_message = 92;
+    string oneof_string = 93;
+    bytes oneof_bytes = 94;
+  }
+}
