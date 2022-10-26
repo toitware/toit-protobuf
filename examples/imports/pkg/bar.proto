@@ -1,0 +1,13 @@
+// Copyright (C) 2022 Toitware ApS.
+// Use of this source code is governed by a Zero-Clause BSD license that can
+// be found in the EXAMPLES_LICENSE file.
+
+syntax = "proto3";
+
+package pkg.bar;
+
+import "pkg/foo.proto";
+
+message Outer {
+  pkg.foo.Hello hello = 1;
+}
