@@ -91,9 +91,14 @@ jobs:
       run: |
         make install-pkgs
 
+    - name: Make
+      run: |
+        make tool
+        make -C tests protogen
+
     - name: Test
       shell: bash
       run: |
-        make
+        make test
         cd tool
         make test
