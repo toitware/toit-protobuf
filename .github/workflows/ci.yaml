@@ -88,13 +88,15 @@ jobs:
         cmake "-DTOIT_EXEC=$TOIT_EXEC" "-DTPKG_EXEC=$TPKG_EXEC" build
 
     - name: Install packages
+      shell: bash
       run: |
         make install-pkgs
 
     - name: Make
+      shell: bash
       run: |
         make tool
-        make -C tests protogen
+        make protobuf
 
     - name: Test
       shell: bash
@@ -102,3 +104,8 @@ jobs:
         make test
         cd tool
         make test
+
+    - name: Check up to date
+      shell: bash
+      run: |
+        git diff --quiet || (echo "Generated files are not up to date. Please run 'make protobuf' and commit the changes." && exit 1)
