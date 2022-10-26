@@ -37,8 +37,8 @@ foreach(file ${TESTS})
   endif()
   add_test(
     NAME "${test_name}"
-    COMMAND "${TOIT_EXEC}" "${file}"
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+    COMMAND "${TOIT_EXEC}" "tests/${file}"
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
     )
   set_tests_properties(${test_name} PROPERTIES TIMEOUT ${TEST_TIMEOUT})
   if("${test}" IN_LIST FAILING_TESTS)

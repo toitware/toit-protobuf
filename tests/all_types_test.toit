@@ -14,7 +14,7 @@ main:
   test_all
 
 test_required:
-  gold := file.read_content "gold/all_types_test-required.gold"
+  gold := file.read_content "tests/gold/all_types_test-required.gold"
 
   msg := TestAllTypes
   msg.required_int32 = 1
@@ -128,7 +128,7 @@ test_required:
   // expect_equals "bar" deserialized.default_cord
 
 test_all:
-  gold := file.read_content "gold/all_types_test-all.gold"
+  gold := file.read_content "tests/gold/all_types_test-all.gold"
 
   msg := TestAllTypes
 
