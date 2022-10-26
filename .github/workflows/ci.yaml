@@ -13,6 +13,10 @@ jobs:
 
     runs-on: ${{ matrix.os }}
 
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
     # Fetch the dependencies. Different for each platform.
     - name: Install dependencies - Linux
       if: runner.os == 'Linux'
@@ -34,14 +38,10 @@ jobs:
         ninja --version
         cmake --version
 
-    steps:
     - name: Install Go
       uses: actions/setup-go@v3
       with:
         go-version: ${{ matrix.go-version }}
-
-    - name: Checkout code
-      uses: actions/checkout@v3
 
     - name: Test
       shell: bash
