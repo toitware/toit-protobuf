@@ -9,7 +9,10 @@ import .foo_pb as _foo
 class Outer extends _protobuf.Message:
   hello/_foo.Hello := _foo.Hello
 
-  constructor:
+  constructor
+      --hello/_foo.Hello?=null:
+    if hello != null:
+      this.hello = hello
 
   constructor.deserialize r/_protobuf.Reader:
     r.read_message:

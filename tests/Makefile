@@ -2,15 +2,32 @@
 # Use of this source code is governed by a Zero-Clause BSD license that can
 # be found in the TESTS_LICENSE file.
 
-PROTOC_GEN_TOIT := ../tool/protoc-gen-toit
 PROTO_FLAGS ?=
+PROTOC_GEN_TOIT_PATH := ../tool/protoc-gen-toit
+PROTO_SOURCE_DIR := .
+PROTO_OUT_DIR := .
+
+PROTO_SOURCES := $(shell find $(PROTO_SOURCE_DIR) -name '*.proto')
+PROTO_TARGETS := $(PROTO_SOURCES:$(PROTO_SOURCE_DIR)/%.proto=$(PROTO_OUT_DIR)/%_pb.toit)
 
 .PHONY: all
-all: protogen python-golds
+all: protobuf python-golds test
 
-.PHONY: protogen
-protogen: all_types_test.proto $(PROTOC_GEN_TOIT)
-	protoc --plugin=protoc-gen-toit=$(PROTOC_GEN_TOIT) $< --toit_out=. --toit_opt=constructor_initializers=1 $(PROTO_FLAGS)
+.PHONY: test
+test: protobuf
+	(cd ../build && ninja check)
+
+.PHONY: protobuf
+protobuf: $(PROTO_TARGETS)
+
+$(PROTO_OUT_DIR)/%_pb.toit: $(PROTO_SOURCE_DIR)/%.proto $(PROTO_OUT_DIR) $(PROTOC_GEN_TOIT_PATH)
+	protoc --plugin=protoc-gen-toit=$(PROTOC_GEN_TOIT_PATH) $< --toit_out=$(PROTO_OUT_DIR) --toit_opt=constructor_initializers=1 $(PROTO_FLAGS)
+
+$(PROTO_OUT_DIR):
+	mkdir -p $(PROTO_OUT_DIR)
+
+$(PROTOC_GEN_TOIT_PATH):
+	make -C $(dir $(PROTOC_GEN_TOIT_PATH)) protoc-gen-toit
 
 .PHONY: python-golds
 python-golds: all_types_test.proto
@@ -18,5 +35,6 @@ python-golds: all_types_test.proto
 	python all_types_test-gold_generator.py --create-required gold/all_types_test-required.gold
 	python all_types_test-gold_generator.py --create-all gold/all_types_test-all.gold
 
-$(PROTOC_GEN_TOIT):
-	$(MAKE) -C ../tool protoc-gen-toit
+clean:
+	rm -f $(PROTO_OUT_DIR)/*_pb.toit
+	rm -f gold/*.gold

@@ -8,7 +8,10 @@ import core as _core
 class Hello extends _protobuf.Message:
   world/string := ""
 
-  constructor:
+  constructor
+      --world/string?=null:
+    if world != null:
+      this.world = world
 
   constructor.deserialize r/_protobuf.Reader:
     r.read_message:

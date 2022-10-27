@@ -3,8 +3,8 @@
 
 import protobuf as _protobuf
 import core as _core
-import protogen.google.protobuf.timestamp_pb as _timestamp
-import protogen.google.protobuf.duration_pb as _duration
+import protobuf.protogen.google.protobuf.timestamp_pb as _timestamp
+import protobuf.protogen.google.protobuf.duration_pb as _duration
 
 // MESSAGE START: .TimeObject
 class TimeObject extends _protobuf.Message:

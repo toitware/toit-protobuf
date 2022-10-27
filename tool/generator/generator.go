@@ -28,7 +28,7 @@ const (
 	// enabled by default.
 	coreObjectsParam = "core_objects"
 
-	protoLibrary         = "protogen"
+	protoLibrary         = "protobuf.protogen"
 	coreDurationMessage  = ".google.protobuf.Duration"
 	coreTimestampMessage = ".google.protobuf.Timestamp"
 )
