@@ -27,6 +27,8 @@ const (
 	// core_objects (bool), if set, will decode core protobuf messages into their toit counterparts (Timestamp and Duration).
 	// enabled by default.
 	coreObjectsParam = "core_objects"
+	// identifies a relative location of the protobuf library.
+	toitProtobufLibrary = "toit_protobuf_library"
 
 	protoLibrary         = "protobuf.protogen"
 	coreDurationMessage  = ".google.protobuf.Duration"
@@ -46,6 +48,7 @@ type generatorOptions struct {
 	ConvertHooks            bool
 	CoreObjects             bool
 	ImportLibraries         map[string]string
+	ToitProtobufLibrary     string
 }
 
 func parseGeneratorOptions(params map[string]string) (generatorOptions, error) {
@@ -79,6 +82,10 @@ func parseGeneratorOptions(params map[string]string) (generatorOptions, error) {
 
 	if v, ok := params[importLibraryParam]; ok {
 		options.ImportLibraries = parseMap(v, ",", "=")
+	}
+
+	if v, ok := params[toitProtobufLibrary]; ok {
+		options.ToitProtobufLibrary = v
 	}
 
 	return options, nil
@@ -132,6 +139,11 @@ func (r *importResolver) resolveImport(sourceFile string, importFile string) str
 			prefixKey = &prefix
 			break
 		}
+	}
+
+	// If we are generating the google-protobuf libraries don't import them absolutely, but relatively.
+	if prefixKey != nil && *prefixKey == "google/protobuf/" && strings.HasPrefix(sourceFile, "google/protobuf/") {
+		prefixKey = nil
 	}
 
 	importProtoFile := protoToFile(importFile)
@@ -199,7 +211,11 @@ func (g *generator) generateFile(file *descriptor.FileDescriptorProto) (*plugin.
 
 	// create imports
 	g.imports[file.GetName()] = ""
-	w.ImportAs("protobuf", "_protobuf")
+	if g.options.ToitProtobufLibrary == "" {
+		w.ImportAs("protobuf", "_protobuf")
+	} else {
+		w.ImportAs(g.importResolver.resolveImport(file.GetName(), g.options.ToitProtobufLibrary), "_protobuf")
+	}
 	w.ImportAs("core", "_core")
 	importNames := util.NewStringSet("_protobuf", "_core")
 

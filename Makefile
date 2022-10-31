@@ -33,7 +33,10 @@ protobuf: $(CORE_PROTO_FILES)
 	$(MAKE) -C ./examples/oneofs protobuf
 
 src/protogen/google/%_pb.toit: $(CORE_PROTO_SOURCE_DIR)/google/%.proto $(CORE_PROTO_OUT_DIR)
-	protoc $< --plugin=protoc-gen-toit=$(PROTOC_GEN_TOIT_PATH) --toit_out=constructor_initializers=1:$(CORE_PROTO_OUT_DIR) $(CORE_PROTO_FLAGS)
+	protoc $< --plugin=protoc-gen-toit=$(PROTOC_GEN_TOIT_PATH) \
+			--toit_out=$(CORE_PROTO_OUT_DIR) \
+			"--toit_opt=constructor_initializers=1;toit_protobuf_library=../protobuf.toit" \
+			$(CORE_PROTO_FLAGS)
 
 $(CORE_PROTO_OUT_DIR):
 	mkdir -p $@
