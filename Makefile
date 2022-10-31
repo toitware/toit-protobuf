@@ -17,9 +17,9 @@ all: protoc-gen-toit protobuf
 install-pkgs: rebuild-cmake
 	(cd build && ninja install-pkgs)
 
-test: install-pkgs rebuild-cmake tool
+test: install-pkgs rebuild-cmake protoc-gen-toit
 	(cd build && ninja check)
-	$(MAKE) -C tool test
+	$(MAKE) -C protoc-gen-toit test
 
 protoc-gen-toit:
 	make -C $(dir $(PROTOC_GEN_TOIT_PATH)) protoc-gen-toit
