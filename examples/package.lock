@@ -2,4 +2,4 @@ prefixes:
   protobuf: ..
 packages:
   ..:
-    path: ../..
+    path: ..
