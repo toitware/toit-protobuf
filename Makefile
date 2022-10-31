@@ -2,7 +2,7 @@
 # Use of this source code is governed by an MIT-style license that can be
 # found in the LICENSE file.
 
-PROTOC_GEN_TOIT_PATH := tool/protoc-gen-toit
+PROTOC_GEN_TOIT_PATH := protoc-gen-toit/protoc-gen-toit
 
 PROTO_FLAGS ?=
 
@@ -12,17 +12,17 @@ CORE_PROTO_SOURCES := $(shell find $(CORE_PROTO_SOURCE_DIR)/google -name '*.prot
 CORE_PROTO_FILES := $(CORE_PROTO_SOURCES:$(CORE_PROTO_SOURCE_DIR)/%.proto=$(CORE_PROTO_OUT_DIR)/%_pb.toit)
 CORE_PROTO_FLAGS := --proto_path $(CORE_PROTO_SOURCE_DIR) -I$(CORE_PROTO_SOURCE_DIR)/google $(PROTO_FLAGS)
 
-all: tool protobuf
+all: protoc-gen-toit protobuf
 
 install-pkgs: rebuild-cmake
 	(cd build && ninja install-pkgs)
 
-test: install-pkgs rebuild-cmake tool
+test: install-pkgs rebuild-cmake protoc-gen-toit
 	(cd build && ninja check)
-	$(MAKE) -C tool test
+	$(MAKE) -C protoc-gen-toit test
 
-tool:
-	$(MAKE) -C tool
+protoc-gen-toit:
+	make -C $(dir $(PROTOC_GEN_TOIT_PATH)) protoc-gen-toit
 
 protobuf: $(CORE_PROTO_FILES)
 	$(MAKE) -C ./tests protobuf
@@ -58,4 +58,4 @@ clean:
 	rm -rf $(CORE_PROTO_OUT_DIR)
 	rm -rf build
 
-.PHONY: all test rebuild-cmake install-pkgs tool protobuf clean
+.PHONY: all test rebuild-cmake install-pkgs protoc-gen-toit protobuf clean

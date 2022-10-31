@@ -95,14 +95,11 @@ jobs:
     - name: Make
       shell: bash
       run: |
-        make tool
-        make protobuf
+        make
 
     - name: Test
       shell: bash
       run: |
-        make test
-        cd tool
         make test
 
     - name: Check up to date
