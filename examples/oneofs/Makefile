@@ -2,7 +2,7 @@
 # Use of this source code is governed by a Zero-Clause BSD license that can
 # be found in the EXAMPLES_LICENSE file.
 
-PROTOC_GEN_TOIT_PATH := ../../tool/protoc-gen-toit
+PROTOC_GEN_TOIT_PATH := ../../protoc-gen-toit/protoc-gen-toit
 
 PROTO_FLAGS ?=
 PROTO_SOURCE_DIR := .

@@ -3,7 +3,7 @@
 # be found in the TESTS_LICENSE file.
 
 PROTO_FLAGS ?=
-PROTOC_GEN_TOIT_PATH := ../tool/protoc-gen-toit
+PROTOC_GEN_TOIT_PATH := ../protoc-gen-toit/protoc-gen-toit
 PROTO_SOURCE_DIR := .
 PROTO_OUT_DIR := .
 
