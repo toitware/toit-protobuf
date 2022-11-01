@@ -52,10 +52,7 @@ interface Writer:
     return Writer_ out
 
 abstract class Message:
-  // TODO: serialize should be abstract but default values
-  // to flags are not allowed for abstract methods
-  serialize writer/Writer --as_field/int?=null --oneof/bool=false -> none:
-    return
+  abstract serialize writer/Writer --as_field/int?=null --oneof/bool=false -> none
 
   abstract num_fields_set -> int
 
@@ -83,6 +80,8 @@ class FakeMessage_ extends Message:
   protobuf_size/int := ?
 
   constructor .num_fields_set .protobuf_size:
+
+  serialize writer/Writer --as_field/int?=null --oneof/bool=false -> none:
 
   with num_fields_set .protobuf_size -> Message:
     this.num_fields_set = num_fields_set
