@@ -69,7 +69,7 @@ jobs:
       with:
         go-version: ${{ matrix.go-version }}
 
-    - uses: suisei-cn/actions-download-file@v1.0.1
+    - uses: suisei-cn/actions-download-file@v1.3.0
       name: Download Toit
       with:
         url: ${{ env.TOIT_URL }}
