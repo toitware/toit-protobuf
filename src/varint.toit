@@ -3,7 +3,7 @@
 // found in the LICENSE file.
 
 MSB_ ::= 0b10000000
-MASK_ ::= ~(MSB_-1)
+MASK_ ::= ~(MSB_ - 1)
 
 encode p/ByteArray offset/int i/int -> int:
   if i & 0x7f == i:
