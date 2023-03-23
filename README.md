@@ -3,7 +3,7 @@
 A Toit package for working with protobuf.
 
 ## Generation
-The protoc-gen-toit folder contains the protoc plugin for generating toit code from
+The protoc-gen-toit folder contains the protoc plugin for generating Toit code from
 protobuf files.
 
 The plugin is written in Go and can be installed using
@@ -23,7 +23,7 @@ protoc $PROTOBUF_FILE --toit_out=$OUT_DIR
 The [Makefile](Makefile) and [test Makefile](tests/Makefile) also contain examples
 to generate code from the protobuf files.
 
-Specifically, you might need the Google core types, which has the following
+Specifically, you might need the Google core types, which have the following
 Makefile rule:
 
 ``` Makefile
