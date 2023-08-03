@@ -28,5 +28,5 @@ message InnerMessage {
 
 message Message {
   Foo foo = 1;
-  MyEnum enum = 2;
+  MyEnum enum_field = 2;
 }
