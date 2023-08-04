@@ -194,7 +194,19 @@ func uniqueName(name string, namespace util.StringSet, prefix string) string {
 }
 
 var (
-	reservedFieldNames = util.NewStringSet("operator", "static", "class", "constructor", "interface", "catch")
+	reservedFieldNames = util.NewStringSet(
+		"operator",
+		"static",
+		"class",
+		"constructor",
+		"interface",
+		"catch",
+		"throw",
+		"rethrow",
+		"switch",
+		"enum",
+		"mixin",
+	)
 )
 
 func (g *generator) generateFile(file *descriptor.FileDescriptorProto) (*plugin.CodeGeneratorResponse_File, error) {

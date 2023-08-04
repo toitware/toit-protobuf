@@ -68,70 +68,70 @@ class InnerMessage_Foo extends _protobuf.Message:
 
 class InnerMessage extends _protobuf.Message:
   foo/InnerMessage_Foo := InnerMessage_Foo
-  enum/int/*enum<InnerMessage_MyEnum>*/ := 0
+  _enum/int/*enum<InnerMessage_MyEnum>*/ := 0
 
   constructor
       --foo/InnerMessage_Foo?=null
-      --enum/int?/*enum<InnerMessage_MyEnum>?*/=null:
+      --_enum/int?/*enum<InnerMessage_MyEnum>?*/=null:
     if foo != null:
       this.foo = foo
-    if enum != null:
-      this.enum = enum
+    if _enum != null:
+      this._enum = _enum
 
   constructor.deserialize r/_protobuf.Reader:
     r.read_message:
       r.read_field 1:
         foo = InnerMessage_Foo.deserialize r
       r.read_field 2:
-        enum = r.read_primitive _protobuf.PROTOBUF_TYPE_ENUM
+        _enum = r.read_primitive _protobuf.PROTOBUF_TYPE_ENUM
 
   serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
     w.write_message_header this --as_field=as_field --oneof=oneof
     foo.serialize w --as_field=1
-    w.write_primitive _protobuf.PROTOBUF_TYPE_ENUM enum --as_field=2
+    w.write_primitive _protobuf.PROTOBUF_TYPE_ENUM _enum --as_field=2
 
   num_fields_set -> int:
     return (foo.is_empty ? 0 : 1)
-      + (enum == 0 ? 0 : 1)
+      + (_enum == 0 ? 0 : 1)
 
   protobuf_size -> int:
     return (_protobuf.size_embedded_message (foo.protobuf_size) --as_field=1)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_ENUM enum --as_field=2)
+      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_ENUM _enum --as_field=2)
 
 // MESSAGE END: .InnerMessage
 
 // MESSAGE START: .Message
 class Message extends _protobuf.Message:
   foo/Foo := Foo
-  enum/int/*enum<MyEnum>*/ := 0
+  enum_field/int/*enum<MyEnum>*/ := 0
 
   constructor
       --foo/Foo?=null
-      --enum/int?/*enum<MyEnum>?*/=null:
+      --enum_field/int?/*enum<MyEnum>?*/=null:
     if foo != null:
       this.foo = foo
-    if enum != null:
-      this.enum = enum
+    if enum_field != null:
+      this.enum_field = enum_field
 
   constructor.deserialize r/_protobuf.Reader:
     r.read_message:
       r.read_field 1:
         foo = Foo.deserialize r
       r.read_field 2:
-        enum = r.read_primitive _protobuf.PROTOBUF_TYPE_ENUM
+        enum_field = r.read_primitive _protobuf.PROTOBUF_TYPE_ENUM
 
   serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
     w.write_message_header this --as_field=as_field --oneof=oneof
     foo.serialize w --as_field=1
-    w.write_primitive _protobuf.PROTOBUF_TYPE_ENUM enum --as_field=2
+    w.write_primitive _protobuf.PROTOBUF_TYPE_ENUM enum_field --as_field=2
 
   num_fields_set -> int:
     return (foo.is_empty ? 0 : 1)
-      + (enum == 0 ? 0 : 1)
+      + (enum_field == 0 ? 0 : 1)
 
   protobuf_size -> int:
     return (_protobuf.size_embedded_message (foo.protobuf_size) --as_field=1)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_ENUM enum --as_field=2)
+      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_ENUM enum_field --as_field=2)
 
 // MESSAGE END: .Message
 
