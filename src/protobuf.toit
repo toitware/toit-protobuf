@@ -3,7 +3,8 @@
 // found in the LICENSE file.
 
 import .varint as varint
-import bytes
+import bytes as old-bytes
+import io
 import io show LITTLE_ENDIAN
 
 // 0 is reserved for errors.
@@ -48,7 +49,15 @@ interface Writer:
   write_message_header msg/Message --as_field/int?=null --oneof/bool=false -> none
   reset -> none
 
-  constructor out/bytes.Buffer:
+  /**
+  Builds a $Writer from the given $io.Buffer or $old-bytes.Buffer.
+  Support for $old-bytes.Buffer is deprecated and will be removed in the future.
+  */
+  constructor out:
+    if out is not io.Writer:
+      // TODO(florian): when removing this error and the old-bytes.Buffer support,
+      //   also type the field in the 'Writer_' class.
+      print-on-stderr_ "Support for bytes.buffer is deprecated. Use io.Buffer instead."
     return Writer_ out
 
 abstract class Message:
@@ -307,8 +316,8 @@ class Writer_ implements Writer:
   // cannot yield.
   static VARINT_BUFFER_/ByteArray := ByteArray 10
 
-  // TODO: change the type of out to some Writer interface.
-  out_/bytes.Buffer
+  // TODO(florian): change this to io.Buffer type.
+  out_/any
 
   collection_field/int? := null
   writing_map/bool := false
@@ -321,7 +330,10 @@ class Writer_ implements Writer:
     out_.clear
 
   buffer_ -> ByteArray:
-    return out_.buffer
+    if out_ is io.Buffer:
+      return (out_ as io.Buffer).backing-array
+    else:
+      return (out_ as old-bytes.Buffer).buffer
 
   write_key_ type/int as_field/int -> int:
     return write_varint_
@@ -329,7 +341,10 @@ class Writer_ implements Writer:
 
   offset_reserved_ size:
     offset := out_.size
-    out_.grow size
+    if out_ is io.Buffer:
+      (out_ as io.Buffer).grow-by size
+    else:
+      (out_ as old-bytes.Buffer).grow size
     return offset
 
   write_primitive protobuf_type/int value/any --oneof/bool=false --as_field/int?=null --in_array/bool=false -> none:
