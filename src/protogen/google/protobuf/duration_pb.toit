@@ -18,24 +18,24 @@ class Duration extends _protobuf.Message:
       this.nanos = nanos
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read_message:
-      r.read_field 1:
-        seconds = r.read_primitive _protobuf.PROTOBUF_TYPE_INT64
-      r.read_field 2:
-        nanos = r.read_primitive _protobuf.PROTOBUF_TYPE_INT32
+    r.read-message:
+      r.read-field 1:
+        seconds = r.read-primitive _protobuf.PROTOBUF-TYPE-INT64
+      r.read-field 2:
+        nanos = r.read-primitive _protobuf.PROTOBUF-TYPE-INT32
 
-  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
-    w.write_message_header this --as_field=as_field --oneof=oneof
-    w.write_primitive _protobuf.PROTOBUF_TYPE_INT64 seconds --as_field=1
-    w.write_primitive _protobuf.PROTOBUF_TYPE_INT32 nanos --as_field=2
+  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
+    w.write-message-header this --as-field=as-field --oneof=oneof
+    w.write-primitive _protobuf.PROTOBUF-TYPE-INT64 seconds --as-field=1
+    w.write-primitive _protobuf.PROTOBUF-TYPE-INT32 nanos --as-field=2
 
-  num_fields_set -> int:
+  num-fields-set -> int:
     return (seconds == 0 ? 0 : 1)
       + (nanos == 0 ? 0 : 1)
 
-  protobuf_size -> int:
-    return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_INT64 seconds --as_field=1)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_INT32 nanos --as_field=2)
+  protobuf-size -> int:
+    return (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-INT64 seconds --as-field=1)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-INT32 nanos --as-field=2)
 
 // MESSAGE END: .google.protobuf.Duration
 

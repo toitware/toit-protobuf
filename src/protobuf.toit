@@ -5,48 +5,48 @@
 import .varint as varint
 import bytes as old-bytes
 import io
-import io show LITTLE_ENDIAN
+import io show LITTLE-ENDIAN
 
 // 0 is reserved for errors.
-PROTOBUF_TYPE_DOUBLE    ::= 1
-PROTOBUF_TYPE_FLOAT     ::= 2
-PROTOBUF_TYPE_BOOL      ::= 3
+PROTOBUF-TYPE-DOUBLE    ::= 1
+PROTOBUF-TYPE-FLOAT     ::= 2
+PROTOBUF-TYPE-BOOL      ::= 3
 
-PROTOBUF_TYPE_INT64     ::= 4
-PROTOBUF_TYPE_INT32     ::= 5
-PROTOBUF_TYPE_SINT64    ::= 6
-PROTOBUF_TYPE_SINT32    ::= 7
-PROTOBUF_TYPE_SFIXED64  ::= 8
-PROTOBUF_TYPE_SFIXED32  ::= 9
+PROTOBUF-TYPE-INT64     ::= 4
+PROTOBUF-TYPE-INT32     ::= 5
+PROTOBUF-TYPE-SINT64    ::= 6
+PROTOBUF-TYPE-SINT32    ::= 7
+PROTOBUF-TYPE-SFIXED64  ::= 8
+PROTOBUF-TYPE-SFIXED32  ::= 9
 
-PROTOBUF_TYPE_UINT64    ::= 10
-PROTOBUF_TYPE_UINT32    ::= 11
-PROTOBUF_TYPE_FIXED64   ::= 12
-PROTOBUF_TYPE_FIXED32   ::= 13
-PROTOBUF_TYPE_ENUM      ::= 14
+PROTOBUF-TYPE-UINT64    ::= 10
+PROTOBUF-TYPE-UINT32    ::= 11
+PROTOBUF-TYPE-FIXED64   ::= 12
+PROTOBUF-TYPE-FIXED32   ::= 13
+PROTOBUF-TYPE-ENUM      ::= 14
 
-PROTOBUF_TYPE_STRING    ::= 15
-PROTOBUF_TYPE_BYTES     ::= 16
+PROTOBUF-TYPE-STRING    ::= 15
+PROTOBUF-TYPE-BYTES     ::= 16
 
-PROTOBUF_TYPE_GROUP     ::= 17
-PROTOBUF_TYPE_MESSAGE   ::= 18
+PROTOBUF-TYPE-GROUP     ::= 17
+PROTOBUF-TYPE-MESSAGE   ::= 18
 
 interface Reader:
-  read_primitive type/int -> any
-  read_array value_type/int array/List [construct_value] -> List
-  read_map map/Map [construct_key] [construct_value] -> Map
-  read_message [construct_message] -> none
-  read_field field_pos/int [construct_field] -> none
+  read-primitive type/int -> any
+  read-array value-type/int array/List [construct-value] -> List
+  read-map map/Map [construct-key] [construct-value] -> Map
+  read-message [construct-message] -> none
+  read-field field-pos/int [construct-field] -> none
   reset -> none
 
   constructor in/ByteArray:
     return Reader_ in
 
 interface Writer:
-  write_primitive type/int value/any --as_field/int?=null --oneof/bool=false --in_array/bool=false -> int
-  write_array value_type/int array/List --as_field/int?=null --oneof/bool=false [serialize_value] -> int
-  write_map key_type/int value_type/int map/Map --as_field/int?=null --oneof/bool=false [serialize_key] [serialize_value] -> none
-  write_message_header msg/Message --as_field/int?=null --oneof/bool=false -> none
+  write-primitive type/int value/any --as-field/int?=null --oneof/bool=false --in-array/bool=false -> int
+  write-array value-type/int array/List --as-field/int?=null --oneof/bool=false [serialize-value] -> int
+  write-map key-type/int value-type/int map/Map --as-field/int?=null --oneof/bool=false [serialize-key] [serialize-value] -> none
+  write-message-header msg/Message --as-field/int?=null --oneof/bool=false -> none
   reset -> none
 
   /**
@@ -61,272 +61,272 @@ interface Writer:
     return Writer_ out
 
 abstract class Message:
-  abstract serialize writer/Writer --as_field/int?=null --oneof/bool=false -> none
+  abstract serialize writer/Writer --as-field/int?=null --oneof/bool=false -> none
 
-  abstract num_fields_set -> int
+  abstract num-fields-set -> int
 
   /// Returns the byte size used to encode the message in protobuf.
-  abstract protobuf_size -> int
+  abstract protobuf-size -> int
 
-  is_empty -> bool:
-    return num_fields_set == 0
+  is-empty -> bool:
+    return num-fields-set == 0
 
 /// Decodes a google.protobuf.Duration message into a $Duration.
-deserialize_duration r/Reader -> Duration:
+deserialize-duration r/Reader -> Duration:
   result := Duration.ZERO
   seconds := 0
   nanos := 0
-  r.read_message:
-    r.read_field 1:
-      seconds = r.read_primitive PROTOBUF_TYPE_INT64
-    r.read_field 2:
-      nanos = r.read_primitive PROTOBUF_TYPE_INT32
+  r.read-message:
+    r.read-field 1:
+      seconds = r.read-primitive PROTOBUF-TYPE-INT64
+    r.read-field 2:
+      nanos = r.read-primitive PROTOBUF-TYPE-INT32
     result = Duration --s=seconds --ns=nanos
   return result
 
 class FakeMessage_ extends Message:
-  num_fields_set/int := ?
-  protobuf_size/int := ?
+  num-fields-set/int := ?
+  protobuf-size/int := ?
 
-  constructor .num_fields_set .protobuf_size:
+  constructor .num-fields-set .protobuf-size:
 
-  serialize writer/Writer --as_field/int?=null --oneof/bool=false -> none:
+  serialize writer/Writer --as-field/int?=null --oneof/bool=false -> none:
 
-  with num_fields_set .protobuf_size -> Message:
-    this.num_fields_set = num_fields_set
-    this.protobuf_size = protobuf_size
+  with num-fields-set .protobuf-size -> Message:
+    this.num-fields-set = num-fields-set
+    this.protobuf-size = protobuf-size
     return this
 
 // We can reuse the fakeMessage_ since write_message_header will not do any recursing calls.
 fakeMessage_ := FakeMessage_ 0 0
 
 /// Encodes a $Duration into a google.protobuf.Duration message.
-serialize_duration d/Duration w/Writer --as_field/int?=null --oneof/bool=false:
-  seconds := d.in_s
-  nanos := d.in_ns % Duration.NANOSECONDS_PER_SECOND
-  num_fields_set :=
+serialize-duration d/Duration w/Writer --as-field/int?=null --oneof/bool=false:
+  seconds := d.in-s
+  nanos := d.in-ns % Duration.NANOSECONDS-PER-SECOND
+  num-fields-set :=
     (seconds == 0 ? 0 : 1) +
       (nanos == 0 ? 0 : 1)
-  w.write_message_header (fakeMessage_.with num_fields_set (size_duration d)) --as_field=as_field --oneof=oneof
+  w.write-message-header (fakeMessage_.with num-fields-set (size-duration d)) --as-field=as-field --oneof=oneof
   if seconds != 0:
-    w.write_primitive PROTOBUF_TYPE_INT64 seconds --as_field=1
+    w.write-primitive PROTOBUF-TYPE-INT64 seconds --as-field=1
   if nanos != 0:
-    w.write_primitive PROTOBUF_TYPE_INT32 nanos --as_field=2
+    w.write-primitive PROTOBUF-TYPE-INT32 nanos --as-field=2
 
-size_duration d/Duration --as_field/int?=null -> int:
-  seconds := d.in_s
-  nanos := d.in_ns % Duration.NANOSECONDS_PER_SECOND
-  msg_size := (size_primitive PROTOBUF_TYPE_INT64 seconds --as_field=1)
-    + (size_primitive PROTOBUF_TYPE_INT32 nanos --as_field=2)
-  return size_embedded_message msg_size --as_field=as_field
+size-duration d/Duration --as-field/int?=null -> int:
+  seconds := d.in-s
+  nanos := d.in-ns % Duration.NANOSECONDS-PER-SECOND
+  msg-size := (size-primitive PROTOBUF-TYPE-INT64 seconds --as-field=1)
+    + (size-primitive PROTOBUF-TYPE-INT32 nanos --as-field=2)
+  return size-embedded-message msg-size --as-field=as-field
 
 /// Decodes a google.protobuf.Timestamp message into a $Time.
-deserialize_timestamp r/Reader -> Time:
-  result := TIME_ZERO_EPOCH
+deserialize-timestamp r/Reader -> Time:
+  result := TIME-ZERO-EPOCH
   seconds := 0
   nanos := 0
-  r.read_message:
-    r.read_field 1:
-      seconds = r.read_primitive PROTOBUF_TYPE_INT64
-    r.read_field 2:
-      nanos = r.read_primitive PROTOBUF_TYPE_INT32
+  r.read-message:
+    r.read-field 1:
+      seconds = r.read-primitive PROTOBUF-TYPE-INT64
+    r.read-field 2:
+      nanos = r.read-primitive PROTOBUF-TYPE-INT32
     result = Time.epoch --s=seconds --ns=nanos
   return result
 
 /// Encodes a $Time into a google.protobuf.Timestamp message.
-serialize_timestamp t/Time w/Writer --as_field/int?=null --oneof/bool=false -> none:
-  seconds := t.s_since_epoch
-  nanos := t.ns_part
-  num_fields_set :=
+serialize-timestamp t/Time w/Writer --as-field/int?=null --oneof/bool=false -> none:
+  seconds := t.s-since-epoch
+  nanos := t.ns-part
+  num-fields-set :=
     (seconds == 0 ? 0 : 1) +
       (nanos == 0 ? 0 : 1)
-  w.write_message_header (fakeMessage_.with num_fields_set (size_timestamp t)) --as_field=as_field --oneof=oneof
+  w.write-message-header (fakeMessage_.with num-fields-set (size-timestamp t)) --as-field=as-field --oneof=oneof
   if seconds != 0:
-    w.write_primitive PROTOBUF_TYPE_INT64 seconds --as_field=1
+    w.write-primitive PROTOBUF-TYPE-INT64 seconds --as-field=1
   if nanos != 0:
-    w.write_primitive PROTOBUF_TYPE_INT32 nanos --as_field=2
+    w.write-primitive PROTOBUF-TYPE-INT32 nanos --as-field=2
 
-size_timestamp t/Time --as_field/int?=null -> int:
-  seconds := t.s_since_epoch
-  nanos := t.ns_part
-  msg_size := (size_primitive PROTOBUF_TYPE_INT64 seconds --as_field=1)
-    + (size_primitive PROTOBUF_TYPE_INT32 nanos --as_field=2)
-  return size_embedded_message msg_size --as_field=as_field
+size-timestamp t/Time --as-field/int?=null -> int:
+  seconds := t.s-since-epoch
+  nanos := t.ns-part
+  msg-size := (size-primitive PROTOBUF-TYPE-INT64 seconds --as-field=1)
+    + (size-primitive PROTOBUF-TYPE-INT32 nanos --as-field=2)
+  return size-embedded-message msg-size --as-field=as-field
 
-time_is_zero_epoch t/Time -> bool:
-  return t.ns_part == 0 and t.s_since_epoch == 0
+time-is-zero-epoch t/Time -> bool:
+  return t.ns-part == 0 and t.s-since-epoch == 0
 
-TIME_ZERO_EPOCH/Time ::= Time.epoch
+TIME-ZERO-EPOCH/Time ::= Time.epoch
 
-ERR_UNSUPPORTED_TYPE ::= "UNSUPPORTED_TYPE"
-ERR_INVALID_TYPE ::= "INVALID_TYPE"
-ERR_UNSUPPORTED_WIRE_TYPE ::= "UNSUPPORTED_WIRE_TYPE"
+ERR-UNSUPPORTED-TYPE ::= "UNSUPPORTED_TYPE"
+ERR-INVALID-TYPE ::= "INVALID_TYPE"
+ERR-UNSUPPORTED-WIRE-TYPE ::= "UNSUPPORTED_WIRE_TYPE"
 
-PROTOBUF_WIRE_TYPE_VARINT         ::= 0
-PROTOBUF_WIRE_TYPE_64BIT          ::= 1
-PROTOBUF_WIRE_TYPE_LEN_DELIMITED  ::= 2
-PROTOBUF_WIRE_TYPE_START_GROUP    ::= 3
-PROTOBUF_WIRE_TYPE_END_GROUP      ::= 4
-PROTOBUF_WIRE_TYPE_32BIT          ::= 5
+PROTOBUF-WIRE-TYPE-VARINT         ::= 0
+PROTOBUF-WIRE-TYPE-64BIT          ::= 1
+PROTOBUF-WIRE-TYPE-LEN-DELIMITED  ::= 2
+PROTOBUF-WIRE-TYPE-START-GROUP    ::= 3
+PROTOBUF-WIRE-TYPE-END-GROUP      ::= 4
+PROTOBUF-WIRE-TYPE-32BIT          ::= 5
 
 class Reader_ implements Reader:
   bytes_/ByteArray ::= ?
 
-  read_offset_/int := 0
-  msg_end/int? := null
-  current_wire_type/int? := null
+  read-offset_/int := 0
+  msg-end/int? := null
+  current-wire-type/int? := null
 
   constructor .bytes_:
 
   reset -> none:
-    read_offset_ = 0
-    msg_end = null
+    read-offset_ = 0
+    msg-end = null
 
-  read_varint_ -> int:
-    i := varint.decode bytes_ read_offset_
-    skip_varint_ i
+  read-varint_ -> int:
+    i := varint.decode bytes_ read-offset_
+    skip-varint_ i
     return i
 
-  peek_varint_ -> int:
-    i := varint.decode bytes_ read_offset_
+  peek-varint_ -> int:
+    i := varint.decode bytes_ read-offset_
     return i
 
-  skip_varint_ i/int:
-    read_offset_ += varint.size i
+  skip-varint_ i/int:
+    read-offset_ += varint.size i
 
-  skip_varint_:
-    read_offset_ += varint.byte_size --offset=read_offset_ bytes_
+  skip-varint_:
+    read-offset_ += varint.byte-size --offset=read-offset_ bytes_
 
-  read_primitive protobuf_type/int -> any:
-    if protobuf_type == PROTOBUF_TYPE_DOUBLE:
-      result := LITTLE_ENDIAN.float64 bytes_ read_offset_
-      read_offset_ += 8
+  read-primitive protobuf-type/int -> any:
+    if protobuf-type == PROTOBUF-TYPE-DOUBLE:
+      result := LITTLE-ENDIAN.float64 bytes_ read-offset_
+      read-offset_ += 8
       return result
-    else if protobuf_type == PROTOBUF_TYPE_FLOAT:
-      result := LITTLE_ENDIAN.float32 bytes_ read_offset_
-      read_offset_ += 4
+    else if protobuf-type == PROTOBUF-TYPE-FLOAT:
+      result := LITTLE-ENDIAN.float32 bytes_ read-offset_
+      read-offset_ += 4
       return result
-    else if PROTOBUF_TYPE_INT64 <= protobuf_type <= PROTOBUF_TYPE_INT32 or
-            PROTOBUF_TYPE_UINT64 <= protobuf_type <= PROTOBUF_TYPE_UINT32:
-      return read_varint_
-    else if PROTOBUF_TYPE_SINT64 <= protobuf_type <= PROTOBUF_TYPE_SINT32:
-      result := read_varint_
+    else if PROTOBUF-TYPE-INT64 <= protobuf-type <= PROTOBUF-TYPE-INT32 or
+            PROTOBUF-TYPE-UINT64 <= protobuf-type <= PROTOBUF-TYPE-UINT32:
+      return read-varint_
+    else if PROTOBUF-TYPE-SINT64 <= protobuf-type <= PROTOBUF-TYPE-SINT32:
+      result := read-varint_
       return (result >> 1) ^ -(result & 1)
-    else if protobuf_type == PROTOBUF_TYPE_FIXED32 or protobuf_type == PROTOBUF_TYPE_SFIXED32:
-      result := LITTLE_ENDIAN.int32 bytes_ read_offset_
-      read_offset_ += 4
+    else if protobuf-type == PROTOBUF-TYPE-FIXED32 or protobuf-type == PROTOBUF-TYPE-SFIXED32:
+      result := LITTLE-ENDIAN.int32 bytes_ read-offset_
+      read-offset_ += 4
       return result
-    else if protobuf_type == PROTOBUF_TYPE_FIXED64 or protobuf_type == PROTOBUF_TYPE_SFIXED64:
-      result := LITTLE_ENDIAN.int64 bytes_ read_offset_
-      read_offset_ += 8
+    else if protobuf-type == PROTOBUF-TYPE-FIXED64 or protobuf-type == PROTOBUF-TYPE-SFIXED64:
+      result := LITTLE-ENDIAN.int64 bytes_ read-offset_
+      read-offset_ += 8
       return result
-    else if protobuf_type == PROTOBUF_TYPE_ENUM:
-      return read_varint_
-    else if protobuf_type == PROTOBUF_TYPE_BOOL:
-      return read_varint_ != 0
-    else if protobuf_type == PROTOBUF_TYPE_STRING:
-      size := read_varint_
-      result := bytes_.to_string read_offset_ read_offset_+size
-      read_offset_ += size
+    else if protobuf-type == PROTOBUF-TYPE-ENUM:
+      return read-varint_
+    else if protobuf-type == PROTOBUF-TYPE-BOOL:
+      return read-varint_ != 0
+    else if protobuf-type == PROTOBUF-TYPE-STRING:
+      size := read-varint_
+      result := bytes_.to-string read-offset_ read-offset_+size
+      read-offset_ += size
       return result
-    else if protobuf_type == PROTOBUF_TYPE_BYTES:
-      size := read_varint_
-      result := bytes_.copy read_offset_ read_offset_+size
-      read_offset_ += size
+    else if protobuf-type == PROTOBUF-TYPE-BYTES:
+      size := read-varint_
+      result := bytes_.copy read-offset_ read-offset_+size
+      read-offset_ += size
       return result
-    throw ERR_INVALID_TYPE
+    throw ERR-INVALID-TYPE
 
-  read_array value_type/int array/List  [construct_value] -> List:
-    prev_msg_end := msg_end
-    is_packed := current_wire_type == PROTOBUF_WIRE_TYPE_LEN_DELIMITED and value_type < PROTOBUF_TYPE_STRING
-    if is_packed:
-      size := read_varint_
-      msg_end = size + read_offset_
-      while read_offset_ < msg_end:
-        array.add construct_value.call
+  read-array value-type/int array/List  [construct-value] -> List:
+    prev-msg-end := msg-end
+    is-packed := current-wire-type == PROTOBUF-WIRE-TYPE-LEN-DELIMITED and value-type < PROTOBUF-TYPE-STRING
+    if is-packed:
+      size := read-varint_
+      msg-end = size + read-offset_
+      while read-offset_ < msg-end:
+        array.add construct-value.call
     else:
-      array.add construct_value.call
-    msg_end = prev_msg_end
+      array.add construct-value.call
+    msg-end = prev-msg-end
     return array
 
-  read_map map/Map [construct_key] [construct_value] -> Map:
-    prev_msg_end := msg_end
-    msg_end = read_varint_ + read_offset_
-    while read_offset_ < msg_end:
+  read-map map/Map [construct-key] [construct-value] -> Map:
+    prev-msg-end := msg-end
+    msg-end = read-varint_ + read-offset_
+    while read-offset_ < msg-end:
       key := null
-      read_field 1:
-        key = construct_key.call
-      read_field 2:
-        value := construct_value.call
+      read-field 1:
+        key = construct-key.call
+      read-field 2:
+        value := construct-value.call
         if key != null:
           map[key] = value
-    msg_end = prev_msg_end
+    msg-end = prev-msg-end
 
     return map
 
-  read_message [construct_message]:
-    prev_msg_end := msg_end
-    msg_end = prev_msg_end == null ? bytes_.size : read_varint_ + read_offset_
+  read-message [construct-message]:
+    prev-msg-end := msg-end
+    msg-end = prev-msg-end == null ? bytes_.size : read-varint_ + read-offset_
 
-    while read_offset_ < msg_end:
-      current_offset := read_offset_
-      construct_message.call
+    while read-offset_ < msg-end:
+      current-offset := read-offset_
+      construct-message.call
 
-      if current_offset == read_offset_:
-        key := read_varint_
-        wire_type := key & 0b111
-        skip_element wire_type
+      if current-offset == read-offset_:
+        key := read-varint_
+        wire-type := key & 0b111
+        skip-element wire-type
 
-    msg_end = prev_msg_end
+    msg-end = prev-msg-end
 
-  skip_element wire_type/int:
-    if wire_type == PROTOBUF_WIRE_TYPE_VARINT:
-      skip_varint_
-    else if wire_type == PROTOBUF_TYPE_INT64:
-      read_offset_ += 8
-    else if wire_type == PROTOBUF_WIRE_TYPE_LEN_DELIMITED:
-      read_offset_ += read_varint_
-    else if wire_type == PROTOBUF_WIRE_TYPE_32BIT:
-      read_offset_ + 4
+  skip-element wire-type/int:
+    if wire-type == PROTOBUF-WIRE-TYPE-VARINT:
+      skip-varint_
+    else if wire-type == PROTOBUF-TYPE-INT64:
+      read-offset_ += 8
+    else if wire-type == PROTOBUF-WIRE-TYPE-LEN-DELIMITED:
+      read-offset_ += read-varint_
+    else if wire-type == PROTOBUF-WIRE-TYPE-32BIT:
+      read-offset_ + 4
     else:
-      throw ERR_UNSUPPORTED_WIRE_TYPE
+      throw ERR-UNSUPPORTED-WIRE-TYPE
 
-  read_field field_pos/int [construct_field]:
-    if msg_end <= read_offset_:
+  read-field field-pos/int [construct-field]:
+    if msg-end <= read-offset_:
       return
-    key := peek_varint_
-    wire_type := key & 0b111
+    key := peek-varint_
+    wire-type := key & 0b111
     field := key >> 3
-    if field_pos != field:
+    if field-pos != field:
       return
 
     // skip the wire_type and field_pos.
-    read_varint_
+    read-varint_
 
-    prev_wire_type := current_wire_type
-    current_wire_type = wire_type
+    prev-wire-type := current-wire-type
+    current-wire-type = wire-type
 
-    construct_field.call wire_type
+    construct-field.call wire-type
 
-    current_wire_type = prev_wire_type
+    current-wire-type = prev-wire-type
 
 
 class Writer_ implements Writer:
   // We reuse the buffer across writers. This works because serialization
   // cannot yield.
-  static VARINT_BUFFER_/ByteArray := ByteArray 10
+  static VARINT-BUFFER_/ByteArray := ByteArray 10
 
   // TODO(florian): change this to io.Buffer type.
   out_/any
 
-  collection_field/int? := null
-  writing_map/bool := false
+  collection-field/int? := null
+  writing-map/bool := false
 
   constructor .out_:
 
   reset:
-    writing_map = false
-    collection_field = null
+    writing-map = false
+    collection-field = null
     out_.clear
 
   buffer_ -> ByteArray:
@@ -335,11 +335,11 @@ class Writer_ implements Writer:
     else:
       return (out_ as old-bytes.Buffer).buffer
 
-  write_key_ type/int as_field/int -> int:
-    return write_varint_
-      (as_field << 3) | type
+  write-key_ type/int as-field/int -> int:
+    return write-varint_
+      (as-field << 3) | type
 
-  offset_reserved_ size:
+  offset-reserved_ size:
     offset := out_.size
     if out_ is io.Buffer:
       (out_ as io.Buffer).grow-by size
@@ -347,236 +347,236 @@ class Writer_ implements Writer:
       (out_ as old-bytes.Buffer).grow size
     return offset
 
-  write_primitive protobuf_type/int value/any --oneof/bool=false --as_field/int?=null --in_array/bool=false -> none:
-    as_field = as_field or collection_field
-    can_skip := not oneof and as_field and not in_array
-    if protobuf_type == PROTOBUF_TYPE_DOUBLE:
-      if can_skip and value == 0.0:
+  write-primitive protobuf-type/int value/any --oneof/bool=false --as-field/int?=null --in-array/bool=false -> none:
+    as-field = as-field or collection-field
+    can-skip := not oneof and as-field and not in-array
+    if protobuf-type == PROTOBUF-TYPE-DOUBLE:
+      if can-skip and value == 0.0:
         return
-      if as_field != null:
-        write_key_ PROTOBUF_WIRE_TYPE_64BIT as_field
-      offset := offset_reserved_ 8
-      LITTLE_ENDIAN.put_float64 buffer_ offset value
-    else if protobuf_type == PROTOBUF_TYPE_FLOAT:
-      if can_skip and value == 0.0:
+      if as-field != null:
+        write-key_ PROTOBUF-WIRE-TYPE-64BIT as-field
+      offset := offset-reserved_ 8
+      LITTLE-ENDIAN.put-float64 buffer_ offset value
+    else if protobuf-type == PROTOBUF-TYPE-FLOAT:
+      if can-skip and value == 0.0:
         return
-      if as_field != null:
-        write_key_ PROTOBUF_WIRE_TYPE_32BIT as_field
-      offset := offset_reserved_ 4
-      LITTLE_ENDIAN.put_float32 buffer_ offset value
-    else if PROTOBUF_TYPE_INT64 <= protobuf_type <= PROTOBUF_TYPE_INT32 or
-            PROTOBUF_TYPE_UINT64 <= protobuf_type <= PROTOBUF_TYPE_UINT32:
-      if can_skip and value == 0:
+      if as-field != null:
+        write-key_ PROTOBUF-WIRE-TYPE-32BIT as-field
+      offset := offset-reserved_ 4
+      LITTLE-ENDIAN.put-float32 buffer_ offset value
+    else if PROTOBUF-TYPE-INT64 <= protobuf-type <= PROTOBUF-TYPE-INT32 or
+            PROTOBUF-TYPE-UINT64 <= protobuf-type <= PROTOBUF-TYPE-UINT32:
+      if can-skip and value == 0:
         return
-      if as_field != null:
-        write_key_ PROTOBUF_WIRE_TYPE_VARINT as_field
-      write_varint_ value
-    else if PROTOBUF_TYPE_SINT64 <= protobuf_type <= PROTOBUF_TYPE_SINT32:
-      if can_skip and value == 0:
+      if as-field != null:
+        write-key_ PROTOBUF-WIRE-TYPE-VARINT as-field
+      write-varint_ value
+    else if PROTOBUF-TYPE-SINT64 <= protobuf-type <= PROTOBUF-TYPE-SINT32:
+      if can-skip and value == 0:
         return
-      if as_field != null:
-        write_key_ PROTOBUF_WIRE_TYPE_VARINT as_field
-      write_varint_ (value >> 63) ^ (value << 1)
-    else if protobuf_type == PROTOBUF_TYPE_FIXED32 or protobuf_type == PROTOBUF_TYPE_SFIXED32:
-      if can_skip and value == 0:
+      if as-field != null:
+        write-key_ PROTOBUF-WIRE-TYPE-VARINT as-field
+      write-varint_ (value >> 63) ^ (value << 1)
+    else if protobuf-type == PROTOBUF-TYPE-FIXED32 or protobuf-type == PROTOBUF-TYPE-SFIXED32:
+      if can-skip and value == 0:
         return
-      if as_field != null:
-        write_key_ PROTOBUF_WIRE_TYPE_32BIT as_field
-      offset := offset_reserved_ 4
-      LITTLE_ENDIAN.put_int32 buffer_ offset value
-    else if protobuf_type == PROTOBUF_TYPE_FIXED64 or protobuf_type == PROTOBUF_TYPE_SFIXED64:
-      if can_skip and value == 0:
+      if as-field != null:
+        write-key_ PROTOBUF-WIRE-TYPE-32BIT as-field
+      offset := offset-reserved_ 4
+      LITTLE-ENDIAN.put-int32 buffer_ offset value
+    else if protobuf-type == PROTOBUF-TYPE-FIXED64 or protobuf-type == PROTOBUF-TYPE-SFIXED64:
+      if can-skip and value == 0:
         return
-      if as_field != null:
-        write_key_ PROTOBUF_WIRE_TYPE_64BIT as_field
-      offset := offset_reserved_ 8
-      LITTLE_ENDIAN.put_int64 buffer_ offset value
-    else if protobuf_type == PROTOBUF_TYPE_ENUM:
-      if as_field != null and value == 0:
+      if as-field != null:
+        write-key_ PROTOBUF-WIRE-TYPE-64BIT as-field
+      offset := offset-reserved_ 8
+      LITTLE-ENDIAN.put-int64 buffer_ offset value
+    else if protobuf-type == PROTOBUF-TYPE-ENUM:
+      if as-field != null and value == 0:
         return
-      if as_field != null:
-        write_key_ PROTOBUF_WIRE_TYPE_VARINT as_field
-      write_varint_ value
-    else if protobuf_type == PROTOBUF_TYPE_BOOL:
-      if can_skip and not value:
+      if as-field != null:
+        write-key_ PROTOBUF-WIRE-TYPE-VARINT as-field
+      write-varint_ value
+    else if protobuf-type == PROTOBUF-TYPE-BOOL:
+      if can-skip and not value:
         return
-      if as_field != null:
-        write_key_ PROTOBUF_WIRE_TYPE_VARINT as_field
-      write_varint_ (value ? 1 : 0)
-    else if protobuf_type == PROTOBUF_TYPE_STRING:
-      if can_skip and value == "":
+      if as-field != null:
+        write-key_ PROTOBUF-WIRE-TYPE-VARINT as-field
+      write-varint_ (value ? 1 : 0)
+    else if protobuf-type == PROTOBUF-TYPE-STRING:
+      if can-skip and value == "":
         return
-      if as_field != null:
-        write_key_ PROTOBUF_WIRE_TYPE_LEN_DELIMITED as_field
-      write_varint_ value.size
+      if as-field != null:
+        write-key_ PROTOBUF-WIRE-TYPE-LEN-DELIMITED as-field
+      write-varint_ value.size
       out_.write value
-    else if protobuf_type == PROTOBUF_TYPE_BYTES:
-      if can_skip and value.is_empty:
+    else if protobuf-type == PROTOBUF-TYPE-BYTES:
+      if can-skip and value.is-empty:
         return
-      if as_field != null:
-        write_key_ PROTOBUF_WIRE_TYPE_LEN_DELIMITED as_field
-      write_varint_ value.size
+      if as-field != null:
+        write-key_ PROTOBUF-WIRE-TYPE-LEN-DELIMITED as-field
+      write-varint_ value.size
       out_.write value
     else:
-      throw ERR_UNSUPPORTED_TYPE
+      throw ERR-UNSUPPORTED-TYPE
 
-  write_array protobuf_value_type/int array/List --oneof/bool=false --as_field/int?=null [serialize_value] -> none:
-    if as_field == null:
-      as_field = collection_field
+  write-array protobuf-value-type/int array/List --oneof/bool=false --as-field/int?=null [serialize-value] -> none:
+    if as-field == null:
+      as-field = collection-field
 
-    should_pack := protobuf_value_type < PROTOBUF_TYPE_STRING
+    should-pack := protobuf-value-type < PROTOBUF-TYPE-STRING
     size := 0
 
-    if should_pack:
-      size = size_array protobuf_value_type array
+    if should-pack:
+      size = size-array protobuf-value-type array
 
-    if not oneof and as_field != null and array.is_empty:
+    if not oneof and as-field != null and array.is-empty:
       return
 
-    curr_collection_field := collection_field
-    if should_pack:
+    curr-collection-field := collection-field
+    if should-pack:
       // We have to null the collection field in this scenario, we want children
       // to be written as without the --as_field flag set and we might have an map element ancestor.
-      collection_field = null
+      collection-field = null
     else:
-      collection_field = as_field
+      collection-field = as-field
 
-    if should_pack:
-      write_key_ PROTOBUF_WIRE_TYPE_LEN_DELIMITED as_field
-      write_varint_ size
+    if should-pack:
+      write-key_ PROTOBUF-WIRE-TYPE-LEN-DELIMITED as-field
+      write-varint_ size
 
-    array.do serialize_value
+    array.do serialize-value
 
-    collection_field = curr_collection_field
+    collection-field = curr-collection-field
 
-  write_map protobuf_key_type/int protobuf_value_type/int map/Map --oneof/bool=false --as_field/int?=null [serialize_key] [serialize_value] -> none:
-    if as_field == null:
-      as_field = collection_field
-    if not oneof and as_field != null and map.is_empty:
+  write-map protobuf-key-type/int protobuf-value-type/int map/Map --oneof/bool=false --as-field/int?=null [serialize-key] [serialize-value] -> none:
+    if as-field == null:
+      as-field = collection-field
+    if not oneof and as-field != null and map.is-empty:
       return
 
-    curr_collection_field := collection_field
+    curr-collection-field := collection-field
 
     map.do: | k v |
-      kv_size := protobuf_key_type == PROTOBUF_TYPE_MESSAGE ?
-        size_embedded_message k.protobuf_size --as_field=1 :
-        size_primitive protobuf_key_type k --as_field=1
-      kv_size += protobuf_value_type == PROTOBUF_TYPE_MESSAGE ?
-        size_embedded_message v.protobuf_size --as_field=2 :
-        size_primitive protobuf_key_type v --as_field=2
-      this.write_message_header (fakeMessage_.with 2 kv_size) --as_field=as_field
-      collection_field = 1
-      serialize_key.call k
-      collection_field = 2
-      serialize_value.call v
+      kv-size := protobuf-key-type == PROTOBUF-TYPE-MESSAGE ?
+        size-embedded-message k.protobuf-size --as-field=1 :
+        size-primitive protobuf-key-type k --as-field=1
+      kv-size += protobuf-value-type == PROTOBUF-TYPE-MESSAGE ?
+        size-embedded-message v.protobuf-size --as-field=2 :
+        size-primitive protobuf-key-type v --as-field=2
+      this.write-message-header (fakeMessage_.with 2 kv-size) --as-field=as-field
+      collection-field = 1
+      serialize-key.call k
+      collection-field = 2
+      serialize-value.call v
 
-    collection_field = curr_collection_field
+    collection-field = curr-collection-field
 
-  write_message_header msg/Message --oneof/bool=false --as_field/int?=null -> none:
-    if as_field == null:
-      as_field = collection_field
+  write-message-header msg/Message --oneof/bool=false --as-field/int?=null -> none:
+    if as-field == null:
+      as-field = collection-field
 
     // We don't have to null the collection_field in this scenario.
     // All children of a message serialization will be with an --as_field set.
 
     // If this is the first object we don't need a header.
-    if as_field == null:
+    if as-field == null:
       return
 
-    size := msg.protobuf_size
+    size := msg.protobuf-size
     if size == 0:
       return
-    write_key_ PROTOBUF_WIRE_TYPE_LEN_DELIMITED as_field
-    write_varint_ size
+    write-key_ PROTOBUF-WIRE-TYPE-LEN-DELIMITED as-field
+    write-varint_ size
 
-  write_varint_ i/int -> int:
-    size := varint.encode VARINT_BUFFER_ 0 i
-    return out_.write VARINT_BUFFER_ 0 size
+  write-varint_ i/int -> int:
+    size := varint.encode VARINT-BUFFER_ 0 i
+    return out_.write VARINT-BUFFER_ 0 size
 
-size_key_ field/int -> int:
+size-key_ field/int -> int:
   return varint.size (field << 3)
 
-size_array protobuf_value_type/int array/List --as_field/int?=null -> int:
-  if array.is_empty:
+size-array protobuf-value-type/int array/List --as-field/int?=null -> int:
+  if array.is-empty:
     return 0
   size := 0
 
-  should_pack := protobuf_value_type < PROTOBUF_TYPE_STRING
+  should-pack := protobuf-value-type < PROTOBUF-TYPE-STRING
 
   array.do:
-    if should_pack:
+    if should-pack:
       // Note we can never pack a type message
-      size += size_primitive protobuf_value_type it --in_array
+      size += size-primitive protobuf-value-type it --in-array
     else:
-      size += protobuf_value_type == PROTOBUF_TYPE_MESSAGE ?
-        size_embedded_message it.protobuf_size --as_field=as_field :
-        size_primitive protobuf_value_type it --as_field=as_field --in_array
+      size += protobuf-value-type == PROTOBUF-TYPE-MESSAGE ?
+        size-embedded-message it.protobuf-size --as-field=as-field :
+        size-primitive protobuf-value-type it --as-field=as-field --in-array
 
-  if should_pack:
-    return size_embedded_message size --as_field=as_field
+  if should-pack:
+    return size-embedded-message size --as-field=as-field
   return size
 
-size_map protobuf_key_type/int protobuf_value_type/int map/Map --as_field/int?=null  -> int:
+size-map protobuf-key-type/int protobuf-value-type/int map/Map --as-field/int?=null  -> int:
   size := 0
   map.do: | k v |
-    kv_size := protobuf_key_type == PROTOBUF_TYPE_MESSAGE ?
-      size_embedded_message k.protobuf_size --as_field=1 :
-      size_primitive protobuf_key_type k --as_field=1
-    kv_size += protobuf_value_type == PROTOBUF_TYPE_MESSAGE ?
-      size_embedded_message v.protobuf_size --as_field=2 :
-      size_primitive protobuf_value_type v --as_field=2
-    size += size_embedded_message kv_size  --as_field=as_field
+    kv-size := protobuf-key-type == PROTOBUF-TYPE-MESSAGE ?
+      size-embedded-message k.protobuf-size --as-field=1 :
+      size-primitive protobuf-key-type k --as-field=1
+    kv-size += protobuf-value-type == PROTOBUF-TYPE-MESSAGE ?
+      size-embedded-message v.protobuf-size --as-field=2 :
+      size-primitive protobuf-value-type v --as-field=2
+    size += size-embedded-message kv-size  --as-field=as-field
   return size
 
-size_embedded_message msg_size/int --as_field/int?=null -> int:
-  if msg_size == 0:
+size-embedded-message msg-size/int --as-field/int?=null -> int:
+  if msg-size == 0:
     return 0
-  if as_field == null:
-    return msg_size
-  return (size_key_ as_field) + (varint.size msg_size) + msg_size
+  if as-field == null:
+    return msg-size
+  return (size-key_ as-field) + (varint.size msg-size) + msg-size
 
-size_primitive protobuf_type/int value/any --as_field/int?=null --in_array/bool=false -> int:
-  header_size := as_field != null ? (size_key_ as_field) : 0
-  if protobuf_type == PROTOBUF_TYPE_DOUBLE:
-    if value == 0.0 and not in_array:
+size-primitive protobuf-type/int value/any --as-field/int?=null --in-array/bool=false -> int:
+  header-size := as-field != null ? (size-key_ as-field) : 0
+  if protobuf-type == PROTOBUF-TYPE-DOUBLE:
+    if value == 0.0 and not in-array:
       return 0
-    return header_size + 8
-  else if protobuf_type == PROTOBUF_TYPE_FLOAT:
-    if value == 0.0 and not in_array:
+    return header-size + 8
+  else if protobuf-type == PROTOBUF-TYPE-FLOAT:
+    if value == 0.0 and not in-array:
       return 0
-    return header_size + 4
-  else if PROTOBUF_TYPE_INT64 <= protobuf_type <= PROTOBUF_TYPE_INT32 or
-          PROTOBUF_TYPE_UINT64 <= protobuf_type <= PROTOBUF_TYPE_UINT32:
-    if value == 0 and not in_array:
+    return header-size + 4
+  else if PROTOBUF-TYPE-INT64 <= protobuf-type <= PROTOBUF-TYPE-INT32 or
+          PROTOBUF-TYPE-UINT64 <= protobuf-type <= PROTOBUF-TYPE-UINT32:
+    if value == 0 and not in-array:
       return 0
-    return header_size + (varint.size value)
-  else if PROTOBUF_TYPE_SINT64 <= protobuf_type <= PROTOBUF_TYPE_SINT32:
-    if value == 0 and not in_array:
+    return header-size + (varint.size value)
+  else if PROTOBUF-TYPE-SINT64 <= protobuf-type <= PROTOBUF-TYPE-SINT32:
+    if value == 0 and not in-array:
       return 0
-    return header_size + (varint.size ((value >> 63) ^ (value << 1)))
-  else if protobuf_type == PROTOBUF_TYPE_FIXED32 or protobuf_type == PROTOBUF_TYPE_SFIXED32:
-    if value == 0 and not in_array:
+    return header-size + (varint.size ((value >> 63) ^ (value << 1)))
+  else if protobuf-type == PROTOBUF-TYPE-FIXED32 or protobuf-type == PROTOBUF-TYPE-SFIXED32:
+    if value == 0 and not in-array:
       return 0
-    return header_size + 4
-  else if protobuf_type == PROTOBUF_TYPE_FIXED64 or protobuf_type == PROTOBUF_TYPE_SFIXED64:
-    if value == 0 and not in_array:
+    return header-size + 4
+  else if protobuf-type == PROTOBUF-TYPE-FIXED64 or protobuf-type == PROTOBUF-TYPE-SFIXED64:
+    if value == 0 and not in-array:
       return 0
-    return header_size + 8
-  else if protobuf_type == PROTOBUF_TYPE_ENUM:
-    if value == 0 and not in_array:
+    return header-size + 8
+  else if protobuf-type == PROTOBUF-TYPE-ENUM:
+    if value == 0 and not in-array:
       return 0
-    return header_size + (varint.size value)
-  else if protobuf_type == PROTOBUF_TYPE_BOOL:
-    if not value and not in_array:
+    return header-size + (varint.size value)
+  else if protobuf-type == PROTOBUF-TYPE-BOOL:
+    if not value and not in-array:
       return 0
-    return header_size + 1
-  else if protobuf_type == PROTOBUF_TYPE_STRING:
-    if value == "" and not in_array:
+    return header-size + 1
+  else if protobuf-type == PROTOBUF-TYPE-STRING:
+    if value == "" and not in-array:
       return 0
-    return header_size + (varint.size value.size) + value.size
-  else if protobuf_type == PROTOBUF_TYPE_BYTES:
-    if value.is_empty and not in_array:
+    return header-size + (varint.size value.size) + value.size
+  else if protobuf-type == PROTOBUF-TYPE-BYTES:
+    if value.is-empty and not in-array:
       return 0
-    return header_size + (varint.size value.size) + value.size
+    return header-size + (varint.size value.size) + value.size
   else:
-    throw ERR_UNSUPPORTED_TYPE
+    throw ERR-UNSUPPORTED-TYPE

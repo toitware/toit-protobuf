@@ -3,12 +3,12 @@
 
 import ....protobuf as _protobuf
 import core as _core
-import ...google.protobuf.any_pb as _any
-import ...google.protobuf.source_context_pb as _source_context
+import ...google.protobuf.any-pb as _any
+import ...google.protobuf.source-context-pb as _source-context
 
 // ENUM START: Syntax
-Syntax_SYNTAX_PROTO2/int/*enum<Syntax>*/ ::= 0
-Syntax_SYNTAX_PROTO3/int/*enum<Syntax>*/ ::= 1
+Syntax-SYNTAX-PROTO2/int/*enum<Syntax>*/ ::= 0
+Syntax-SYNTAX-PROTO3/int/*enum<Syntax>*/ ::= 1
 // ENUM END: .google.protobuf.Syntax
 
 // MESSAGE START: .google.protobuf.Type
@@ -17,7 +17,7 @@ class Type extends _protobuf.Message:
   fields/List/*<Field>*/ := []
   oneofs/List/*<string>*/ := []
   options/List/*<Option>*/ := []
-  source_context/_source_context.SourceContext := _source_context.SourceContext
+  source-context/_source-context.SourceContext := _source-context.SourceContext
   syntax/int/*enum<Syntax>*/ := 0
 
   constructor
@@ -25,7 +25,7 @@ class Type extends _protobuf.Message:
       --fields/List?/*<Field>*/=null
       --oneofs/List?/*<string>*/=null
       --options/List?/*<Option>*/=null
-      --source_context/_source_context.SourceContext?=null
+      --source-context/_source-context.SourceContext?=null
       --syntax/int?/*enum<Syntax>?*/=null:
     if name != null:
       this.name = name
@@ -35,87 +35,87 @@ class Type extends _protobuf.Message:
       this.oneofs = oneofs
     if options != null:
       this.options = options
-    if source_context != null:
-      this.source_context = source_context
+    if source-context != null:
+      this.source-context = source-context
     if syntax != null:
       this.syntax = syntax
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read_message:
-      r.read_field 1:
-        name = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
-      r.read_field 2:
-        fields = r.read_array _protobuf.PROTOBUF_TYPE_MESSAGE fields:
+    r.read-message:
+      r.read-field 1:
+        name = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+      r.read-field 2:
+        fields = r.read-array _protobuf.PROTOBUF-TYPE-MESSAGE fields:
           Field.deserialize r
-      r.read_field 3:
-        oneofs = r.read_array _protobuf.PROTOBUF_TYPE_STRING oneofs:
-          r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
-      r.read_field 4:
-        options = r.read_array _protobuf.PROTOBUF_TYPE_MESSAGE options:
+      r.read-field 3:
+        oneofs = r.read-array _protobuf.PROTOBUF-TYPE-STRING oneofs:
+          r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+      r.read-field 4:
+        options = r.read-array _protobuf.PROTOBUF-TYPE-MESSAGE options:
           Option.deserialize r
-      r.read_field 5:
-        source_context = _source_context.SourceContext.deserialize r
-      r.read_field 6:
-        syntax = r.read_primitive _protobuf.PROTOBUF_TYPE_ENUM
+      r.read-field 5:
+        source-context = _source-context.SourceContext.deserialize r
+      r.read-field 6:
+        syntax = r.read-primitive _protobuf.PROTOBUF-TYPE-ENUM
 
-  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
-    w.write_message_header this --as_field=as_field --oneof=oneof
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING name --as_field=1
-    w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE fields --as_field=2: | value/Field | 
+  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
+    w.write-message-header this --as-field=as-field --oneof=oneof
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING name --as-field=1
+    w.write-array _protobuf.PROTOBUF-TYPE-MESSAGE fields --as-field=2: | value/Field | 
       value.serialize w
-    w.write_array _protobuf.PROTOBUF_TYPE_STRING oneofs --as_field=3: | value/string | 
-      w.write_primitive _protobuf.PROTOBUF_TYPE_STRING value --in_array
-    w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE options --as_field=4: | value/Option | 
+    w.write-array _protobuf.PROTOBUF-TYPE-STRING oneofs --as-field=3: | value/string | 
+      w.write-primitive _protobuf.PROTOBUF-TYPE-STRING value --in-array
+    w.write-array _protobuf.PROTOBUF-TYPE-MESSAGE options --as-field=4: | value/Option | 
       value.serialize w
-    source_context.serialize w --as_field=5
-    w.write_primitive _protobuf.PROTOBUF_TYPE_ENUM syntax --as_field=6
+    source-context.serialize w --as-field=5
+    w.write-primitive _protobuf.PROTOBUF-TYPE-ENUM syntax --as-field=6
 
-  num_fields_set -> int:
-    return (name.is_empty ? 0 : 1)
-      + (fields.is_empty ? 0 : 1)
-      + (oneofs.is_empty ? 0 : 1)
-      + (options.is_empty ? 0 : 1)
-      + (source_context.is_empty ? 0 : 1)
+  num-fields-set -> int:
+    return (name.is-empty ? 0 : 1)
+      + (fields.is-empty ? 0 : 1)
+      + (oneofs.is-empty ? 0 : 1)
+      + (options.is-empty ? 0 : 1)
+      + (source-context.is-empty ? 0 : 1)
       + (syntax == 0 ? 0 : 1)
 
-  protobuf_size -> int:
-    return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING name --as_field=1)
-      + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE fields --as_field=2)
-      + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_STRING oneofs --as_field=3)
-      + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE options --as_field=4)
-      + (_protobuf.size_embedded_message (source_context.protobuf_size) --as_field=5)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_ENUM syntax --as_field=6)
+  protobuf-size -> int:
+    return (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING name --as-field=1)
+      + (_protobuf.size-array _protobuf.PROTOBUF-TYPE-MESSAGE fields --as-field=2)
+      + (_protobuf.size-array _protobuf.PROTOBUF-TYPE-STRING oneofs --as-field=3)
+      + (_protobuf.size-array _protobuf.PROTOBUF-TYPE-MESSAGE options --as-field=4)
+      + (_protobuf.size-embedded-message (source-context.protobuf-size) --as-field=5)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-ENUM syntax --as-field=6)
 
 // MESSAGE END: .google.protobuf.Type
 
 // MESSAGE START: .google.protobuf.Field
 // ENUM START: Field_Kind
-Field_Kind_TYPE_UNKNOWN/int/*enum<Field_Kind>*/ ::= 0
-Field_Kind_TYPE_DOUBLE/int/*enum<Field_Kind>*/ ::= 1
-Field_Kind_TYPE_FLOAT/int/*enum<Field_Kind>*/ ::= 2
-Field_Kind_TYPE_INT64/int/*enum<Field_Kind>*/ ::= 3
-Field_Kind_TYPE_UINT64/int/*enum<Field_Kind>*/ ::= 4
-Field_Kind_TYPE_INT32/int/*enum<Field_Kind>*/ ::= 5
-Field_Kind_TYPE_FIXED64/int/*enum<Field_Kind>*/ ::= 6
-Field_Kind_TYPE_FIXED32/int/*enum<Field_Kind>*/ ::= 7
-Field_Kind_TYPE_BOOL/int/*enum<Field_Kind>*/ ::= 8
-Field_Kind_TYPE_STRING/int/*enum<Field_Kind>*/ ::= 9
-Field_Kind_TYPE_GROUP/int/*enum<Field_Kind>*/ ::= 10
-Field_Kind_TYPE_MESSAGE/int/*enum<Field_Kind>*/ ::= 11
-Field_Kind_TYPE_BYTES/int/*enum<Field_Kind>*/ ::= 12
-Field_Kind_TYPE_UINT32/int/*enum<Field_Kind>*/ ::= 13
-Field_Kind_TYPE_ENUM/int/*enum<Field_Kind>*/ ::= 14
-Field_Kind_TYPE_SFIXED32/int/*enum<Field_Kind>*/ ::= 15
-Field_Kind_TYPE_SFIXED64/int/*enum<Field_Kind>*/ ::= 16
-Field_Kind_TYPE_SINT32/int/*enum<Field_Kind>*/ ::= 17
-Field_Kind_TYPE_SINT64/int/*enum<Field_Kind>*/ ::= 18
+Field-Kind-TYPE-UNKNOWN/int/*enum<Field_Kind>*/ ::= 0
+Field-Kind-TYPE-DOUBLE/int/*enum<Field_Kind>*/ ::= 1
+Field-Kind-TYPE-FLOAT/int/*enum<Field_Kind>*/ ::= 2
+Field-Kind-TYPE-INT64/int/*enum<Field_Kind>*/ ::= 3
+Field-Kind-TYPE-UINT64/int/*enum<Field_Kind>*/ ::= 4
+Field-Kind-TYPE-INT32/int/*enum<Field_Kind>*/ ::= 5
+Field-Kind-TYPE-FIXED64/int/*enum<Field_Kind>*/ ::= 6
+Field-Kind-TYPE-FIXED32/int/*enum<Field_Kind>*/ ::= 7
+Field-Kind-TYPE-BOOL/int/*enum<Field_Kind>*/ ::= 8
+Field-Kind-TYPE-STRING/int/*enum<Field_Kind>*/ ::= 9
+Field-Kind-TYPE-GROUP/int/*enum<Field_Kind>*/ ::= 10
+Field-Kind-TYPE-MESSAGE/int/*enum<Field_Kind>*/ ::= 11
+Field-Kind-TYPE-BYTES/int/*enum<Field_Kind>*/ ::= 12
+Field-Kind-TYPE-UINT32/int/*enum<Field_Kind>*/ ::= 13
+Field-Kind-TYPE-ENUM/int/*enum<Field_Kind>*/ ::= 14
+Field-Kind-TYPE-SFIXED32/int/*enum<Field_Kind>*/ ::= 15
+Field-Kind-TYPE-SFIXED64/int/*enum<Field_Kind>*/ ::= 16
+Field-Kind-TYPE-SINT32/int/*enum<Field_Kind>*/ ::= 17
+Field-Kind-TYPE-SINT64/int/*enum<Field_Kind>*/ ::= 18
 // ENUM END: .google.protobuf.Field.Kind
 
 // ENUM START: Field_Cardinality
-Field_Cardinality_CARDINALITY_UNKNOWN/int/*enum<Field_Cardinality>*/ ::= 0
-Field_Cardinality_CARDINALITY_OPTIONAL/int/*enum<Field_Cardinality>*/ ::= 1
-Field_Cardinality_CARDINALITY_REQUIRED/int/*enum<Field_Cardinality>*/ ::= 2
-Field_Cardinality_CARDINALITY_REPEATED/int/*enum<Field_Cardinality>*/ ::= 3
+Field-Cardinality-CARDINALITY-UNKNOWN/int/*enum<Field_Cardinality>*/ ::= 0
+Field-Cardinality-CARDINALITY-OPTIONAL/int/*enum<Field_Cardinality>*/ ::= 1
+Field-Cardinality-CARDINALITY-REQUIRED/int/*enum<Field_Cardinality>*/ ::= 2
+Field-Cardinality-CARDINALITY-REPEATED/int/*enum<Field_Cardinality>*/ ::= 3
 // ENUM END: .google.protobuf.Field.Cardinality
 
 class Field extends _protobuf.Message:
@@ -123,24 +123,24 @@ class Field extends _protobuf.Message:
   cardinality/int/*enum<Field_Cardinality>*/ := 0
   number/int := 0
   name/string := ""
-  type_url/string := ""
-  oneof_index/int := 0
+  type-url/string := ""
+  oneof-index/int := 0
   packed/bool := false
   options/List/*<Option>*/ := []
-  json_name/string := ""
-  default_value/string := ""
+  json-name/string := ""
+  default-value/string := ""
 
   constructor
       --kind/int?/*enum<Field_Kind>?*/=null
       --cardinality/int?/*enum<Field_Cardinality>?*/=null
       --number/int?=null
       --name/string?=null
-      --type_url/string?=null
-      --oneof_index/int?=null
+      --type-url/string?=null
+      --oneof-index/int?=null
       --packed/bool?=null
       --options/List?/*<Option>*/=null
-      --json_name/string?=null
-      --default_value/string?=null:
+      --json-name/string?=null
+      --default-value/string?=null:
     if kind != null:
       this.kind = kind
     if cardinality != null:
@@ -149,80 +149,80 @@ class Field extends _protobuf.Message:
       this.number = number
     if name != null:
       this.name = name
-    if type_url != null:
-      this.type_url = type_url
-    if oneof_index != null:
-      this.oneof_index = oneof_index
+    if type-url != null:
+      this.type-url = type-url
+    if oneof-index != null:
+      this.oneof-index = oneof-index
     if packed != null:
       this.packed = packed
     if options != null:
       this.options = options
-    if json_name != null:
-      this.json_name = json_name
-    if default_value != null:
-      this.default_value = default_value
+    if json-name != null:
+      this.json-name = json-name
+    if default-value != null:
+      this.default-value = default-value
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read_message:
-      r.read_field 1:
-        kind = r.read_primitive _protobuf.PROTOBUF_TYPE_ENUM
-      r.read_field 2:
-        cardinality = r.read_primitive _protobuf.PROTOBUF_TYPE_ENUM
-      r.read_field 3:
-        number = r.read_primitive _protobuf.PROTOBUF_TYPE_INT32
-      r.read_field 4:
-        name = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
-      r.read_field 6:
-        type_url = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
-      r.read_field 7:
-        oneof_index = r.read_primitive _protobuf.PROTOBUF_TYPE_INT32
-      r.read_field 8:
-        packed = r.read_primitive _protobuf.PROTOBUF_TYPE_BOOL
-      r.read_field 9:
-        options = r.read_array _protobuf.PROTOBUF_TYPE_MESSAGE options:
+    r.read-message:
+      r.read-field 1:
+        kind = r.read-primitive _protobuf.PROTOBUF-TYPE-ENUM
+      r.read-field 2:
+        cardinality = r.read-primitive _protobuf.PROTOBUF-TYPE-ENUM
+      r.read-field 3:
+        number = r.read-primitive _protobuf.PROTOBUF-TYPE-INT32
+      r.read-field 4:
+        name = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+      r.read-field 6:
+        type-url = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+      r.read-field 7:
+        oneof-index = r.read-primitive _protobuf.PROTOBUF-TYPE-INT32
+      r.read-field 8:
+        packed = r.read-primitive _protobuf.PROTOBUF-TYPE-BOOL
+      r.read-field 9:
+        options = r.read-array _protobuf.PROTOBUF-TYPE-MESSAGE options:
           Option.deserialize r
-      r.read_field 10:
-        json_name = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
-      r.read_field 11:
-        default_value = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
+      r.read-field 10:
+        json-name = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+      r.read-field 11:
+        default-value = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
 
-  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
-    w.write_message_header this --as_field=as_field --oneof=oneof
-    w.write_primitive _protobuf.PROTOBUF_TYPE_ENUM kind --as_field=1
-    w.write_primitive _protobuf.PROTOBUF_TYPE_ENUM cardinality --as_field=2
-    w.write_primitive _protobuf.PROTOBUF_TYPE_INT32 number --as_field=3
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING name --as_field=4
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING type_url --as_field=6
-    w.write_primitive _protobuf.PROTOBUF_TYPE_INT32 oneof_index --as_field=7
-    w.write_primitive _protobuf.PROTOBUF_TYPE_BOOL packed --as_field=8
-    w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE options --as_field=9: | value/Option | 
+  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
+    w.write-message-header this --as-field=as-field --oneof=oneof
+    w.write-primitive _protobuf.PROTOBUF-TYPE-ENUM kind --as-field=1
+    w.write-primitive _protobuf.PROTOBUF-TYPE-ENUM cardinality --as-field=2
+    w.write-primitive _protobuf.PROTOBUF-TYPE-INT32 number --as-field=3
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING name --as-field=4
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING type-url --as-field=6
+    w.write-primitive _protobuf.PROTOBUF-TYPE-INT32 oneof-index --as-field=7
+    w.write-primitive _protobuf.PROTOBUF-TYPE-BOOL packed --as-field=8
+    w.write-array _protobuf.PROTOBUF-TYPE-MESSAGE options --as-field=9: | value/Option | 
       value.serialize w
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING json_name --as_field=10
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING default_value --as_field=11
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING json-name --as-field=10
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING default-value --as-field=11
 
-  num_fields_set -> int:
+  num-fields-set -> int:
     return (kind == 0 ? 0 : 1)
       + (cardinality == 0 ? 0 : 1)
       + (number == 0 ? 0 : 1)
-      + (name.is_empty ? 0 : 1)
-      + (type_url.is_empty ? 0 : 1)
-      + (oneof_index == 0 ? 0 : 1)
+      + (name.is-empty ? 0 : 1)
+      + (type-url.is-empty ? 0 : 1)
+      + (oneof-index == 0 ? 0 : 1)
       + (packed == false ? 0 : 1)
-      + (options.is_empty ? 0 : 1)
-      + (json_name.is_empty ? 0 : 1)
-      + (default_value.is_empty ? 0 : 1)
+      + (options.is-empty ? 0 : 1)
+      + (json-name.is-empty ? 0 : 1)
+      + (default-value.is-empty ? 0 : 1)
 
-  protobuf_size -> int:
-    return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_ENUM kind --as_field=1)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_ENUM cardinality --as_field=2)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_INT32 number --as_field=3)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING name --as_field=4)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING type_url --as_field=6)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_INT32 oneof_index --as_field=7)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BOOL packed --as_field=8)
-      + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE options --as_field=9)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING json_name --as_field=10)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING default_value --as_field=11)
+  protobuf-size -> int:
+    return (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-ENUM kind --as-field=1)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-ENUM cardinality --as-field=2)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-INT32 number --as-field=3)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING name --as-field=4)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING type-url --as-field=6)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-INT32 oneof-index --as-field=7)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-BOOL packed --as-field=8)
+      + (_protobuf.size-array _protobuf.PROTOBUF-TYPE-MESSAGE options --as-field=9)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING json-name --as-field=10)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING default-value --as-field=11)
 
 // MESSAGE END: .google.protobuf.Field
 
@@ -231,14 +231,14 @@ class Enum extends _protobuf.Message:
   name/string := ""
   enumvalue/List/*<EnumValue>*/ := []
   options/List/*<Option>*/ := []
-  source_context/_source_context.SourceContext := _source_context.SourceContext
+  source-context/_source-context.SourceContext := _source-context.SourceContext
   syntax/int/*enum<Syntax>*/ := 0
 
   constructor
       --name/string?=null
       --enumvalue/List?/*<EnumValue>*/=null
       --options/List?/*<Option>*/=null
-      --source_context/_source_context.SourceContext?=null
+      --source-context/_source-context.SourceContext?=null
       --syntax/int?/*enum<Syntax>?*/=null:
     if name != null:
       this.name = name
@@ -246,49 +246,49 @@ class Enum extends _protobuf.Message:
       this.enumvalue = enumvalue
     if options != null:
       this.options = options
-    if source_context != null:
-      this.source_context = source_context
+    if source-context != null:
+      this.source-context = source-context
     if syntax != null:
       this.syntax = syntax
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read_message:
-      r.read_field 1:
-        name = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
-      r.read_field 2:
-        enumvalue = r.read_array _protobuf.PROTOBUF_TYPE_MESSAGE enumvalue:
+    r.read-message:
+      r.read-field 1:
+        name = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+      r.read-field 2:
+        enumvalue = r.read-array _protobuf.PROTOBUF-TYPE-MESSAGE enumvalue:
           EnumValue.deserialize r
-      r.read_field 3:
-        options = r.read_array _protobuf.PROTOBUF_TYPE_MESSAGE options:
+      r.read-field 3:
+        options = r.read-array _protobuf.PROTOBUF-TYPE-MESSAGE options:
           Option.deserialize r
-      r.read_field 4:
-        source_context = _source_context.SourceContext.deserialize r
-      r.read_field 5:
-        syntax = r.read_primitive _protobuf.PROTOBUF_TYPE_ENUM
+      r.read-field 4:
+        source-context = _source-context.SourceContext.deserialize r
+      r.read-field 5:
+        syntax = r.read-primitive _protobuf.PROTOBUF-TYPE-ENUM
 
-  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
-    w.write_message_header this --as_field=as_field --oneof=oneof
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING name --as_field=1
-    w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE enumvalue --as_field=2: | value/EnumValue | 
+  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
+    w.write-message-header this --as-field=as-field --oneof=oneof
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING name --as-field=1
+    w.write-array _protobuf.PROTOBUF-TYPE-MESSAGE enumvalue --as-field=2: | value/EnumValue | 
       value.serialize w
-    w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE options --as_field=3: | value/Option | 
+    w.write-array _protobuf.PROTOBUF-TYPE-MESSAGE options --as-field=3: | value/Option | 
       value.serialize w
-    source_context.serialize w --as_field=4
-    w.write_primitive _protobuf.PROTOBUF_TYPE_ENUM syntax --as_field=5
+    source-context.serialize w --as-field=4
+    w.write-primitive _protobuf.PROTOBUF-TYPE-ENUM syntax --as-field=5
 
-  num_fields_set -> int:
-    return (name.is_empty ? 0 : 1)
-      + (enumvalue.is_empty ? 0 : 1)
-      + (options.is_empty ? 0 : 1)
-      + (source_context.is_empty ? 0 : 1)
+  num-fields-set -> int:
+    return (name.is-empty ? 0 : 1)
+      + (enumvalue.is-empty ? 0 : 1)
+      + (options.is-empty ? 0 : 1)
+      + (source-context.is-empty ? 0 : 1)
       + (syntax == 0 ? 0 : 1)
 
-  protobuf_size -> int:
-    return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING name --as_field=1)
-      + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE enumvalue --as_field=2)
-      + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE options --as_field=3)
-      + (_protobuf.size_embedded_message (source_context.protobuf_size) --as_field=4)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_ENUM syntax --as_field=5)
+  protobuf-size -> int:
+    return (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING name --as-field=1)
+      + (_protobuf.size-array _protobuf.PROTOBUF-TYPE-MESSAGE enumvalue --as-field=2)
+      + (_protobuf.size-array _protobuf.PROTOBUF-TYPE-MESSAGE options --as-field=3)
+      + (_protobuf.size-embedded-message (source-context.protobuf-size) --as-field=4)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-ENUM syntax --as-field=5)
 
 // MESSAGE END: .google.protobuf.Enum
 
@@ -310,31 +310,31 @@ class EnumValue extends _protobuf.Message:
       this.options = options
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read_message:
-      r.read_field 1:
-        name = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
-      r.read_field 2:
-        number = r.read_primitive _protobuf.PROTOBUF_TYPE_INT32
-      r.read_field 3:
-        options = r.read_array _protobuf.PROTOBUF_TYPE_MESSAGE options:
+    r.read-message:
+      r.read-field 1:
+        name = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+      r.read-field 2:
+        number = r.read-primitive _protobuf.PROTOBUF-TYPE-INT32
+      r.read-field 3:
+        options = r.read-array _protobuf.PROTOBUF-TYPE-MESSAGE options:
           Option.deserialize r
 
-  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
-    w.write_message_header this --as_field=as_field --oneof=oneof
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING name --as_field=1
-    w.write_primitive _protobuf.PROTOBUF_TYPE_INT32 number --as_field=2
-    w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE options --as_field=3: | value/Option | 
+  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
+    w.write-message-header this --as-field=as-field --oneof=oneof
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING name --as-field=1
+    w.write-primitive _protobuf.PROTOBUF-TYPE-INT32 number --as-field=2
+    w.write-array _protobuf.PROTOBUF-TYPE-MESSAGE options --as-field=3: | value/Option | 
       value.serialize w
 
-  num_fields_set -> int:
-    return (name.is_empty ? 0 : 1)
+  num-fields-set -> int:
+    return (name.is-empty ? 0 : 1)
       + (number == 0 ? 0 : 1)
-      + (options.is_empty ? 0 : 1)
+      + (options.is-empty ? 0 : 1)
 
-  protobuf_size -> int:
-    return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING name --as_field=1)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_INT32 number --as_field=2)
-      + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE options --as_field=3)
+  protobuf-size -> int:
+    return (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING name --as-field=1)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-INT32 number --as-field=2)
+      + (_protobuf.size-array _protobuf.PROTOBUF-TYPE-MESSAGE options --as-field=3)
 
 // MESSAGE END: .google.protobuf.EnumValue
 
@@ -352,24 +352,24 @@ class Option extends _protobuf.Message:
       this.value = value
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read_message:
-      r.read_field 1:
-        name = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
-      r.read_field 2:
+    r.read-message:
+      r.read-field 1:
+        name = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+      r.read-field 2:
         value = _any.Any.deserialize r
 
-  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
-    w.write_message_header this --as_field=as_field --oneof=oneof
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING name --as_field=1
-    value.serialize w --as_field=2
+  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
+    w.write-message-header this --as-field=as-field --oneof=oneof
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING name --as-field=1
+    value.serialize w --as-field=2
 
-  num_fields_set -> int:
-    return (name.is_empty ? 0 : 1)
-      + (value.is_empty ? 0 : 1)
+  num-fields-set -> int:
+    return (name.is-empty ? 0 : 1)
+      + (value.is-empty ? 0 : 1)
 
-  protobuf_size -> int:
-    return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING name --as_field=1)
-      + (_protobuf.size_embedded_message (value.protobuf_size) --as_field=2)
+  protobuf-size -> int:
+    return (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING name --as-field=1)
+      + (_protobuf.size-embedded-message (value.protobuf-size) --as-field=2)
 
 // MESSAGE END: .google.protobuf.Option
 

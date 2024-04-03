@@ -3,12 +3,12 @@
 
 import protobuf as _protobuf
 import core as _core
-import protobuf.protogen.google.protobuf.timestamp_pb as _timestamp
-import protobuf.protogen.google.protobuf.duration_pb as _duration
+import protobuf.protogen.google.protobuf.timestamp-pb as _timestamp
+import protobuf.protogen.google.protobuf.duration-pb as _duration
 
 // MESSAGE START: .TimeObject
 class TimeObject extends _protobuf.Message:
-  Time/_core.Time := _protobuf.TIME_ZERO_EPOCH
+  Time/_core.Time := _protobuf.TIME-ZERO-EPOCH
   Duration/_core.Duration := _core.Duration.ZERO
 
   constructor
@@ -20,24 +20,24 @@ class TimeObject extends _protobuf.Message:
       this.Duration = Duration
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read_message:
-      r.read_field 1:
-        Time = _protobuf.deserialize_timestamp r
-      r.read_field 2:
-        Duration = _protobuf.deserialize_duration r
+    r.read-message:
+      r.read-field 1:
+        Time = _protobuf.deserialize-timestamp r
+      r.read-field 2:
+        Duration = _protobuf.deserialize-duration r
 
-  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
-    w.write_message_header this --as_field=as_field --oneof=oneof
-    _protobuf.serialize_timestamp Time w --as_field=1
-    _protobuf.serialize_duration Duration w --as_field=2
+  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
+    w.write-message-header this --as-field=as-field --oneof=oneof
+    _protobuf.serialize-timestamp Time w --as-field=1
+    _protobuf.serialize-duration Duration w --as-field=2
 
-  num_fields_set -> int:
-    return ((_protobuf.time_is_zero_epoch Time) ? 0 : 1)
-      + (Duration.is_zero ? 0 : 1)
+  num-fields-set -> int:
+    return ((_protobuf.time-is-zero-epoch Time) ? 0 : 1)
+      + (Duration.is-zero ? 0 : 1)
 
-  protobuf_size -> int:
-    return (_protobuf.size_timestamp Time --as_field=1)
-      + (_protobuf.size_duration Duration --as_field=2)
+  protobuf-size -> int:
+    return (_protobuf.size-timestamp Time --as-field=1)
+      + (_protobuf.size-duration Duration --as-field=2)
 
 // MESSAGE END: .TimeObject
 

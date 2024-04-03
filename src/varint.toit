@@ -31,7 +31,7 @@ decode p/ByteArray offset/int -> int:
   return result
 
 // Returns the byte size of the varint on the position
-byte_size --offset/int=0 p/ByteArray -> int:
+byte-size --offset/int=0 p/ByteArray -> int:
   b := p[offset]
   i := 1
   while b & MSB_ != 0:
@@ -40,14 +40,14 @@ byte_size --offset/int=0 p/ByteArray -> int:
 
 /// Returns the number of bytes used to encode $i.
 size i/int -> int:
-  return NUMBER_OF_BYTES_LOOKUP_[count_leading_zeros i]
+  return NUMBER-OF-BYTES-LOOKUP_[count-leading-zeros i]
 
 // This could perhaps be replaced by something like:
 //   number_of_bytes_ clz_result/int:
 //     if clz_result == 64: return 1
 //     return (63 - clz_result) / 7 + 1
 // But with our current optimizations that is slower.
-NUMBER_OF_BYTES_LOOKUP_ ::= #[
+NUMBER-OF-BYTES-LOOKUP_ ::= #[
     10,                        //                  0 leading zeros.
     9, 9, 9, 9, 9, 9, 9,       //                  1-7 leading zeros.
     8, 8, 8, 8, 8, 8, 8,       //                  8-14 leading zeros.

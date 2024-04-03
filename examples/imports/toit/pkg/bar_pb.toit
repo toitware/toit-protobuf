@@ -3,7 +3,7 @@
 
 import protobuf as _protobuf
 import core as _core
-import .foo_pb as _foo
+import .foo-pb as _foo
 
 // MESSAGE START: .pkg.bar.Outer
 class Outer extends _protobuf.Message:
@@ -15,19 +15,19 @@ class Outer extends _protobuf.Message:
       this.hello = hello
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read_message:
-      r.read_field 1:
+    r.read-message:
+      r.read-field 1:
         hello = _foo.Hello.deserialize r
 
-  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
-    w.write_message_header this --as_field=as_field --oneof=oneof
-    hello.serialize w --as_field=1
+  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
+    w.write-message-header this --as-field=as-field --oneof=oneof
+    hello.serialize w --as-field=1
 
-  num_fields_set -> int:
-    return (hello.is_empty ? 0 : 1)
+  num-fields-set -> int:
+    return (hello.is-empty ? 0 : 1)
 
-  protobuf_size -> int:
-    return (_protobuf.size_embedded_message (hello.protobuf_size) --as_field=1)
+  protobuf-size -> int:
+    return (_protobuf.size-embedded-message (hello.protobuf-size) --as-field=1)
 
 // MESSAGE END: .pkg.bar.Outer
 

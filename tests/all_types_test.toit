@@ -7,105 +7,105 @@ import host.file
 import protobuf
 import expect show *
 
-import .all_types_test_pb
+import .all-types-test-pb
 
 main:
-  test_required
-  test_all
+  test-required
+  test-all
 
-test_required:
-  gold := file.read_content "tests/gold/all_types_test-required.gold"
+test-required:
+  gold := file.read-content "tests/gold/all_types_test-required.gold"
 
   msg := TestAllTypes
-  msg.required_int32 = 1
-  msg.required_int64 = 2
-  msg.required_uint32 = 1000000
-  msg.required_uint64 = 1000000000000
-  msg.required_sint32 = -1000000
-  msg.required_sint64 = -1000000000000
-  msg.required_fixed32 = 1000000
-  msg.required_fixed64 = 1000000000000
-  msg.required_sfixed32 = -1000000
-  msg.required_sfixed64 = -1000000000000
-  msg.required_float = 1.5
-  msg.required_double = 1.25
-  msg.required_bool = true
-  msg.required_string = "foo"
-  msg.required_bytes = #['b', 'a', 'r']
-  msg.required_nested_message.field = 7017
-  msg.required_nested_enum = TestAllTypes_NestedEnum_FOO
-  msg.required_string_piece = "gee"
-  msg.required_cord = "cord!"
+  msg.required-int32 = 1
+  msg.required-int64 = 2
+  msg.required-uint32 = 1000000
+  msg.required-uint64 = 1000000000000
+  msg.required-sint32 = -1000000
+  msg.required-sint64 = -1000000000000
+  msg.required-fixed32 = 1000000
+  msg.required-fixed64 = 1000000000000
+  msg.required-sfixed32 = -1000000
+  msg.required-sfixed64 = -1000000000000
+  msg.required-float = 1.5
+  msg.required-double = 1.25
+  msg.required-bool = true
+  msg.required-string = "foo"
+  msg.required-bytes = #['b', 'a', 'r']
+  msg.required-nested-message.field = 7017
+  msg.required-nested-enum = TestAllTypes-NestedEnum-FOO
+  msg.required-string-piece = "gee"
+  msg.required-cord = "cord!"
 
   buffer := bytes.Buffer
   writer := protobuf.Writer buffer
   msg.serialize writer
   result := buffer.bytes
 
-  expect_equals gold result
+  expect-equals gold result
 
   reader := protobuf.Reader result
   deserialized := TestAllTypes.deserialize reader
 
-  expect_equals 1 deserialized.required_int32
-  expect_equals 2 deserialized.required_int64
-  expect_equals 1000000 deserialized.required_uint32
-  expect_equals 1000000000000 deserialized.required_uint64
-  expect_equals -1000000 deserialized.required_sint32
-  expect_equals -1000000000000 deserialized.required_sint64
-  expect_equals 1000000 deserialized.required_fixed32
-  expect_equals 1000000000000 deserialized.required_fixed64
-  expect_equals -1000000 deserialized.required_sfixed32
-  expect_equals -1000000000000 deserialized.required_sfixed64
-  expect_equals 1.5 deserialized.required_float
-  expect_equals 1.25 deserialized.required_double
-  expect deserialized.required_bool
-  expect_equals "foo" deserialized.required_string
-  expect_equals #['b', 'a', 'r'] deserialized.required_bytes
-  expect_equals 7017 deserialized.required_nested_message.field
-  expect_equals TestAllTypes_NestedEnum_FOO deserialized.required_nested_enum
-  expect_equals "gee" deserialized.required_string_piece
-  expect_equals "cord!" deserialized.required_cord
+  expect-equals 1 deserialized.required-int32
+  expect-equals 2 deserialized.required-int64
+  expect-equals 1000000 deserialized.required-uint32
+  expect-equals 1000000000000 deserialized.required-uint64
+  expect-equals -1000000 deserialized.required-sint32
+  expect-equals -1000000000000 deserialized.required-sint64
+  expect-equals 1000000 deserialized.required-fixed32
+  expect-equals 1000000000000 deserialized.required-fixed64
+  expect-equals -1000000 deserialized.required-sfixed32
+  expect-equals -1000000000000 deserialized.required-sfixed64
+  expect-equals 1.5 deserialized.required-float
+  expect-equals 1.25 deserialized.required-double
+  expect deserialized.required-bool
+  expect-equals "foo" deserialized.required-string
+  expect-equals #['b', 'a', 'r'] deserialized.required-bytes
+  expect-equals 7017 deserialized.required-nested-message.field
+  expect-equals TestAllTypes-NestedEnum-FOO deserialized.required-nested-enum
+  expect-equals "gee" deserialized.required-string-piece
+  expect-equals "cord!" deserialized.required-cord
 
-  expect_equals 0 deserialized.optional_int32
-  expect_equals 0 deserialized.optional_int64
-  expect_equals 0 deserialized.optional_uint32
-  expect_equals 0 deserialized.optional_uint64
-  expect_equals 0 deserialized.optional_sint32
-  expect_equals 0 deserialized.optional_sint64
-  expect_equals 0 deserialized.optional_fixed32
-  expect_equals 0 deserialized.optional_fixed64
-  expect_equals 0 deserialized.optional_sfixed32
-  expect_equals 0 deserialized.optional_sfixed64
-  expect_equals 0.0 deserialized.optional_float
-  expect_equals 0.0 deserialized.optional_double
-  expect_not deserialized.optional_bool
-  expect_equals "" deserialized.optional_string
-  expect_equals #[] deserialized.optional_bytes
-  expect_equals 0 deserialized.optional_nested_message.field
-  expect_equals 0 deserialized.optional_nested_enum
-  expect_equals "" deserialized.optional_string_piece
-  expect_equals "" deserialized.optional_cord
+  expect-equals 0 deserialized.optional-int32
+  expect-equals 0 deserialized.optional-int64
+  expect-equals 0 deserialized.optional-uint32
+  expect-equals 0 deserialized.optional-uint64
+  expect-equals 0 deserialized.optional-sint32
+  expect-equals 0 deserialized.optional-sint64
+  expect-equals 0 deserialized.optional-fixed32
+  expect-equals 0 deserialized.optional-fixed64
+  expect-equals 0 deserialized.optional-sfixed32
+  expect-equals 0 deserialized.optional-sfixed64
+  expect-equals 0.0 deserialized.optional-float
+  expect-equals 0.0 deserialized.optional-double
+  expect-not deserialized.optional-bool
+  expect-equals "" deserialized.optional-string
+  expect-equals #[] deserialized.optional-bytes
+  expect-equals 0 deserialized.optional-nested-message.field
+  expect-equals 0 deserialized.optional-nested-enum
+  expect-equals "" deserialized.optional-string-piece
+  expect-equals "" deserialized.optional-cord
 
-  expect_equals 0 deserialized.repeated_int32.size
-  expect_equals 0 deserialized.repeated_int64.size
-  expect_equals 0 deserialized.repeated_uint32.size
-  expect_equals 0 deserialized.repeated_uint64.size
-  expect_equals 0 deserialized.repeated_sint32.size
-  expect_equals 0 deserialized.repeated_sint64.size
-  expect_equals 0 deserialized.repeated_fixed32.size
-  expect_equals 0 deserialized.repeated_fixed64.size
-  expect_equals 0 deserialized.repeated_sfixed32.size
-  expect_equals 0 deserialized.repeated_sfixed64.size
-  expect_equals 0 deserialized.repeated_float.size
-  expect_equals 0 deserialized.repeated_double.size
-  expect_equals 0 deserialized.repeated_bool.size
-  expect_equals 0 deserialized.repeated_string.size
-  expect_equals 0 deserialized.repeated_bytes.size
-  expect_equals 0 deserialized.repeated_nested_message.size
-  expect_equals 0 deserialized.repeated_nested_enum.size
-  expect_equals 0 deserialized.repeated_string_piece.size
-  expect_equals 0 deserialized.repeated_cord.size
+  expect-equals 0 deserialized.repeated-int32.size
+  expect-equals 0 deserialized.repeated-int64.size
+  expect-equals 0 deserialized.repeated-uint32.size
+  expect-equals 0 deserialized.repeated-uint64.size
+  expect-equals 0 deserialized.repeated-sint32.size
+  expect-equals 0 deserialized.repeated-sint64.size
+  expect-equals 0 deserialized.repeated-fixed32.size
+  expect-equals 0 deserialized.repeated-fixed64.size
+  expect-equals 0 deserialized.repeated-sfixed32.size
+  expect-equals 0 deserialized.repeated-sfixed64.size
+  expect-equals 0 deserialized.repeated-float.size
+  expect-equals 0 deserialized.repeated-double.size
+  expect-equals 0 deserialized.repeated-bool.size
+  expect-equals 0 deserialized.repeated-string.size
+  expect-equals 0 deserialized.repeated-bytes.size
+  expect-equals 0 deserialized.repeated-nested-message.size
+  expect-equals 0 deserialized.repeated-nested-enum.size
+  expect-equals 0 deserialized.repeated-string-piece.size
+  expect-equals 0 deserialized.repeated-cord.size
 
   // TODO(florian): default values don't seem to work.
   // expect_equals 61 deserialized.default_int32
@@ -127,241 +127,241 @@ test_required:
   // expect_equals "foo" deserialized.default_string_piece
   // expect_equals "bar" deserialized.default_cord
 
-test_all:
-  gold := file.read_content "tests/gold/all_types_test-all.gold"
+test-all:
+  gold := file.read-content "tests/gold/all_types_test-all.gold"
 
   msg := TestAllTypes
 
-  msg.required_int32 = 1
-  msg.required_int64 = 2
-  msg.required_uint32 = 1000000
-  msg.required_uint64 = 1000000000000
-  msg.required_sint32 = -1000000
-  msg.required_sint64 = -1000000000000
-  msg.required_fixed32 = 1000000
-  msg.required_fixed64 = 1000000000000
-  msg.required_sfixed32 = -1000000
-  msg.required_sfixed64 = -1000000000000
-  msg.required_float = 1.5
-  msg.required_double = 1.25
-  msg.required_bool = true
-  msg.required_string = "foo"
-  msg.required_bytes = "bar".to_byte_array
-  msg.required_nested_message.field = 7017
-  msg.required_nested_enum = TestAllTypes_NestedEnum_FOO
-  msg.required_string_piece = "gee"
-  msg.required_cord = "cord!"
+  msg.required-int32 = 1
+  msg.required-int64 = 2
+  msg.required-uint32 = 1000000
+  msg.required-uint64 = 1000000000000
+  msg.required-sint32 = -1000000
+  msg.required-sint64 = -1000000000000
+  msg.required-fixed32 = 1000000
+  msg.required-fixed64 = 1000000000000
+  msg.required-sfixed32 = -1000000
+  msg.required-sfixed64 = -1000000000000
+  msg.required-float = 1.5
+  msg.required-double = 1.25
+  msg.required-bool = true
+  msg.required-string = "foo"
+  msg.required-bytes = "bar".to-byte-array
+  msg.required-nested-message.field = 7017
+  msg.required-nested-enum = TestAllTypes-NestedEnum-FOO
+  msg.required-string-piece = "gee"
+  msg.required-cord = "cord!"
 
-  msg.optional_int32 = -1
-  msg.optional_int64 = -2
-  msg.optional_uint32 = 2000000
-  msg.optional_uint64 = 2000000000000
-  msg.optional_sint32 = -2000000
-  msg.optional_sint64 = -2000000000000
-  msg.optional_fixed32 = 2000000
-  msg.optional_fixed64 = 2000000000000
-  msg.optional_sfixed32 = -2000000
-  msg.optional_sfixed64 = -2000000000000
-  msg.optional_float = 2.5
-  msg.optional_double = 2.25
+  msg.optional-int32 = -1
+  msg.optional-int64 = -2
+  msg.optional-uint32 = 2000000
+  msg.optional-uint64 = 2000000000000
+  msg.optional-sint32 = -2000000
+  msg.optional-sint64 = -2000000000000
+  msg.optional-fixed32 = 2000000
+  msg.optional-fixed64 = 2000000000000
+  msg.optional-sfixed32 = -2000000
+  msg.optional-sfixed64 = -2000000000000
+  msg.optional-float = 2.5
+  msg.optional-double = 2.25
   // Toit doesn't encode optional values if they would be the default value.
   // Therefore only test non-default values for optional fields.
   // msg.optional_bool = false
-  msg.optional_bool = true
-  msg.optional_string = "barO"
-  msg.optional_bytes = "fooO".to_byte_array
-  msg.optional_nested_message.field = 70180
-  msg.optional_nested_enum = TestAllTypes_NestedEnum_BAR
-  msg.optional_string_piece = "geeO"
-  msg.optional_cord = "cordO!"
-  msg.oneof_field_oneof_uint32 = 111
+  msg.optional-bool = true
+  msg.optional-string = "barO"
+  msg.optional-bytes = "fooO".to-byte-array
+  msg.optional-nested-message.field = 70180
+  msg.optional-nested-enum = TestAllTypes-NestedEnum-BAR
+  msg.optional-string-piece = "geeO"
+  msg.optional-cord = "cordO!"
+  msg.oneof-field-oneof-uint32 = 111
 
   // Test a default value in a repeated field.
-  msg.repeated_int32.add 0
-  msg.repeated_int32.add 11
-  msg.repeated_int32.add 22
-  msg.repeated_int64.add 33
-  msg.repeated_int64.add 44
-  msg.repeated_uint32.add 111
-  msg.repeated_uint32.add 222
-  msg.repeated_uint64.add 333
-  msg.repeated_uint64.add 444
-  msg.repeated_sint32.add -111
-  msg.repeated_sint32.add -222
-  msg.repeated_sint64.add -333
-  msg.repeated_sint64.add -444
-  msg.repeated_fixed32.add 111
-  msg.repeated_fixed32.add 222
-  msg.repeated_fixed64.add 333
-  msg.repeated_fixed64.add 444
-  msg.repeated_sfixed32.add -111
-  msg.repeated_sfixed32.add -222
-  msg.repeated_sfixed64.add -333
-  msg.repeated_sfixed64.add -444
-  msg.repeated_float.add 1.5
-  msg.repeated_float.add 2.5
-  msg.repeated_double.add 1.25
-  msg.repeated_double.add 2.25
-  msg.repeated_bool.add true
-  msg.repeated_bool.add false
-  msg.repeated_string.add "foo"
-  msg.repeated_string.add "bar"
-  msg.repeated_bytes.add "bar".to_byte_array
-  msg.repeated_bytes.add "foo".to_byte_array
-  nested := TestAllTypes_NestedMessage
+  msg.repeated-int32.add 0
+  msg.repeated-int32.add 11
+  msg.repeated-int32.add 22
+  msg.repeated-int64.add 33
+  msg.repeated-int64.add 44
+  msg.repeated-uint32.add 111
+  msg.repeated-uint32.add 222
+  msg.repeated-uint64.add 333
+  msg.repeated-uint64.add 444
+  msg.repeated-sint32.add -111
+  msg.repeated-sint32.add -222
+  msg.repeated-sint64.add -333
+  msg.repeated-sint64.add -444
+  msg.repeated-fixed32.add 111
+  msg.repeated-fixed32.add 222
+  msg.repeated-fixed64.add 333
+  msg.repeated-fixed64.add 444
+  msg.repeated-sfixed32.add -111
+  msg.repeated-sfixed32.add -222
+  msg.repeated-sfixed64.add -333
+  msg.repeated-sfixed64.add -444
+  msg.repeated-float.add 1.5
+  msg.repeated-float.add 2.5
+  msg.repeated-double.add 1.25
+  msg.repeated-double.add 2.25
+  msg.repeated-bool.add true
+  msg.repeated-bool.add false
+  msg.repeated-string.add "foo"
+  msg.repeated-string.add "bar"
+  msg.repeated-bytes.add "bar".to-byte-array
+  msg.repeated-bytes.add "foo".to-byte-array
+  nested := TestAllTypes-NestedMessage
   nested.field = 7017
-  msg.repeated_nested_message.add nested
-  nested2 := TestAllTypes_NestedMessage
+  msg.repeated-nested-message.add nested
+  nested2 := TestAllTypes-NestedMessage
   nested2.field = 7018
-  msg.repeated_nested_message.add nested2
-  msg.repeated_nested_enum.add TestAllTypes_NestedEnum_GEE
-  msg.repeated_nested_enum.add TestAllTypes_NestedEnum_BAR
-  msg.repeated_string_piece.add "gee"
-  msg.repeated_string_piece.add "gee2"
-  msg.repeated_cord.add "cord!"
-  msg.repeated_cord.add "cord2!"
+  msg.repeated-nested-message.add nested2
+  msg.repeated-nested-enum.add TestAllTypes-NestedEnum-GEE
+  msg.repeated-nested-enum.add TestAllTypes-NestedEnum-BAR
+  msg.repeated-string-piece.add "gee"
+  msg.repeated-string-piece.add "gee2"
+  msg.repeated-cord.add "cord!"
+  msg.repeated-cord.add "cord2!"
 
-  msg.default_int32 = 101
-  msg.default_int64 = 102
-  msg.default_uint32 = 1000100
-  msg.default_uint64 = 1000100000000
-  msg.default_sint32 = -1000100
-  msg.default_sint64 = -1000100000000
-  msg.default_fixed32 = 1000100
-  msg.default_fixed64 = 1000100000000
-  msg.default_sfixed32 = -1000100
-  msg.default_sfixed64 = -1000100000000
-  msg.default_float = 1.125
-  msg.default_double = 1.025
-  msg.default_bool = true
-  msg.default_string = "default"
-  msg.default_bytes = "bytes".to_byte_array
-  msg.default_nested_enum = TestAllTypes_NestedEnum_BAR
-  msg.default_string_piece = "default"
-  msg.default_cord = "cord!"
+  msg.default-int32 = 101
+  msg.default-int64 = 102
+  msg.default-uint32 = 1000100
+  msg.default-uint64 = 1000100000000
+  msg.default-sint32 = -1000100
+  msg.default-sint64 = -1000100000000
+  msg.default-fixed32 = 1000100
+  msg.default-fixed64 = 1000100000000
+  msg.default-sfixed32 = -1000100
+  msg.default-sfixed64 = -1000100000000
+  msg.default-float = 1.125
+  msg.default-double = 1.025
+  msg.default-bool = true
+  msg.default-string = "default"
+  msg.default-bytes = "bytes".to-byte-array
+  msg.default-nested-enum = TestAllTypes-NestedEnum-BAR
+  msg.default-string-piece = "default"
+  msg.default-cord = "cord!"
 
   buffer := bytes.Buffer
   writer := protobuf.Writer buffer
   msg.serialize writer
   encoded := buffer.bytes
 
-  expect_equals gold encoded
+  expect-equals gold encoded
 
   reader := protobuf.Reader encoded
   deserialized := TestAllTypes.deserialize reader
 
-  expect_equals 1 deserialized.required_int32
-  expect_equals 2 deserialized.required_int64
-  expect_equals 1000000 deserialized.required_uint32
-  expect_equals 1000000000000 deserialized.required_uint64
-  expect_equals -1000000 deserialized.required_sint32
-  expect_equals -1000000000000 deserialized.required_sint64
-  expect_equals 1000000 deserialized.required_fixed32
-  expect_equals 1000000000000 deserialized.required_fixed64
-  expect_equals -1000000 deserialized.required_sfixed32
-  expect_equals -1000000000000 deserialized.required_sfixed64
-  expect_equals 1.5 deserialized.required_float
-  expect_equals 1.25 deserialized.required_double
-  expect deserialized.required_bool
-  expect_equals "foo" deserialized.required_string
-  expect_equals #['b', 'a', 'r'] deserialized.required_bytes
-  expect_equals 7017 deserialized.required_nested_message.field
-  expect_equals TestAllTypes_NestedEnum_FOO deserialized.required_nested_enum
-  expect_equals "gee" deserialized.required_string_piece
-  expect_equals "cord!" deserialized.required_cord
+  expect-equals 1 deserialized.required-int32
+  expect-equals 2 deserialized.required-int64
+  expect-equals 1000000 deserialized.required-uint32
+  expect-equals 1000000000000 deserialized.required-uint64
+  expect-equals -1000000 deserialized.required-sint32
+  expect-equals -1000000000000 deserialized.required-sint64
+  expect-equals 1000000 deserialized.required-fixed32
+  expect-equals 1000000000000 deserialized.required-fixed64
+  expect-equals -1000000 deserialized.required-sfixed32
+  expect-equals -1000000000000 deserialized.required-sfixed64
+  expect-equals 1.5 deserialized.required-float
+  expect-equals 1.25 deserialized.required-double
+  expect deserialized.required-bool
+  expect-equals "foo" deserialized.required-string
+  expect-equals #['b', 'a', 'r'] deserialized.required-bytes
+  expect-equals 7017 deserialized.required-nested-message.field
+  expect-equals TestAllTypes-NestedEnum-FOO deserialized.required-nested-enum
+  expect-equals "gee" deserialized.required-string-piece
+  expect-equals "cord!" deserialized.required-cord
 
-  msg.optional_int32 = -1
-  msg.optional_int64 = -2
-  msg.optional_uint32 = 2000000
-  msg.optional_uint64 = 2000000000000
-  msg.optional_sint32 = -2000000
-  msg.optional_sint64 = -2000000000000
-  msg.optional_fixed32 = 2000000
-  msg.optional_fixed64 = 2000000000000
-  msg.optional_sfixed32 = -2000000
-  msg.optional_sfixed64 = -2000000000000
-  msg.optional_float = 2.5
-  msg.optional_double = 2.25
-  msg.optional_bool = true
-  msg.optional_string = "barO"
-  msg.optional_bytes = "fooO".to_byte_array
-  msg.optional_nested_message.field = 70180
-  msg.optional_nested_enum = TestAllTypes_NestedEnum_BAR
-  msg.optional_string_piece = "geeO"
-  msg.optional_cord = "cordO!"
-  msg.oneof_field_oneof_uint32 = 111
+  msg.optional-int32 = -1
+  msg.optional-int64 = -2
+  msg.optional-uint32 = 2000000
+  msg.optional-uint64 = 2000000000000
+  msg.optional-sint32 = -2000000
+  msg.optional-sint64 = -2000000000000
+  msg.optional-fixed32 = 2000000
+  msg.optional-fixed64 = 2000000000000
+  msg.optional-sfixed32 = -2000000
+  msg.optional-sfixed64 = -2000000000000
+  msg.optional-float = 2.5
+  msg.optional-double = 2.25
+  msg.optional-bool = true
+  msg.optional-string = "barO"
+  msg.optional-bytes = "fooO".to-byte-array
+  msg.optional-nested-message.field = 70180
+  msg.optional-nested-enum = TestAllTypes-NestedEnum-BAR
+  msg.optional-string-piece = "geeO"
+  msg.optional-cord = "cordO!"
+  msg.oneof-field-oneof-uint32 = 111
 
-  expect_equals 3 deserialized.repeated_int32.size
-  expect_equals 0 deserialized.repeated_int32[0]
-  expect_equals 11 deserialized.repeated_int32[1]
-  expect_equals 22 deserialized.repeated_int32[2]
-  expect_equals 2 deserialized.repeated_int64.size
-  expect_equals 33 deserialized.repeated_int64[0]
-  expect_equals 44 deserialized.repeated_int64[1]
-  expect_equals 2 deserialized.repeated_uint32.size
-  expect_equals 111 deserialized.repeated_uint32[0]
-  expect_equals 222 deserialized.repeated_uint32[1]
-  expect_equals 2 deserialized.repeated_uint64.size
-  expect_equals 333 deserialized.repeated_uint64[0]
-  expect_equals 444 deserialized.repeated_uint64[1]
-  expect_equals 2 deserialized.repeated_sint32.size
-  expect_equals -111 deserialized.repeated_sint32[0]
-  expect_equals -222 deserialized.repeated_sint32[1]
-  expect_equals 2 deserialized.repeated_sint64.size
-  expect_equals -333 deserialized.repeated_sint64[0]
-  expect_equals -444 deserialized.repeated_sint64[1]
-  expect_equals 2 deserialized.repeated_fixed32.size
-  expect_equals 111 deserialized.repeated_fixed32[0]
-  expect_equals 222 deserialized.repeated_fixed32[1]
-  expect_equals 2 deserialized.repeated_fixed64.size
-  expect_equals 333 deserialized.repeated_fixed64[0]
-  expect_equals 444 deserialized.repeated_fixed64[1]
-  expect_equals 2 deserialized.repeated_sfixed32.size
-  expect_equals -111 deserialized.repeated_sfixed32[0]
-  expect_equals -222 deserialized.repeated_sfixed32[1]
-  expect_equals 2 deserialized.repeated_sfixed64.size
-  expect_equals -333 deserialized.repeated_sfixed64[0]
-  expect_equals -444 deserialized.repeated_sfixed64[1]
-  expect_equals 2 deserialized.repeated_float.size
-  expect_equals 1.5 deserialized.repeated_float[0]
-  expect_equals 2.5 deserialized.repeated_float[1]
-  expect_equals 2 deserialized.repeated_double.size
-  expect_equals 1.25 deserialized.repeated_double[0]
-  expect_equals 2.25 deserialized.repeated_double[1]
-  expect_equals 2 deserialized.repeated_bool.size
-  expect deserialized.repeated_bool[0]
-  expect_not deserialized.repeated_bool[1]
-  expect_equals 2 deserialized.repeated_string.size
-  expect_equals "foo" deserialized.repeated_string[0]
-  expect_equals "bar" deserialized.repeated_string[1]
-  expect_equals 2 deserialized.repeated_bytes.size
-  expect_equals #['b', 'a', 'r'] deserialized.repeated_bytes[0]
-  expect_equals #['f', 'o', 'o'] deserialized.repeated_bytes[1]
-  expect_equals 2 deserialized.repeated_nested_enum.size
-  expect_equals TestAllTypes_NestedEnum_GEE deserialized.repeated_nested_enum[0]
-  expect_equals TestAllTypes_NestedEnum_BAR deserialized.repeated_nested_enum[1]
-  expect_equals 2 deserialized.repeated_string_piece.size
-  expect_equals "gee" deserialized.repeated_string_piece[0]
-  expect_equals "gee2" deserialized.repeated_string_piece[1]
-  expect_equals 2 deserialized.repeated_cord.size
-  expect_equals "cord!" deserialized.repeated_cord[0]
-  expect_equals "cord2!" deserialized.repeated_cord[1]
+  expect-equals 3 deserialized.repeated-int32.size
+  expect-equals 0 deserialized.repeated-int32[0]
+  expect-equals 11 deserialized.repeated-int32[1]
+  expect-equals 22 deserialized.repeated-int32[2]
+  expect-equals 2 deserialized.repeated-int64.size
+  expect-equals 33 deserialized.repeated-int64[0]
+  expect-equals 44 deserialized.repeated-int64[1]
+  expect-equals 2 deserialized.repeated-uint32.size
+  expect-equals 111 deserialized.repeated-uint32[0]
+  expect-equals 222 deserialized.repeated-uint32[1]
+  expect-equals 2 deserialized.repeated-uint64.size
+  expect-equals 333 deserialized.repeated-uint64[0]
+  expect-equals 444 deserialized.repeated-uint64[1]
+  expect-equals 2 deserialized.repeated-sint32.size
+  expect-equals -111 deserialized.repeated-sint32[0]
+  expect-equals -222 deserialized.repeated-sint32[1]
+  expect-equals 2 deserialized.repeated-sint64.size
+  expect-equals -333 deserialized.repeated-sint64[0]
+  expect-equals -444 deserialized.repeated-sint64[1]
+  expect-equals 2 deserialized.repeated-fixed32.size
+  expect-equals 111 deserialized.repeated-fixed32[0]
+  expect-equals 222 deserialized.repeated-fixed32[1]
+  expect-equals 2 deserialized.repeated-fixed64.size
+  expect-equals 333 deserialized.repeated-fixed64[0]
+  expect-equals 444 deserialized.repeated-fixed64[1]
+  expect-equals 2 deserialized.repeated-sfixed32.size
+  expect-equals -111 deserialized.repeated-sfixed32[0]
+  expect-equals -222 deserialized.repeated-sfixed32[1]
+  expect-equals 2 deserialized.repeated-sfixed64.size
+  expect-equals -333 deserialized.repeated-sfixed64[0]
+  expect-equals -444 deserialized.repeated-sfixed64[1]
+  expect-equals 2 deserialized.repeated-float.size
+  expect-equals 1.5 deserialized.repeated-float[0]
+  expect-equals 2.5 deserialized.repeated-float[1]
+  expect-equals 2 deserialized.repeated-double.size
+  expect-equals 1.25 deserialized.repeated-double[0]
+  expect-equals 2.25 deserialized.repeated-double[1]
+  expect-equals 2 deserialized.repeated-bool.size
+  expect deserialized.repeated-bool[0]
+  expect-not deserialized.repeated-bool[1]
+  expect-equals 2 deserialized.repeated-string.size
+  expect-equals "foo" deserialized.repeated-string[0]
+  expect-equals "bar" deserialized.repeated-string[1]
+  expect-equals 2 deserialized.repeated-bytes.size
+  expect-equals #['b', 'a', 'r'] deserialized.repeated-bytes[0]
+  expect-equals #['f', 'o', 'o'] deserialized.repeated-bytes[1]
+  expect-equals 2 deserialized.repeated-nested-enum.size
+  expect-equals TestAllTypes-NestedEnum-GEE deserialized.repeated-nested-enum[0]
+  expect-equals TestAllTypes-NestedEnum-BAR deserialized.repeated-nested-enum[1]
+  expect-equals 2 deserialized.repeated-string-piece.size
+  expect-equals "gee" deserialized.repeated-string-piece[0]
+  expect-equals "gee2" deserialized.repeated-string-piece[1]
+  expect-equals 2 deserialized.repeated-cord.size
+  expect-equals "cord!" deserialized.repeated-cord[0]
+  expect-equals "cord2!" deserialized.repeated-cord[1]
 
-  expect_equals 101 deserialized.default_int32
-  expect_equals 102 deserialized.default_int64
-  expect_equals 1000100 deserialized.default_uint32
-  expect_equals 1000100000000 deserialized.default_uint64
-  expect_equals -1000100 deserialized.default_sint32
-  expect_equals -1000100000000 deserialized.default_sint64
-  expect_equals 1000100 deserialized.default_fixed32
-  expect_equals 1000100000000 deserialized.default_fixed64
-  expect_equals -1000100 deserialized.default_sfixed32
-  expect_equals -1000100000000 deserialized.default_sfixed64
-  expect_equals 1.125 deserialized.default_float
-  expect_equals 1.025 deserialized.default_double
-  expect deserialized.default_bool
-  expect_equals "default" deserialized.default_string
-  expect_equals #['b', 'y', 't', 'e', 's'] deserialized.default_bytes
-  expect_equals TestAllTypes_NestedEnum_BAR deserialized.default_nested_enum
-  expect_equals "default" deserialized.default_string_piece
-  expect_equals "cord!" deserialized.default_cord
+  expect-equals 101 deserialized.default-int32
+  expect-equals 102 deserialized.default-int64
+  expect-equals 1000100 deserialized.default-uint32
+  expect-equals 1000100000000 deserialized.default-uint64
+  expect-equals -1000100 deserialized.default-sint32
+  expect-equals -1000100000000 deserialized.default-sint64
+  expect-equals 1000100 deserialized.default-fixed32
+  expect-equals 1000100000000 deserialized.default-fixed64
+  expect-equals -1000100 deserialized.default-sfixed32
+  expect-equals -1000100000000 deserialized.default-sfixed64
+  expect-equals 1.125 deserialized.default-float
+  expect-equals 1.025 deserialized.default-double
+  expect deserialized.default-bool
+  expect-equals "default" deserialized.default-string
+  expect-equals #['b', 'y', 't', 'e', 's'] deserialized.default-bytes
+  expect-equals TestAllTypes-NestedEnum-BAR deserialized.default-nested-enum
+  expect-equals "default" deserialized.default-string-piece
+  expect-equals "cord!" deserialized.default-cord
