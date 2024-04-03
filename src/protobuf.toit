@@ -3,8 +3,8 @@
 // found in the LICENSE file.
 
 import .varint as varint
-import binary show LITTLE_ENDIAN
 import bytes
+import io show LITTLE_ENDIAN
 
 // 0 is reserved for errors.
 PROTOBUF_TYPE_DOUBLE    ::= 1
