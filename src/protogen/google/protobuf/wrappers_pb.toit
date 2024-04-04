@@ -14,19 +14,19 @@ class DoubleValue extends _protobuf.Message:
       this.value = value
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read-message:
-      r.read-field 1:
-        value = r.read-primitive _protobuf.PROTOBUF-TYPE-DOUBLE
+    r.read_message:
+      r.read_field 1:
+        value = r.read_primitive _protobuf.PROTOBUF_TYPE_DOUBLE
 
-  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
-    w.write-message-header this --as-field=as-field --oneof=oneof
-    w.write-primitive _protobuf.PROTOBUF-TYPE-DOUBLE value --as-field=1
+  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
+    w.write_message_header this --as_field=as_field --oneof=oneof
+    w.write_primitive _protobuf.PROTOBUF_TYPE_DOUBLE value --as_field=1
 
-  num-fields-set -> int:
+  num_fields_set -> int:
     return (value == 0.0 ? 0 : 1)
 
-  protobuf-size -> int:
-    return (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-DOUBLE value --as-field=1)
+  protobuf_size -> int:
+    return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_DOUBLE value --as_field=1)
 
 // MESSAGE END: .google.protobuf.DoubleValue
 
@@ -40,19 +40,19 @@ class FloatValue extends _protobuf.Message:
       this.value = value
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read-message:
-      r.read-field 1:
-        value = r.read-primitive _protobuf.PROTOBUF-TYPE-FLOAT
+    r.read_message:
+      r.read_field 1:
+        value = r.read_primitive _protobuf.PROTOBUF_TYPE_FLOAT
 
-  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
-    w.write-message-header this --as-field=as-field --oneof=oneof
-    w.write-primitive _protobuf.PROTOBUF-TYPE-FLOAT value --as-field=1
+  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
+    w.write_message_header this --as_field=as_field --oneof=oneof
+    w.write_primitive _protobuf.PROTOBUF_TYPE_FLOAT value --as_field=1
 
-  num-fields-set -> int:
+  num_fields_set -> int:
     return (value == 0.0 ? 0 : 1)
 
-  protobuf-size -> int:
-    return (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-FLOAT value --as-field=1)
+  protobuf_size -> int:
+    return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_FLOAT value --as_field=1)
 
 // MESSAGE END: .google.protobuf.FloatValue
 
@@ -66,19 +66,19 @@ class Int64Value extends _protobuf.Message:
       this.value = value
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read-message:
-      r.read-field 1:
-        value = r.read-primitive _protobuf.PROTOBUF-TYPE-INT64
+    r.read_message:
+      r.read_field 1:
+        value = r.read_primitive _protobuf.PROTOBUF_TYPE_INT64
 
-  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
-    w.write-message-header this --as-field=as-field --oneof=oneof
-    w.write-primitive _protobuf.PROTOBUF-TYPE-INT64 value --as-field=1
+  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
+    w.write_message_header this --as_field=as_field --oneof=oneof
+    w.write_primitive _protobuf.PROTOBUF_TYPE_INT64 value --as_field=1
 
-  num-fields-set -> int:
+  num_fields_set -> int:
     return (value == 0 ? 0 : 1)
 
-  protobuf-size -> int:
-    return (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-INT64 value --as-field=1)
+  protobuf_size -> int:
+    return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_INT64 value --as_field=1)
 
 // MESSAGE END: .google.protobuf.Int64Value
 
@@ -92,19 +92,19 @@ class UInt64Value extends _protobuf.Message:
       this.value = value
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read-message:
-      r.read-field 1:
-        value = r.read-primitive _protobuf.PROTOBUF-TYPE-UINT64
+    r.read_message:
+      r.read_field 1:
+        value = r.read_primitive _protobuf.PROTOBUF_TYPE_UINT64
 
-  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
-    w.write-message-header this --as-field=as-field --oneof=oneof
-    w.write-primitive _protobuf.PROTOBUF-TYPE-UINT64 value --as-field=1
+  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
+    w.write_message_header this --as_field=as_field --oneof=oneof
+    w.write_primitive _protobuf.PROTOBUF_TYPE_UINT64 value --as_field=1
 
-  num-fields-set -> int:
+  num_fields_set -> int:
     return (value == 0 ? 0 : 1)
 
-  protobuf-size -> int:
-    return (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-UINT64 value --as-field=1)
+  protobuf_size -> int:
+    return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_UINT64 value --as_field=1)
 
 // MESSAGE END: .google.protobuf.UInt64Value
 
@@ -118,19 +118,19 @@ class Int32Value extends _protobuf.Message:
       this.value = value
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read-message:
-      r.read-field 1:
-        value = r.read-primitive _protobuf.PROTOBUF-TYPE-INT32
+    r.read_message:
+      r.read_field 1:
+        value = r.read_primitive _protobuf.PROTOBUF_TYPE_INT32
 
-  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
-    w.write-message-header this --as-field=as-field --oneof=oneof
-    w.write-primitive _protobuf.PROTOBUF-TYPE-INT32 value --as-field=1
+  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
+    w.write_message_header this --as_field=as_field --oneof=oneof
+    w.write_primitive _protobuf.PROTOBUF_TYPE_INT32 value --as_field=1
 
-  num-fields-set -> int:
+  num_fields_set -> int:
     return (value == 0 ? 0 : 1)
 
-  protobuf-size -> int:
-    return (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-INT32 value --as-field=1)
+  protobuf_size -> int:
+    return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_INT32 value --as_field=1)
 
 // MESSAGE END: .google.protobuf.Int32Value
 
@@ -144,19 +144,19 @@ class UInt32Value extends _protobuf.Message:
       this.value = value
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read-message:
-      r.read-field 1:
-        value = r.read-primitive _protobuf.PROTOBUF-TYPE-UINT32
+    r.read_message:
+      r.read_field 1:
+        value = r.read_primitive _protobuf.PROTOBUF_TYPE_UINT32
 
-  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
-    w.write-message-header this --as-field=as-field --oneof=oneof
-    w.write-primitive _protobuf.PROTOBUF-TYPE-UINT32 value --as-field=1
+  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
+    w.write_message_header this --as_field=as_field --oneof=oneof
+    w.write_primitive _protobuf.PROTOBUF_TYPE_UINT32 value --as_field=1
 
-  num-fields-set -> int:
+  num_fields_set -> int:
     return (value == 0 ? 0 : 1)
 
-  protobuf-size -> int:
-    return (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-UINT32 value --as-field=1)
+  protobuf_size -> int:
+    return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_UINT32 value --as_field=1)
 
 // MESSAGE END: .google.protobuf.UInt32Value
 
@@ -170,19 +170,19 @@ class BoolValue extends _protobuf.Message:
       this.value = value
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read-message:
-      r.read-field 1:
-        value = r.read-primitive _protobuf.PROTOBUF-TYPE-BOOL
+    r.read_message:
+      r.read_field 1:
+        value = r.read_primitive _protobuf.PROTOBUF_TYPE_BOOL
 
-  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
-    w.write-message-header this --as-field=as-field --oneof=oneof
-    w.write-primitive _protobuf.PROTOBUF-TYPE-BOOL value --as-field=1
+  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
+    w.write_message_header this --as_field=as_field --oneof=oneof
+    w.write_primitive _protobuf.PROTOBUF_TYPE_BOOL value --as_field=1
 
-  num-fields-set -> int:
+  num_fields_set -> int:
     return (value == false ? 0 : 1)
 
-  protobuf-size -> int:
-    return (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-BOOL value --as-field=1)
+  protobuf_size -> int:
+    return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BOOL value --as_field=1)
 
 // MESSAGE END: .google.protobuf.BoolValue
 
@@ -196,19 +196,19 @@ class StringValue extends _protobuf.Message:
       this.value = value
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read-message:
-      r.read-field 1:
-        value = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+    r.read_message:
+      r.read_field 1:
+        value = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
 
-  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
-    w.write-message-header this --as-field=as-field --oneof=oneof
-    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING value --as-field=1
+  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
+    w.write_message_header this --as_field=as_field --oneof=oneof
+    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING value --as_field=1
 
-  num-fields-set -> int:
-    return (value.is-empty ? 0 : 1)
+  num_fields_set -> int:
+    return (value.is_empty ? 0 : 1)
 
-  protobuf-size -> int:
-    return (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING value --as-field=1)
+  protobuf_size -> int:
+    return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING value --as_field=1)
 
 // MESSAGE END: .google.protobuf.StringValue
 
@@ -222,19 +222,19 @@ class BytesValue extends _protobuf.Message:
       this.value = value
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read-message:
-      r.read-field 1:
-        value = r.read-primitive _protobuf.PROTOBUF-TYPE-BYTES
+    r.read_message:
+      r.read_field 1:
+        value = r.read_primitive _protobuf.PROTOBUF_TYPE_BYTES
 
-  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
-    w.write-message-header this --as-field=as-field --oneof=oneof
-    w.write-primitive _protobuf.PROTOBUF-TYPE-BYTES value --as-field=1
+  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
+    w.write_message_header this --as_field=as_field --oneof=oneof
+    w.write_primitive _protobuf.PROTOBUF_TYPE_BYTES value --as_field=1
 
-  num-fields-set -> int:
-    return (value.is-empty ? 0 : 1)
+  num_fields_set -> int:
+    return (value.is_empty ? 0 : 1)
 
-  protobuf-size -> int:
-    return (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-BYTES value --as-field=1)
+  protobuf_size -> int:
+    return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BYTES value --as_field=1)
 
 // MESSAGE END: .google.protobuf.BytesValue
 

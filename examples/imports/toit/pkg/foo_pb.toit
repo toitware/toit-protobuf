@@ -14,19 +14,19 @@ class Hello extends _protobuf.Message:
       this.world = world
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read-message:
-      r.read-field 1:
-        world = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+    r.read_message:
+      r.read_field 1:
+        world = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
 
-  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
-    w.write-message-header this --as-field=as-field --oneof=oneof
-    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING world --as-field=1
+  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
+    w.write_message_header this --as_field=as_field --oneof=oneof
+    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING world --as_field=1
 
-  num-fields-set -> int:
-    return (world.is-empty ? 0 : 1)
+  num_fields_set -> int:
+    return (world.is_empty ? 0 : 1)
 
-  protobuf-size -> int:
-    return (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING world --as-field=1)
+  protobuf_size -> int:
+    return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING world --as_field=1)
 
 // MESSAGE END: .pkg.foo.Hello
 
