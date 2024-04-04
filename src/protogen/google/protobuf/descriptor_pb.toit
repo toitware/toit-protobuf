@@ -1195,7 +1195,7 @@ class MessageOptions extends _protobuf.Message:
 
   constructor
       --message_set_wire_format/bool?=null
-      --no_standard_descriptor_accessor/bool?=null
+      --xno_standard_descriptor_accessor/bool?=null
       --deprecated/bool?=null
       --map_entry/bool?=null
       --deprecated_legacy_json_field_conflicts/bool?=null
@@ -1203,8 +1203,8 @@ class MessageOptions extends _protobuf.Message:
       --uninterpreted_option/List?/*<UninterpretedOption>*/=null:
     if message_set_wire_format != null:
       this.message_set_wire_format = message_set_wire_format
-    if no_standard_descriptor_accessor != null:
-      this.no_standard_descriptor_accessor = no_standard_descriptor_accessor
+    if xno_standard_descriptor_accessor != null:
+      this.no_standard_descriptor_accessor = xno_standard_descriptor_accessor
     if deprecated != null:
       this.deprecated = deprecated
     if map_entry != null:

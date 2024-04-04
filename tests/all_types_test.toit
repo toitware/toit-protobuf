@@ -2,8 +2,8 @@
 // Use of this source code is governed by a Zero-Clause BSD license that can
 // be found in the tests/TESTS_LICENSE file.
 
-import bytes
 import host.file
+import io
 import protobuf
 import expect show *
 
@@ -240,7 +240,7 @@ test-all:
   msg.default-string-piece = "default"
   msg.default-cord = "cord!"
 
-  buffer := bytes.Buffer
+  buffer := io.Buffer
   writer := protobuf.Writer buffer
   msg.serialize writer
   encoded := buffer.bytes
