@@ -6,27 +6,27 @@ import core as _core
 
 // MESSAGE START: .google.protobuf.SourceContext
 class SourceContext extends _protobuf.Message:
-  file_name/string := ""
+  file-name/string := ""
 
   constructor
-      --file_name/string?=null:
-    if file_name != null:
-      this.file_name = file_name
+      --file-name/string?=null:
+    if file-name != null:
+      this.file-name = file-name
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read_message:
-      r.read_field 1:
-        file_name = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
+    r.read-message:
+      r.read-field 1:
+        file-name = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
 
-  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
-    w.write_message_header this --as_field=as_field --oneof=oneof
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING file_name --as_field=1
+  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
+    w.write-message-header this --as-field=as-field --oneof=oneof
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING file-name --as-field=1
 
-  num_fields_set -> int:
-    return (file_name.is_empty ? 0 : 1)
+  num-fields-set -> int:
+    return (file-name.is-empty ? 0 : 1)
 
-  protobuf_size -> int:
-    return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING file_name --as_field=1)
+  protobuf-size -> int:
+    return (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING file-name --as-field=1)
 
 // MESSAGE END: .google.protobuf.SourceContext
 

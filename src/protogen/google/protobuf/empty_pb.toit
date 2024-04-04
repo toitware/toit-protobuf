@@ -10,16 +10,16 @@ class Empty extends _protobuf.Message:
   constructor:
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read_message:
+    r.read-message:
       1
 
-  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
-    w.write_message_header this --as_field=as_field --oneof=oneof
+  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
+    w.write-message-header this --as-field=as-field --oneof=oneof
     1
-  num_fields_set -> int:
+  num-fields-set -> int:
     return 0
 
-  protobuf_size -> int:
+  protobuf-size -> int:
     return 0
 
 // MESSAGE END: .google.protobuf.Empty

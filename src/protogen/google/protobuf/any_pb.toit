@@ -6,36 +6,36 @@ import core as _core
 
 // MESSAGE START: .google.protobuf.Any
 class Any extends _protobuf.Message:
-  type_url/string := ""
+  type-url/string := ""
   value/ByteArray := ByteArray 0
 
   constructor
-      --type_url/string?=null
+      --type-url/string?=null
       --value/ByteArray?=null:
-    if type_url != null:
-      this.type_url = type_url
+    if type-url != null:
+      this.type-url = type-url
     if value != null:
       this.value = value
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read_message:
-      r.read_field 1:
-        type_url = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
-      r.read_field 2:
-        value = r.read_primitive _protobuf.PROTOBUF_TYPE_BYTES
+    r.read-message:
+      r.read-field 1:
+        type-url = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+      r.read-field 2:
+        value = r.read-primitive _protobuf.PROTOBUF-TYPE-BYTES
 
-  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
-    w.write_message_header this --as_field=as_field --oneof=oneof
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING type_url --as_field=1
-    w.write_primitive _protobuf.PROTOBUF_TYPE_BYTES value --as_field=2
+  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
+    w.write-message-header this --as-field=as-field --oneof=oneof
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING type-url --as-field=1
+    w.write-primitive _protobuf.PROTOBUF-TYPE-BYTES value --as-field=2
 
-  num_fields_set -> int:
-    return (type_url.is_empty ? 0 : 1)
-      + (value.is_empty ? 0 : 1)
+  num-fields-set -> int:
+    return (type-url.is-empty ? 0 : 1)
+      + (value.is-empty ? 0 : 1)
 
-  protobuf_size -> int:
-    return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING type_url --as_field=1)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BYTES value --as_field=2)
+  protobuf-size -> int:
+    return (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING type-url --as-field=1)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-BYTES value --as-field=2)
 
 // MESSAGE END: .google.protobuf.Any
 

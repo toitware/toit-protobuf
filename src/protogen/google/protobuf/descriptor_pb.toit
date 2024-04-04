@@ -14,21 +14,21 @@ class FileDescriptorSet extends _protobuf.Message:
       this.file = file
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read_message:
-      r.read_field 1:
-        file = r.read_array _protobuf.PROTOBUF_TYPE_MESSAGE file:
+    r.read-message:
+      r.read-field 1:
+        file = r.read-array _protobuf.PROTOBUF-TYPE-MESSAGE file:
           FileDescriptorProto.deserialize r
 
-  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
-    w.write_message_header this --as_field=as_field --oneof=oneof
-    w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE file --as_field=1: | value/FileDescriptorProto | 
+  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
+    w.write-message-header this --as-field=as-field --oneof=oneof
+    w.write-array _protobuf.PROTOBUF-TYPE-MESSAGE file --as-field=1: | value/FileDescriptorProto | 
       value.serialize w
 
-  num_fields_set -> int:
-    return (file.is_empty ? 0 : 1)
+  num-fields-set -> int:
+    return (file.is-empty ? 0 : 1)
 
-  protobuf_size -> int:
-    return (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE file --as_field=1)
+  protobuf-size -> int:
+    return (_protobuf.size-array _protobuf.PROTOBUF-TYPE-MESSAGE file --as-field=1)
 
 // MESSAGE END: .google.protobuf.FileDescriptorSet
 
@@ -37,28 +37,28 @@ class FileDescriptorProto extends _protobuf.Message:
   name/string := ""
   package/string := ""
   dependency/List/*<string>*/ := []
-  public_dependency/List/*<int>*/ := []
-  weak_dependency/List/*<int>*/ := []
-  message_type/List/*<DescriptorProto>*/ := []
-  enum_type/List/*<EnumDescriptorProto>*/ := []
+  public-dependency/List/*<int>*/ := []
+  weak-dependency/List/*<int>*/ := []
+  message-type/List/*<DescriptorProto>*/ := []
+  enum-type/List/*<EnumDescriptorProto>*/ := []
   service/List/*<ServiceDescriptorProto>*/ := []
   extension/List/*<FieldDescriptorProto>*/ := []
   options/FileOptions := FileOptions
-  source_code_info/SourceCodeInfo := SourceCodeInfo
+  source-code-info/SourceCodeInfo := SourceCodeInfo
   syntax/string := ""
 
   constructor
       --name/string?=null
       --package/string?=null
       --dependency/List?/*<string>*/=null
-      --public_dependency/List?/*<int>*/=null
-      --weak_dependency/List?/*<int>*/=null
-      --message_type/List?/*<DescriptorProto>*/=null
-      --enum_type/List?/*<EnumDescriptorProto>*/=null
+      --public-dependency/List?/*<int>*/=null
+      --weak-dependency/List?/*<int>*/=null
+      --message-type/List?/*<DescriptorProto>*/=null
+      --enum-type/List?/*<EnumDescriptorProto>*/=null
       --service/List?/*<ServiceDescriptorProto>*/=null
       --extension/List?/*<FieldDescriptorProto>*/=null
       --options/FileOptions?=null
-      --source_code_info/SourceCodeInfo?=null
+      --source-code-info/SourceCodeInfo?=null
       --syntax/string?=null:
     if name != null:
       this.name = name
@@ -66,114 +66,114 @@ class FileDescriptorProto extends _protobuf.Message:
       this.package = package
     if dependency != null:
       this.dependency = dependency
-    if public_dependency != null:
-      this.public_dependency = public_dependency
-    if weak_dependency != null:
-      this.weak_dependency = weak_dependency
-    if message_type != null:
-      this.message_type = message_type
-    if enum_type != null:
-      this.enum_type = enum_type
+    if public-dependency != null:
+      this.public-dependency = public-dependency
+    if weak-dependency != null:
+      this.weak-dependency = weak-dependency
+    if message-type != null:
+      this.message-type = message-type
+    if enum-type != null:
+      this.enum-type = enum-type
     if service != null:
       this.service = service
     if extension != null:
       this.extension = extension
     if options != null:
       this.options = options
-    if source_code_info != null:
-      this.source_code_info = source_code_info
+    if source-code-info != null:
+      this.source-code-info = source-code-info
     if syntax != null:
       this.syntax = syntax
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read_message:
-      r.read_field 1:
-        name = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
-      r.read_field 2:
-        package = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
-      r.read_field 3:
-        dependency = r.read_array _protobuf.PROTOBUF_TYPE_STRING dependency:
-          r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
-      r.read_field 10:
-        public_dependency = r.read_array _protobuf.PROTOBUF_TYPE_INT32 public_dependency:
-          r.read_primitive _protobuf.PROTOBUF_TYPE_INT32
-      r.read_field 11:
-        weak_dependency = r.read_array _protobuf.PROTOBUF_TYPE_INT32 weak_dependency:
-          r.read_primitive _protobuf.PROTOBUF_TYPE_INT32
-      r.read_field 4:
-        message_type = r.read_array _protobuf.PROTOBUF_TYPE_MESSAGE message_type:
+    r.read-message:
+      r.read-field 1:
+        name = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+      r.read-field 2:
+        package = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+      r.read-field 3:
+        dependency = r.read-array _protobuf.PROTOBUF-TYPE-STRING dependency:
+          r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+      r.read-field 10:
+        public-dependency = r.read-array _protobuf.PROTOBUF-TYPE-INT32 public-dependency:
+          r.read-primitive _protobuf.PROTOBUF-TYPE-INT32
+      r.read-field 11:
+        weak-dependency = r.read-array _protobuf.PROTOBUF-TYPE-INT32 weak-dependency:
+          r.read-primitive _protobuf.PROTOBUF-TYPE-INT32
+      r.read-field 4:
+        message-type = r.read-array _protobuf.PROTOBUF-TYPE-MESSAGE message-type:
           DescriptorProto.deserialize r
-      r.read_field 5:
-        enum_type = r.read_array _protobuf.PROTOBUF_TYPE_MESSAGE enum_type:
+      r.read-field 5:
+        enum-type = r.read-array _protobuf.PROTOBUF-TYPE-MESSAGE enum-type:
           EnumDescriptorProto.deserialize r
-      r.read_field 6:
-        service = r.read_array _protobuf.PROTOBUF_TYPE_MESSAGE service:
+      r.read-field 6:
+        service = r.read-array _protobuf.PROTOBUF-TYPE-MESSAGE service:
           ServiceDescriptorProto.deserialize r
-      r.read_field 7:
-        extension = r.read_array _protobuf.PROTOBUF_TYPE_MESSAGE extension:
+      r.read-field 7:
+        extension = r.read-array _protobuf.PROTOBUF-TYPE-MESSAGE extension:
           FieldDescriptorProto.deserialize r
-      r.read_field 8:
+      r.read-field 8:
         options = FileOptions.deserialize r
-      r.read_field 9:
-        source_code_info = SourceCodeInfo.deserialize r
-      r.read_field 12:
-        syntax = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
+      r.read-field 9:
+        source-code-info = SourceCodeInfo.deserialize r
+      r.read-field 12:
+        syntax = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
 
-  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
-    w.write_message_header this --as_field=as_field --oneof=oneof
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING name --as_field=1
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING package --as_field=2
-    w.write_array _protobuf.PROTOBUF_TYPE_STRING dependency --as_field=3: | value/string | 
-      w.write_primitive _protobuf.PROTOBUF_TYPE_STRING value --in_array
-    w.write_array _protobuf.PROTOBUF_TYPE_INT32 public_dependency --as_field=10: | value/int | 
-      w.write_primitive _protobuf.PROTOBUF_TYPE_INT32 value --in_array
-    w.write_array _protobuf.PROTOBUF_TYPE_INT32 weak_dependency --as_field=11: | value/int | 
-      w.write_primitive _protobuf.PROTOBUF_TYPE_INT32 value --in_array
-    w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE message_type --as_field=4: | value/DescriptorProto | 
+  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
+    w.write-message-header this --as-field=as-field --oneof=oneof
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING name --as-field=1
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING package --as-field=2
+    w.write-array _protobuf.PROTOBUF-TYPE-STRING dependency --as-field=3: | value/string | 
+      w.write-primitive _protobuf.PROTOBUF-TYPE-STRING value --in-array
+    w.write-array _protobuf.PROTOBUF-TYPE-INT32 public-dependency --as-field=10: | value/int | 
+      w.write-primitive _protobuf.PROTOBUF-TYPE-INT32 value --in-array
+    w.write-array _protobuf.PROTOBUF-TYPE-INT32 weak-dependency --as-field=11: | value/int | 
+      w.write-primitive _protobuf.PROTOBUF-TYPE-INT32 value --in-array
+    w.write-array _protobuf.PROTOBUF-TYPE-MESSAGE message-type --as-field=4: | value/DescriptorProto | 
       value.serialize w
-    w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE enum_type --as_field=5: | value/EnumDescriptorProto | 
+    w.write-array _protobuf.PROTOBUF-TYPE-MESSAGE enum-type --as-field=5: | value/EnumDescriptorProto | 
       value.serialize w
-    w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE service --as_field=6: | value/ServiceDescriptorProto | 
+    w.write-array _protobuf.PROTOBUF-TYPE-MESSAGE service --as-field=6: | value/ServiceDescriptorProto | 
       value.serialize w
-    w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE extension --as_field=7: | value/FieldDescriptorProto | 
+    w.write-array _protobuf.PROTOBUF-TYPE-MESSAGE extension --as-field=7: | value/FieldDescriptorProto | 
       value.serialize w
-    options.serialize w --as_field=8
-    source_code_info.serialize w --as_field=9
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING syntax --as_field=12
+    options.serialize w --as-field=8
+    source-code-info.serialize w --as-field=9
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING syntax --as-field=12
 
-  num_fields_set -> int:
-    return (name.is_empty ? 0 : 1)
-      + (package.is_empty ? 0 : 1)
-      + (dependency.is_empty ? 0 : 1)
-      + (public_dependency.is_empty ? 0 : 1)
-      + (weak_dependency.is_empty ? 0 : 1)
-      + (message_type.is_empty ? 0 : 1)
-      + (enum_type.is_empty ? 0 : 1)
-      + (service.is_empty ? 0 : 1)
-      + (extension.is_empty ? 0 : 1)
-      + (options.is_empty ? 0 : 1)
-      + (source_code_info.is_empty ? 0 : 1)
-      + (syntax.is_empty ? 0 : 1)
+  num-fields-set -> int:
+    return (name.is-empty ? 0 : 1)
+      + (package.is-empty ? 0 : 1)
+      + (dependency.is-empty ? 0 : 1)
+      + (public-dependency.is-empty ? 0 : 1)
+      + (weak-dependency.is-empty ? 0 : 1)
+      + (message-type.is-empty ? 0 : 1)
+      + (enum-type.is-empty ? 0 : 1)
+      + (service.is-empty ? 0 : 1)
+      + (extension.is-empty ? 0 : 1)
+      + (options.is-empty ? 0 : 1)
+      + (source-code-info.is-empty ? 0 : 1)
+      + (syntax.is-empty ? 0 : 1)
 
-  protobuf_size -> int:
-    return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING name --as_field=1)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING package --as_field=2)
-      + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_STRING dependency --as_field=3)
-      + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_INT32 public_dependency --as_field=10)
-      + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_INT32 weak_dependency --as_field=11)
-      + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE message_type --as_field=4)
-      + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE enum_type --as_field=5)
-      + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE service --as_field=6)
-      + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE extension --as_field=7)
-      + (_protobuf.size_embedded_message (options.protobuf_size) --as_field=8)
-      + (_protobuf.size_embedded_message (source_code_info.protobuf_size) --as_field=9)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING syntax --as_field=12)
+  protobuf-size -> int:
+    return (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING name --as-field=1)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING package --as-field=2)
+      + (_protobuf.size-array _protobuf.PROTOBUF-TYPE-STRING dependency --as-field=3)
+      + (_protobuf.size-array _protobuf.PROTOBUF-TYPE-INT32 public-dependency --as-field=10)
+      + (_protobuf.size-array _protobuf.PROTOBUF-TYPE-INT32 weak-dependency --as-field=11)
+      + (_protobuf.size-array _protobuf.PROTOBUF-TYPE-MESSAGE message-type --as-field=4)
+      + (_protobuf.size-array _protobuf.PROTOBUF-TYPE-MESSAGE enum-type --as-field=5)
+      + (_protobuf.size-array _protobuf.PROTOBUF-TYPE-MESSAGE service --as-field=6)
+      + (_protobuf.size-array _protobuf.PROTOBUF-TYPE-MESSAGE extension --as-field=7)
+      + (_protobuf.size-embedded-message (options.protobuf-size) --as-field=8)
+      + (_protobuf.size-embedded-message (source-code-info.protobuf-size) --as-field=9)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING syntax --as-field=12)
 
 // MESSAGE END: .google.protobuf.FileDescriptorProto
 
 // MESSAGE START: .google.protobuf.DescriptorProto
 // MESSAGE START: .google.protobuf.DescriptorProto.ExtensionRange
-class DescriptorProto_ExtensionRange extends _protobuf.Message:
+class DescriptorProto-ExtensionRange extends _protobuf.Message:
   start/int := 0
   end/int := 0
   options/ExtensionRangeOptions := ExtensionRangeOptions
@@ -190,34 +190,34 @@ class DescriptorProto_ExtensionRange extends _protobuf.Message:
       this.options = options
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read_message:
-      r.read_field 1:
-        start = r.read_primitive _protobuf.PROTOBUF_TYPE_INT32
-      r.read_field 2:
-        end = r.read_primitive _protobuf.PROTOBUF_TYPE_INT32
-      r.read_field 3:
+    r.read-message:
+      r.read-field 1:
+        start = r.read-primitive _protobuf.PROTOBUF-TYPE-INT32
+      r.read-field 2:
+        end = r.read-primitive _protobuf.PROTOBUF-TYPE-INT32
+      r.read-field 3:
         options = ExtensionRangeOptions.deserialize r
 
-  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
-    w.write_message_header this --as_field=as_field --oneof=oneof
-    w.write_primitive _protobuf.PROTOBUF_TYPE_INT32 start --as_field=1
-    w.write_primitive _protobuf.PROTOBUF_TYPE_INT32 end --as_field=2
-    options.serialize w --as_field=3
+  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
+    w.write-message-header this --as-field=as-field --oneof=oneof
+    w.write-primitive _protobuf.PROTOBUF-TYPE-INT32 start --as-field=1
+    w.write-primitive _protobuf.PROTOBUF-TYPE-INT32 end --as-field=2
+    options.serialize w --as-field=3
 
-  num_fields_set -> int:
+  num-fields-set -> int:
     return (start == 0 ? 0 : 1)
       + (end == 0 ? 0 : 1)
-      + (options.is_empty ? 0 : 1)
+      + (options.is-empty ? 0 : 1)
 
-  protobuf_size -> int:
-    return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_INT32 start --as_field=1)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_INT32 end --as_field=2)
-      + (_protobuf.size_embedded_message (options.protobuf_size) --as_field=3)
+  protobuf-size -> int:
+    return (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-INT32 start --as-field=1)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-INT32 end --as-field=2)
+      + (_protobuf.size-embedded-message (options.protobuf-size) --as-field=3)
 
 // MESSAGE END: .google.protobuf.DescriptorProto.ExtensionRange
 
 // MESSAGE START: .google.protobuf.DescriptorProto.ReservedRange
-class DescriptorProto_ReservedRange extends _protobuf.Message:
+class DescriptorProto-ReservedRange extends _protobuf.Message:
   start/int := 0
   end/int := 0
 
@@ -230,24 +230,24 @@ class DescriptorProto_ReservedRange extends _protobuf.Message:
       this.end = end
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read_message:
-      r.read_field 1:
-        start = r.read_primitive _protobuf.PROTOBUF_TYPE_INT32
-      r.read_field 2:
-        end = r.read_primitive _protobuf.PROTOBUF_TYPE_INT32
+    r.read-message:
+      r.read-field 1:
+        start = r.read-primitive _protobuf.PROTOBUF-TYPE-INT32
+      r.read-field 2:
+        end = r.read-primitive _protobuf.PROTOBUF-TYPE-INT32
 
-  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
-    w.write_message_header this --as_field=as_field --oneof=oneof
-    w.write_primitive _protobuf.PROTOBUF_TYPE_INT32 start --as_field=1
-    w.write_primitive _protobuf.PROTOBUF_TYPE_INT32 end --as_field=2
+  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
+    w.write-message-header this --as-field=as-field --oneof=oneof
+    w.write-primitive _protobuf.PROTOBUF-TYPE-INT32 start --as-field=1
+    w.write-primitive _protobuf.PROTOBUF-TYPE-INT32 end --as-field=2
 
-  num_fields_set -> int:
+  num-fields-set -> int:
     return (start == 0 ? 0 : 1)
       + (end == 0 ? 0 : 1)
 
-  protobuf_size -> int:
-    return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_INT32 start --as_field=1)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_INT32 end --as_field=2)
+  protobuf-size -> int:
+    return (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-INT32 start --as-field=1)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-INT32 end --as-field=2)
 
 // MESSAGE END: .google.protobuf.DescriptorProto.ReservedRange
 
@@ -255,178 +255,178 @@ class DescriptorProto extends _protobuf.Message:
   name/string := ""
   field/List/*<FieldDescriptorProto>*/ := []
   extension/List/*<FieldDescriptorProto>*/ := []
-  nested_type/List/*<DescriptorProto>*/ := []
-  enum_type/List/*<EnumDescriptorProto>*/ := []
-  extension_range/List/*<DescriptorProto_ExtensionRange>*/ := []
-  oneof_decl/List/*<OneofDescriptorProto>*/ := []
+  nested-type/List/*<DescriptorProto>*/ := []
+  enum-type/List/*<EnumDescriptorProto>*/ := []
+  extension-range/List/*<DescriptorProto_ExtensionRange>*/ := []
+  oneof-decl/List/*<OneofDescriptorProto>*/ := []
   options/MessageOptions := MessageOptions
-  reserved_range/List/*<DescriptorProto_ReservedRange>*/ := []
-  reserved_name/List/*<string>*/ := []
+  reserved-range/List/*<DescriptorProto_ReservedRange>*/ := []
+  reserved-name/List/*<string>*/ := []
 
   constructor
       --name/string?=null
       --field/List?/*<FieldDescriptorProto>*/=null
       --extension/List?/*<FieldDescriptorProto>*/=null
-      --nested_type/List?/*<DescriptorProto>*/=null
-      --enum_type/List?/*<EnumDescriptorProto>*/=null
-      --extension_range/List?/*<DescriptorProto_ExtensionRange>*/=null
-      --oneof_decl/List?/*<OneofDescriptorProto>*/=null
+      --nested-type/List?/*<DescriptorProto>*/=null
+      --enum-type/List?/*<EnumDescriptorProto>*/=null
+      --extension-range/List?/*<DescriptorProto_ExtensionRange>*/=null
+      --oneof-decl/List?/*<OneofDescriptorProto>*/=null
       --options/MessageOptions?=null
-      --reserved_range/List?/*<DescriptorProto_ReservedRange>*/=null
-      --reserved_name/List?/*<string>*/=null:
+      --reserved-range/List?/*<DescriptorProto_ReservedRange>*/=null
+      --reserved-name/List?/*<string>*/=null:
     if name != null:
       this.name = name
     if field != null:
       this.field = field
     if extension != null:
       this.extension = extension
-    if nested_type != null:
-      this.nested_type = nested_type
-    if enum_type != null:
-      this.enum_type = enum_type
-    if extension_range != null:
-      this.extension_range = extension_range
-    if oneof_decl != null:
-      this.oneof_decl = oneof_decl
+    if nested-type != null:
+      this.nested-type = nested-type
+    if enum-type != null:
+      this.enum-type = enum-type
+    if extension-range != null:
+      this.extension-range = extension-range
+    if oneof-decl != null:
+      this.oneof-decl = oneof-decl
     if options != null:
       this.options = options
-    if reserved_range != null:
-      this.reserved_range = reserved_range
-    if reserved_name != null:
-      this.reserved_name = reserved_name
+    if reserved-range != null:
+      this.reserved-range = reserved-range
+    if reserved-name != null:
+      this.reserved-name = reserved-name
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read_message:
-      r.read_field 1:
-        name = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
-      r.read_field 2:
-        field = r.read_array _protobuf.PROTOBUF_TYPE_MESSAGE field:
+    r.read-message:
+      r.read-field 1:
+        name = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+      r.read-field 2:
+        field = r.read-array _protobuf.PROTOBUF-TYPE-MESSAGE field:
           FieldDescriptorProto.deserialize r
-      r.read_field 6:
-        extension = r.read_array _protobuf.PROTOBUF_TYPE_MESSAGE extension:
+      r.read-field 6:
+        extension = r.read-array _protobuf.PROTOBUF-TYPE-MESSAGE extension:
           FieldDescriptorProto.deserialize r
-      r.read_field 3:
-        nested_type = r.read_array _protobuf.PROTOBUF_TYPE_MESSAGE nested_type:
+      r.read-field 3:
+        nested-type = r.read-array _protobuf.PROTOBUF-TYPE-MESSAGE nested-type:
           DescriptorProto.deserialize r
-      r.read_field 4:
-        enum_type = r.read_array _protobuf.PROTOBUF_TYPE_MESSAGE enum_type:
+      r.read-field 4:
+        enum-type = r.read-array _protobuf.PROTOBUF-TYPE-MESSAGE enum-type:
           EnumDescriptorProto.deserialize r
-      r.read_field 5:
-        extension_range = r.read_array _protobuf.PROTOBUF_TYPE_MESSAGE extension_range:
-          DescriptorProto_ExtensionRange.deserialize r
-      r.read_field 8:
-        oneof_decl = r.read_array _protobuf.PROTOBUF_TYPE_MESSAGE oneof_decl:
+      r.read-field 5:
+        extension-range = r.read-array _protobuf.PROTOBUF-TYPE-MESSAGE extension-range:
+          DescriptorProto-ExtensionRange.deserialize r
+      r.read-field 8:
+        oneof-decl = r.read-array _protobuf.PROTOBUF-TYPE-MESSAGE oneof-decl:
           OneofDescriptorProto.deserialize r
-      r.read_field 7:
+      r.read-field 7:
         options = MessageOptions.deserialize r
-      r.read_field 9:
-        reserved_range = r.read_array _protobuf.PROTOBUF_TYPE_MESSAGE reserved_range:
-          DescriptorProto_ReservedRange.deserialize r
-      r.read_field 10:
-        reserved_name = r.read_array _protobuf.PROTOBUF_TYPE_STRING reserved_name:
-          r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
+      r.read-field 9:
+        reserved-range = r.read-array _protobuf.PROTOBUF-TYPE-MESSAGE reserved-range:
+          DescriptorProto-ReservedRange.deserialize r
+      r.read-field 10:
+        reserved-name = r.read-array _protobuf.PROTOBUF-TYPE-STRING reserved-name:
+          r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
 
-  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
-    w.write_message_header this --as_field=as_field --oneof=oneof
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING name --as_field=1
-    w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE field --as_field=2: | value/FieldDescriptorProto | 
+  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
+    w.write-message-header this --as-field=as-field --oneof=oneof
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING name --as-field=1
+    w.write-array _protobuf.PROTOBUF-TYPE-MESSAGE field --as-field=2: | value/FieldDescriptorProto | 
       value.serialize w
-    w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE extension --as_field=6: | value/FieldDescriptorProto | 
+    w.write-array _protobuf.PROTOBUF-TYPE-MESSAGE extension --as-field=6: | value/FieldDescriptorProto | 
       value.serialize w
-    w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE nested_type --as_field=3: | value/DescriptorProto | 
+    w.write-array _protobuf.PROTOBUF-TYPE-MESSAGE nested-type --as-field=3: | value/DescriptorProto | 
       value.serialize w
-    w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE enum_type --as_field=4: | value/EnumDescriptorProto | 
+    w.write-array _protobuf.PROTOBUF-TYPE-MESSAGE enum-type --as-field=4: | value/EnumDescriptorProto | 
       value.serialize w
-    w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE extension_range --as_field=5: | value/DescriptorProto_ExtensionRange | 
+    w.write-array _protobuf.PROTOBUF-TYPE-MESSAGE extension-range --as-field=5: | value/DescriptorProto-ExtensionRange | 
       value.serialize w
-    w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE oneof_decl --as_field=8: | value/OneofDescriptorProto | 
+    w.write-array _protobuf.PROTOBUF-TYPE-MESSAGE oneof-decl --as-field=8: | value/OneofDescriptorProto | 
       value.serialize w
-    options.serialize w --as_field=7
-    w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE reserved_range --as_field=9: | value/DescriptorProto_ReservedRange | 
+    options.serialize w --as-field=7
+    w.write-array _protobuf.PROTOBUF-TYPE-MESSAGE reserved-range --as-field=9: | value/DescriptorProto-ReservedRange | 
       value.serialize w
-    w.write_array _protobuf.PROTOBUF_TYPE_STRING reserved_name --as_field=10: | value/string | 
-      w.write_primitive _protobuf.PROTOBUF_TYPE_STRING value --in_array
+    w.write-array _protobuf.PROTOBUF-TYPE-STRING reserved-name --as-field=10: | value/string | 
+      w.write-primitive _protobuf.PROTOBUF-TYPE-STRING value --in-array
 
-  num_fields_set -> int:
-    return (name.is_empty ? 0 : 1)
-      + (field.is_empty ? 0 : 1)
-      + (extension.is_empty ? 0 : 1)
-      + (nested_type.is_empty ? 0 : 1)
-      + (enum_type.is_empty ? 0 : 1)
-      + (extension_range.is_empty ? 0 : 1)
-      + (oneof_decl.is_empty ? 0 : 1)
-      + (options.is_empty ? 0 : 1)
-      + (reserved_range.is_empty ? 0 : 1)
-      + (reserved_name.is_empty ? 0 : 1)
+  num-fields-set -> int:
+    return (name.is-empty ? 0 : 1)
+      + (field.is-empty ? 0 : 1)
+      + (extension.is-empty ? 0 : 1)
+      + (nested-type.is-empty ? 0 : 1)
+      + (enum-type.is-empty ? 0 : 1)
+      + (extension-range.is-empty ? 0 : 1)
+      + (oneof-decl.is-empty ? 0 : 1)
+      + (options.is-empty ? 0 : 1)
+      + (reserved-range.is-empty ? 0 : 1)
+      + (reserved-name.is-empty ? 0 : 1)
 
-  protobuf_size -> int:
-    return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING name --as_field=1)
-      + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE field --as_field=2)
-      + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE extension --as_field=6)
-      + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE nested_type --as_field=3)
-      + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE enum_type --as_field=4)
-      + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE extension_range --as_field=5)
-      + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE oneof_decl --as_field=8)
-      + (_protobuf.size_embedded_message (options.protobuf_size) --as_field=7)
-      + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE reserved_range --as_field=9)
-      + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_STRING reserved_name --as_field=10)
+  protobuf-size -> int:
+    return (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING name --as-field=1)
+      + (_protobuf.size-array _protobuf.PROTOBUF-TYPE-MESSAGE field --as-field=2)
+      + (_protobuf.size-array _protobuf.PROTOBUF-TYPE-MESSAGE extension --as-field=6)
+      + (_protobuf.size-array _protobuf.PROTOBUF-TYPE-MESSAGE nested-type --as-field=3)
+      + (_protobuf.size-array _protobuf.PROTOBUF-TYPE-MESSAGE enum-type --as-field=4)
+      + (_protobuf.size-array _protobuf.PROTOBUF-TYPE-MESSAGE extension-range --as-field=5)
+      + (_protobuf.size-array _protobuf.PROTOBUF-TYPE-MESSAGE oneof-decl --as-field=8)
+      + (_protobuf.size-embedded-message (options.protobuf-size) --as-field=7)
+      + (_protobuf.size-array _protobuf.PROTOBUF-TYPE-MESSAGE reserved-range --as-field=9)
+      + (_protobuf.size-array _protobuf.PROTOBUF-TYPE-STRING reserved-name --as-field=10)
 
 // MESSAGE END: .google.protobuf.DescriptorProto
 
 // MESSAGE START: .google.protobuf.ExtensionRangeOptions
 class ExtensionRangeOptions extends _protobuf.Message:
-  uninterpreted_option/List/*<UninterpretedOption>*/ := []
+  uninterpreted-option/List/*<UninterpretedOption>*/ := []
 
   constructor
-      --uninterpreted_option/List?/*<UninterpretedOption>*/=null:
-    if uninterpreted_option != null:
-      this.uninterpreted_option = uninterpreted_option
+      --uninterpreted-option/List?/*<UninterpretedOption>*/=null:
+    if uninterpreted-option != null:
+      this.uninterpreted-option = uninterpreted-option
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read_message:
-      r.read_field 999:
-        uninterpreted_option = r.read_array _protobuf.PROTOBUF_TYPE_MESSAGE uninterpreted_option:
+    r.read-message:
+      r.read-field 999:
+        uninterpreted-option = r.read-array _protobuf.PROTOBUF-TYPE-MESSAGE uninterpreted-option:
           UninterpretedOption.deserialize r
 
-  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
-    w.write_message_header this --as_field=as_field --oneof=oneof
-    w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE uninterpreted_option --as_field=999: | value/UninterpretedOption | 
+  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
+    w.write-message-header this --as-field=as-field --oneof=oneof
+    w.write-array _protobuf.PROTOBUF-TYPE-MESSAGE uninterpreted-option --as-field=999: | value/UninterpretedOption | 
       value.serialize w
 
-  num_fields_set -> int:
-    return (uninterpreted_option.is_empty ? 0 : 1)
+  num-fields-set -> int:
+    return (uninterpreted-option.is-empty ? 0 : 1)
 
-  protobuf_size -> int:
-    return (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE uninterpreted_option --as_field=999)
+  protobuf-size -> int:
+    return (_protobuf.size-array _protobuf.PROTOBUF-TYPE-MESSAGE uninterpreted-option --as-field=999)
 
 // MESSAGE END: .google.protobuf.ExtensionRangeOptions
 
 // MESSAGE START: .google.protobuf.FieldDescriptorProto
 // ENUM START: FieldDescriptorProto_Type
-FieldDescriptorProto_Type_TYPE_DOUBLE/int/*enum<FieldDescriptorProto_Type>*/ ::= 1
-FieldDescriptorProto_Type_TYPE_FLOAT/int/*enum<FieldDescriptorProto_Type>*/ ::= 2
-FieldDescriptorProto_Type_TYPE_INT64/int/*enum<FieldDescriptorProto_Type>*/ ::= 3
-FieldDescriptorProto_Type_TYPE_UINT64/int/*enum<FieldDescriptorProto_Type>*/ ::= 4
-FieldDescriptorProto_Type_TYPE_INT32/int/*enum<FieldDescriptorProto_Type>*/ ::= 5
-FieldDescriptorProto_Type_TYPE_FIXED64/int/*enum<FieldDescriptorProto_Type>*/ ::= 6
-FieldDescriptorProto_Type_TYPE_FIXED32/int/*enum<FieldDescriptorProto_Type>*/ ::= 7
-FieldDescriptorProto_Type_TYPE_BOOL/int/*enum<FieldDescriptorProto_Type>*/ ::= 8
-FieldDescriptorProto_Type_TYPE_STRING/int/*enum<FieldDescriptorProto_Type>*/ ::= 9
-FieldDescriptorProto_Type_TYPE_GROUP/int/*enum<FieldDescriptorProto_Type>*/ ::= 10
-FieldDescriptorProto_Type_TYPE_MESSAGE/int/*enum<FieldDescriptorProto_Type>*/ ::= 11
-FieldDescriptorProto_Type_TYPE_BYTES/int/*enum<FieldDescriptorProto_Type>*/ ::= 12
-FieldDescriptorProto_Type_TYPE_UINT32/int/*enum<FieldDescriptorProto_Type>*/ ::= 13
-FieldDescriptorProto_Type_TYPE_ENUM/int/*enum<FieldDescriptorProto_Type>*/ ::= 14
-FieldDescriptorProto_Type_TYPE_SFIXED32/int/*enum<FieldDescriptorProto_Type>*/ ::= 15
-FieldDescriptorProto_Type_TYPE_SFIXED64/int/*enum<FieldDescriptorProto_Type>*/ ::= 16
-FieldDescriptorProto_Type_TYPE_SINT32/int/*enum<FieldDescriptorProto_Type>*/ ::= 17
-FieldDescriptorProto_Type_TYPE_SINT64/int/*enum<FieldDescriptorProto_Type>*/ ::= 18
+FieldDescriptorProto-Type-TYPE-DOUBLE/int/*enum<FieldDescriptorProto_Type>*/ ::= 1
+FieldDescriptorProto-Type-TYPE-FLOAT/int/*enum<FieldDescriptorProto_Type>*/ ::= 2
+FieldDescriptorProto-Type-TYPE-INT64/int/*enum<FieldDescriptorProto_Type>*/ ::= 3
+FieldDescriptorProto-Type-TYPE-UINT64/int/*enum<FieldDescriptorProto_Type>*/ ::= 4
+FieldDescriptorProto-Type-TYPE-INT32/int/*enum<FieldDescriptorProto_Type>*/ ::= 5
+FieldDescriptorProto-Type-TYPE-FIXED64/int/*enum<FieldDescriptorProto_Type>*/ ::= 6
+FieldDescriptorProto-Type-TYPE-FIXED32/int/*enum<FieldDescriptorProto_Type>*/ ::= 7
+FieldDescriptorProto-Type-TYPE-BOOL/int/*enum<FieldDescriptorProto_Type>*/ ::= 8
+FieldDescriptorProto-Type-TYPE-STRING/int/*enum<FieldDescriptorProto_Type>*/ ::= 9
+FieldDescriptorProto-Type-TYPE-GROUP/int/*enum<FieldDescriptorProto_Type>*/ ::= 10
+FieldDescriptorProto-Type-TYPE-MESSAGE/int/*enum<FieldDescriptorProto_Type>*/ ::= 11
+FieldDescriptorProto-Type-TYPE-BYTES/int/*enum<FieldDescriptorProto_Type>*/ ::= 12
+FieldDescriptorProto-Type-TYPE-UINT32/int/*enum<FieldDescriptorProto_Type>*/ ::= 13
+FieldDescriptorProto-Type-TYPE-ENUM/int/*enum<FieldDescriptorProto_Type>*/ ::= 14
+FieldDescriptorProto-Type-TYPE-SFIXED32/int/*enum<FieldDescriptorProto_Type>*/ ::= 15
+FieldDescriptorProto-Type-TYPE-SFIXED64/int/*enum<FieldDescriptorProto_Type>*/ ::= 16
+FieldDescriptorProto-Type-TYPE-SINT32/int/*enum<FieldDescriptorProto_Type>*/ ::= 17
+FieldDescriptorProto-Type-TYPE-SINT64/int/*enum<FieldDescriptorProto_Type>*/ ::= 18
 // ENUM END: .google.protobuf.FieldDescriptorProto.Type
 
 // ENUM START: FieldDescriptorProto_Label
-FieldDescriptorProto_Label_LABEL_OPTIONAL/int/*enum<FieldDescriptorProto_Label>*/ ::= 1
-FieldDescriptorProto_Label_LABEL_REQUIRED/int/*enum<FieldDescriptorProto_Label>*/ ::= 2
-FieldDescriptorProto_Label_LABEL_REPEATED/int/*enum<FieldDescriptorProto_Label>*/ ::= 3
+FieldDescriptorProto-Label-LABEL-OPTIONAL/int/*enum<FieldDescriptorProto_Label>*/ ::= 1
+FieldDescriptorProto-Label-LABEL-REQUIRED/int/*enum<FieldDescriptorProto_Label>*/ ::= 2
+FieldDescriptorProto-Label-LABEL-REPEATED/int/*enum<FieldDescriptorProto_Label>*/ ::= 3
 // ENUM END: .google.protobuf.FieldDescriptorProto.Label
 
 class FieldDescriptorProto extends _protobuf.Message:
@@ -434,26 +434,26 @@ class FieldDescriptorProto extends _protobuf.Message:
   number/int := 0
   label/int/*enum<FieldDescriptorProto_Label>*/ := 0
   type/int/*enum<FieldDescriptorProto_Type>*/ := 0
-  type_name/string := ""
+  type-name/string := ""
   extendee/string := ""
-  default_value/string := ""
-  oneof_index/int := 0
-  json_name/string := ""
+  default-value/string := ""
+  oneof-index/int := 0
+  json-name/string := ""
   options/FieldOptions := FieldOptions
-  proto3_optional/bool := false
+  proto3-optional/bool := false
 
   constructor
       --name/string?=null
       --number/int?=null
       --label/int?/*enum<FieldDescriptorProto_Label>?*/=null
       --type/int?/*enum<FieldDescriptorProto_Type>?*/=null
-      --type_name/string?=null
+      --type-name/string?=null
       --extendee/string?=null
-      --default_value/string?=null
-      --oneof_index/int?=null
-      --json_name/string?=null
+      --default-value/string?=null
+      --oneof-index/int?=null
+      --json-name/string?=null
       --options/FieldOptions?=null
-      --proto3_optional/bool?=null:
+      --proto3-optional/bool?=null:
     if name != null:
       this.name = name
     if number != null:
@@ -462,85 +462,85 @@ class FieldDescriptorProto extends _protobuf.Message:
       this.label = label
     if type != null:
       this.type = type
-    if type_name != null:
-      this.type_name = type_name
+    if type-name != null:
+      this.type-name = type-name
     if extendee != null:
       this.extendee = extendee
-    if default_value != null:
-      this.default_value = default_value
-    if oneof_index != null:
-      this.oneof_index = oneof_index
-    if json_name != null:
-      this.json_name = json_name
+    if default-value != null:
+      this.default-value = default-value
+    if oneof-index != null:
+      this.oneof-index = oneof-index
+    if json-name != null:
+      this.json-name = json-name
     if options != null:
       this.options = options
-    if proto3_optional != null:
-      this.proto3_optional = proto3_optional
+    if proto3-optional != null:
+      this.proto3-optional = proto3-optional
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read_message:
-      r.read_field 1:
-        name = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
-      r.read_field 3:
-        number = r.read_primitive _protobuf.PROTOBUF_TYPE_INT32
-      r.read_field 4:
-        label = r.read_primitive _protobuf.PROTOBUF_TYPE_ENUM
-      r.read_field 5:
-        type = r.read_primitive _protobuf.PROTOBUF_TYPE_ENUM
-      r.read_field 6:
-        type_name = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
-      r.read_field 2:
-        extendee = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
-      r.read_field 7:
-        default_value = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
-      r.read_field 9:
-        oneof_index = r.read_primitive _protobuf.PROTOBUF_TYPE_INT32
-      r.read_field 10:
-        json_name = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
-      r.read_field 8:
+    r.read-message:
+      r.read-field 1:
+        name = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+      r.read-field 3:
+        number = r.read-primitive _protobuf.PROTOBUF-TYPE-INT32
+      r.read-field 4:
+        label = r.read-primitive _protobuf.PROTOBUF-TYPE-ENUM
+      r.read-field 5:
+        type = r.read-primitive _protobuf.PROTOBUF-TYPE-ENUM
+      r.read-field 6:
+        type-name = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+      r.read-field 2:
+        extendee = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+      r.read-field 7:
+        default-value = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+      r.read-field 9:
+        oneof-index = r.read-primitive _protobuf.PROTOBUF-TYPE-INT32
+      r.read-field 10:
+        json-name = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+      r.read-field 8:
         options = FieldOptions.deserialize r
-      r.read_field 17:
-        proto3_optional = r.read_primitive _protobuf.PROTOBUF_TYPE_BOOL
+      r.read-field 17:
+        proto3-optional = r.read-primitive _protobuf.PROTOBUF-TYPE-BOOL
 
-  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
-    w.write_message_header this --as_field=as_field --oneof=oneof
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING name --as_field=1
-    w.write_primitive _protobuf.PROTOBUF_TYPE_INT32 number --as_field=3
-    w.write_primitive _protobuf.PROTOBUF_TYPE_ENUM label --as_field=4
-    w.write_primitive _protobuf.PROTOBUF_TYPE_ENUM type --as_field=5
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING type_name --as_field=6
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING extendee --as_field=2
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING default_value --as_field=7
-    w.write_primitive _protobuf.PROTOBUF_TYPE_INT32 oneof_index --as_field=9
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING json_name --as_field=10
-    options.serialize w --as_field=8
-    w.write_primitive _protobuf.PROTOBUF_TYPE_BOOL proto3_optional --as_field=17
+  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
+    w.write-message-header this --as-field=as-field --oneof=oneof
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING name --as-field=1
+    w.write-primitive _protobuf.PROTOBUF-TYPE-INT32 number --as-field=3
+    w.write-primitive _protobuf.PROTOBUF-TYPE-ENUM label --as-field=4
+    w.write-primitive _protobuf.PROTOBUF-TYPE-ENUM type --as-field=5
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING type-name --as-field=6
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING extendee --as-field=2
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING default-value --as-field=7
+    w.write-primitive _protobuf.PROTOBUF-TYPE-INT32 oneof-index --as-field=9
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING json-name --as-field=10
+    options.serialize w --as-field=8
+    w.write-primitive _protobuf.PROTOBUF-TYPE-BOOL proto3-optional --as-field=17
 
-  num_fields_set -> int:
-    return (name.is_empty ? 0 : 1)
+  num-fields-set -> int:
+    return (name.is-empty ? 0 : 1)
       + (number == 0 ? 0 : 1)
       + (label == 0 ? 0 : 1)
       + (type == 0 ? 0 : 1)
-      + (type_name.is_empty ? 0 : 1)
-      + (extendee.is_empty ? 0 : 1)
-      + (default_value.is_empty ? 0 : 1)
-      + (oneof_index == 0 ? 0 : 1)
-      + (json_name.is_empty ? 0 : 1)
-      + (options.is_empty ? 0 : 1)
-      + (proto3_optional == false ? 0 : 1)
+      + (type-name.is-empty ? 0 : 1)
+      + (extendee.is-empty ? 0 : 1)
+      + (default-value.is-empty ? 0 : 1)
+      + (oneof-index == 0 ? 0 : 1)
+      + (json-name.is-empty ? 0 : 1)
+      + (options.is-empty ? 0 : 1)
+      + (proto3-optional == false ? 0 : 1)
 
-  protobuf_size -> int:
-    return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING name --as_field=1)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_INT32 number --as_field=3)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_ENUM label --as_field=4)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_ENUM type --as_field=5)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING type_name --as_field=6)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING extendee --as_field=2)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING default_value --as_field=7)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_INT32 oneof_index --as_field=9)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING json_name --as_field=10)
-      + (_protobuf.size_embedded_message (options.protobuf_size) --as_field=8)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BOOL proto3_optional --as_field=17)
+  protobuf-size -> int:
+    return (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING name --as-field=1)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-INT32 number --as-field=3)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-ENUM label --as-field=4)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-ENUM type --as-field=5)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING type-name --as-field=6)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING extendee --as-field=2)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING default-value --as-field=7)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-INT32 oneof-index --as-field=9)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING json-name --as-field=10)
+      + (_protobuf.size-embedded-message (options.protobuf-size) --as-field=8)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-BOOL proto3-optional --as-field=17)
 
 // MESSAGE END: .google.protobuf.FieldDescriptorProto
 
@@ -558,30 +558,30 @@ class OneofDescriptorProto extends _protobuf.Message:
       this.options = options
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read_message:
-      r.read_field 1:
-        name = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
-      r.read_field 2:
+    r.read-message:
+      r.read-field 1:
+        name = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+      r.read-field 2:
         options = OneofOptions.deserialize r
 
-  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
-    w.write_message_header this --as_field=as_field --oneof=oneof
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING name --as_field=1
-    options.serialize w --as_field=2
+  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
+    w.write-message-header this --as-field=as-field --oneof=oneof
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING name --as-field=1
+    options.serialize w --as-field=2
 
-  num_fields_set -> int:
-    return (name.is_empty ? 0 : 1)
-      + (options.is_empty ? 0 : 1)
+  num-fields-set -> int:
+    return (name.is-empty ? 0 : 1)
+      + (options.is-empty ? 0 : 1)
 
-  protobuf_size -> int:
-    return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING name --as_field=1)
-      + (_protobuf.size_embedded_message (options.protobuf_size) --as_field=2)
+  protobuf-size -> int:
+    return (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING name --as-field=1)
+      + (_protobuf.size-embedded-message (options.protobuf-size) --as-field=2)
 
 // MESSAGE END: .google.protobuf.OneofDescriptorProto
 
 // MESSAGE START: .google.protobuf.EnumDescriptorProto
 // MESSAGE START: .google.protobuf.EnumDescriptorProto.EnumReservedRange
-class EnumDescriptorProto_EnumReservedRange extends _protobuf.Message:
+class EnumDescriptorProto-EnumReservedRange extends _protobuf.Message:
   start/int := 0
   end/int := 0
 
@@ -594,24 +594,24 @@ class EnumDescriptorProto_EnumReservedRange extends _protobuf.Message:
       this.end = end
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read_message:
-      r.read_field 1:
-        start = r.read_primitive _protobuf.PROTOBUF_TYPE_INT32
-      r.read_field 2:
-        end = r.read_primitive _protobuf.PROTOBUF_TYPE_INT32
+    r.read-message:
+      r.read-field 1:
+        start = r.read-primitive _protobuf.PROTOBUF-TYPE-INT32
+      r.read-field 2:
+        end = r.read-primitive _protobuf.PROTOBUF-TYPE-INT32
 
-  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
-    w.write_message_header this --as_field=as_field --oneof=oneof
-    w.write_primitive _protobuf.PROTOBUF_TYPE_INT32 start --as_field=1
-    w.write_primitive _protobuf.PROTOBUF_TYPE_INT32 end --as_field=2
+  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
+    w.write-message-header this --as-field=as-field --oneof=oneof
+    w.write-primitive _protobuf.PROTOBUF-TYPE-INT32 start --as-field=1
+    w.write-primitive _protobuf.PROTOBUF-TYPE-INT32 end --as-field=2
 
-  num_fields_set -> int:
+  num-fields-set -> int:
     return (start == 0 ? 0 : 1)
       + (end == 0 ? 0 : 1)
 
-  protobuf_size -> int:
-    return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_INT32 start --as_field=1)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_INT32 end --as_field=2)
+  protobuf-size -> int:
+    return (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-INT32 start --as-field=1)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-INT32 end --as-field=2)
 
 // MESSAGE END: .google.protobuf.EnumDescriptorProto.EnumReservedRange
 
@@ -619,66 +619,66 @@ class EnumDescriptorProto extends _protobuf.Message:
   name/string := ""
   value/List/*<EnumValueDescriptorProto>*/ := []
   options/EnumOptions := EnumOptions
-  reserved_range/List/*<EnumDescriptorProto_EnumReservedRange>*/ := []
-  reserved_name/List/*<string>*/ := []
+  reserved-range/List/*<EnumDescriptorProto_EnumReservedRange>*/ := []
+  reserved-name/List/*<string>*/ := []
 
   constructor
       --name/string?=null
       --value/List?/*<EnumValueDescriptorProto>*/=null
       --options/EnumOptions?=null
-      --reserved_range/List?/*<EnumDescriptorProto_EnumReservedRange>*/=null
-      --reserved_name/List?/*<string>*/=null:
+      --reserved-range/List?/*<EnumDescriptorProto_EnumReservedRange>*/=null
+      --reserved-name/List?/*<string>*/=null:
     if name != null:
       this.name = name
     if value != null:
       this.value = value
     if options != null:
       this.options = options
-    if reserved_range != null:
-      this.reserved_range = reserved_range
-    if reserved_name != null:
-      this.reserved_name = reserved_name
+    if reserved-range != null:
+      this.reserved-range = reserved-range
+    if reserved-name != null:
+      this.reserved-name = reserved-name
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read_message:
-      r.read_field 1:
-        name = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
-      r.read_field 2:
-        value = r.read_array _protobuf.PROTOBUF_TYPE_MESSAGE value:
+    r.read-message:
+      r.read-field 1:
+        name = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+      r.read-field 2:
+        value = r.read-array _protobuf.PROTOBUF-TYPE-MESSAGE value:
           EnumValueDescriptorProto.deserialize r
-      r.read_field 3:
+      r.read-field 3:
         options = EnumOptions.deserialize r
-      r.read_field 4:
-        reserved_range = r.read_array _protobuf.PROTOBUF_TYPE_MESSAGE reserved_range:
-          EnumDescriptorProto_EnumReservedRange.deserialize r
-      r.read_field 5:
-        reserved_name = r.read_array _protobuf.PROTOBUF_TYPE_STRING reserved_name:
-          r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
+      r.read-field 4:
+        reserved-range = r.read-array _protobuf.PROTOBUF-TYPE-MESSAGE reserved-range:
+          EnumDescriptorProto-EnumReservedRange.deserialize r
+      r.read-field 5:
+        reserved-name = r.read-array _protobuf.PROTOBUF-TYPE-STRING reserved-name:
+          r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
 
-  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
-    w.write_message_header this --as_field=as_field --oneof=oneof
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING name --as_field=1
-    w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE value --as_field=2: | value/EnumValueDescriptorProto | 
+  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
+    w.write-message-header this --as-field=as-field --oneof=oneof
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING name --as-field=1
+    w.write-array _protobuf.PROTOBUF-TYPE-MESSAGE value --as-field=2: | value/EnumValueDescriptorProto | 
       value.serialize w
-    options.serialize w --as_field=3
-    w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE reserved_range --as_field=4: | value/EnumDescriptorProto_EnumReservedRange | 
+    options.serialize w --as-field=3
+    w.write-array _protobuf.PROTOBUF-TYPE-MESSAGE reserved-range --as-field=4: | value/EnumDescriptorProto-EnumReservedRange | 
       value.serialize w
-    w.write_array _protobuf.PROTOBUF_TYPE_STRING reserved_name --as_field=5: | value/string | 
-      w.write_primitive _protobuf.PROTOBUF_TYPE_STRING value --in_array
+    w.write-array _protobuf.PROTOBUF-TYPE-STRING reserved-name --as-field=5: | value/string | 
+      w.write-primitive _protobuf.PROTOBUF-TYPE-STRING value --in-array
 
-  num_fields_set -> int:
-    return (name.is_empty ? 0 : 1)
-      + (value.is_empty ? 0 : 1)
-      + (options.is_empty ? 0 : 1)
-      + (reserved_range.is_empty ? 0 : 1)
-      + (reserved_name.is_empty ? 0 : 1)
+  num-fields-set -> int:
+    return (name.is-empty ? 0 : 1)
+      + (value.is-empty ? 0 : 1)
+      + (options.is-empty ? 0 : 1)
+      + (reserved-range.is-empty ? 0 : 1)
+      + (reserved-name.is-empty ? 0 : 1)
 
-  protobuf_size -> int:
-    return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING name --as_field=1)
-      + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE value --as_field=2)
-      + (_protobuf.size_embedded_message (options.protobuf_size) --as_field=3)
-      + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE reserved_range --as_field=4)
-      + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_STRING reserved_name --as_field=5)
+  protobuf-size -> int:
+    return (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING name --as-field=1)
+      + (_protobuf.size-array _protobuf.PROTOBUF-TYPE-MESSAGE value --as-field=2)
+      + (_protobuf.size-embedded-message (options.protobuf-size) --as-field=3)
+      + (_protobuf.size-array _protobuf.PROTOBUF-TYPE-MESSAGE reserved-range --as-field=4)
+      + (_protobuf.size-array _protobuf.PROTOBUF-TYPE-STRING reserved-name --as-field=5)
 
 // MESSAGE END: .google.protobuf.EnumDescriptorProto
 
@@ -700,29 +700,29 @@ class EnumValueDescriptorProto extends _protobuf.Message:
       this.options = options
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read_message:
-      r.read_field 1:
-        name = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
-      r.read_field 2:
-        number = r.read_primitive _protobuf.PROTOBUF_TYPE_INT32
-      r.read_field 3:
+    r.read-message:
+      r.read-field 1:
+        name = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+      r.read-field 2:
+        number = r.read-primitive _protobuf.PROTOBUF-TYPE-INT32
+      r.read-field 3:
         options = EnumValueOptions.deserialize r
 
-  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
-    w.write_message_header this --as_field=as_field --oneof=oneof
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING name --as_field=1
-    w.write_primitive _protobuf.PROTOBUF_TYPE_INT32 number --as_field=2
-    options.serialize w --as_field=3
+  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
+    w.write-message-header this --as-field=as-field --oneof=oneof
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING name --as-field=1
+    w.write-primitive _protobuf.PROTOBUF-TYPE-INT32 number --as-field=2
+    options.serialize w --as-field=3
 
-  num_fields_set -> int:
-    return (name.is_empty ? 0 : 1)
+  num-fields-set -> int:
+    return (name.is-empty ? 0 : 1)
       + (number == 0 ? 0 : 1)
-      + (options.is_empty ? 0 : 1)
+      + (options.is-empty ? 0 : 1)
 
-  protobuf_size -> int:
-    return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING name --as_field=1)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_INT32 number --as_field=2)
-      + (_protobuf.size_embedded_message (options.protobuf_size) --as_field=3)
+  protobuf-size -> int:
+    return (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING name --as-field=1)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-INT32 number --as-field=2)
+      + (_protobuf.size-embedded-message (options.protobuf-size) --as-field=3)
 
 // MESSAGE END: .google.protobuf.EnumValueDescriptorProto
 
@@ -744,394 +744,394 @@ class ServiceDescriptorProto extends _protobuf.Message:
       this.options = options
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read_message:
-      r.read_field 1:
-        name = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
-      r.read_field 2:
-        method = r.read_array _protobuf.PROTOBUF_TYPE_MESSAGE method:
+    r.read-message:
+      r.read-field 1:
+        name = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+      r.read-field 2:
+        method = r.read-array _protobuf.PROTOBUF-TYPE-MESSAGE method:
           MethodDescriptorProto.deserialize r
-      r.read_field 3:
+      r.read-field 3:
         options = ServiceOptions.deserialize r
 
-  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
-    w.write_message_header this --as_field=as_field --oneof=oneof
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING name --as_field=1
-    w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE method --as_field=2: | value/MethodDescriptorProto | 
+  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
+    w.write-message-header this --as-field=as-field --oneof=oneof
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING name --as-field=1
+    w.write-array _protobuf.PROTOBUF-TYPE-MESSAGE method --as-field=2: | value/MethodDescriptorProto | 
       value.serialize w
-    options.serialize w --as_field=3
+    options.serialize w --as-field=3
 
-  num_fields_set -> int:
-    return (name.is_empty ? 0 : 1)
-      + (method.is_empty ? 0 : 1)
-      + (options.is_empty ? 0 : 1)
+  num-fields-set -> int:
+    return (name.is-empty ? 0 : 1)
+      + (method.is-empty ? 0 : 1)
+      + (options.is-empty ? 0 : 1)
 
-  protobuf_size -> int:
-    return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING name --as_field=1)
-      + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE method --as_field=2)
-      + (_protobuf.size_embedded_message (options.protobuf_size) --as_field=3)
+  protobuf-size -> int:
+    return (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING name --as-field=1)
+      + (_protobuf.size-array _protobuf.PROTOBUF-TYPE-MESSAGE method --as-field=2)
+      + (_protobuf.size-embedded-message (options.protobuf-size) --as-field=3)
 
 // MESSAGE END: .google.protobuf.ServiceDescriptorProto
 
 // MESSAGE START: .google.protobuf.MethodDescriptorProto
 class MethodDescriptorProto extends _protobuf.Message:
   name/string := ""
-  input_type/string := ""
-  output_type/string := ""
+  input-type/string := ""
+  output-type/string := ""
   options/MethodOptions := MethodOptions
-  client_streaming/bool := false
-  server_streaming/bool := false
+  client-streaming/bool := false
+  server-streaming/bool := false
 
   constructor
       --name/string?=null
-      --input_type/string?=null
-      --output_type/string?=null
+      --input-type/string?=null
+      --output-type/string?=null
       --options/MethodOptions?=null
-      --client_streaming/bool?=null
-      --server_streaming/bool?=null:
+      --client-streaming/bool?=null
+      --server-streaming/bool?=null:
     if name != null:
       this.name = name
-    if input_type != null:
-      this.input_type = input_type
-    if output_type != null:
-      this.output_type = output_type
+    if input-type != null:
+      this.input-type = input-type
+    if output-type != null:
+      this.output-type = output-type
     if options != null:
       this.options = options
-    if client_streaming != null:
-      this.client_streaming = client_streaming
-    if server_streaming != null:
-      this.server_streaming = server_streaming
+    if client-streaming != null:
+      this.client-streaming = client-streaming
+    if server-streaming != null:
+      this.server-streaming = server-streaming
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read_message:
-      r.read_field 1:
-        name = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
-      r.read_field 2:
-        input_type = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
-      r.read_field 3:
-        output_type = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
-      r.read_field 4:
+    r.read-message:
+      r.read-field 1:
+        name = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+      r.read-field 2:
+        input-type = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+      r.read-field 3:
+        output-type = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+      r.read-field 4:
         options = MethodOptions.deserialize r
-      r.read_field 5:
-        client_streaming = r.read_primitive _protobuf.PROTOBUF_TYPE_BOOL
-      r.read_field 6:
-        server_streaming = r.read_primitive _protobuf.PROTOBUF_TYPE_BOOL
+      r.read-field 5:
+        client-streaming = r.read-primitive _protobuf.PROTOBUF-TYPE-BOOL
+      r.read-field 6:
+        server-streaming = r.read-primitive _protobuf.PROTOBUF-TYPE-BOOL
 
-  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
-    w.write_message_header this --as_field=as_field --oneof=oneof
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING name --as_field=1
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING input_type --as_field=2
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING output_type --as_field=3
-    options.serialize w --as_field=4
-    w.write_primitive _protobuf.PROTOBUF_TYPE_BOOL client_streaming --as_field=5
-    w.write_primitive _protobuf.PROTOBUF_TYPE_BOOL server_streaming --as_field=6
+  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
+    w.write-message-header this --as-field=as-field --oneof=oneof
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING name --as-field=1
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING input-type --as-field=2
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING output-type --as-field=3
+    options.serialize w --as-field=4
+    w.write-primitive _protobuf.PROTOBUF-TYPE-BOOL client-streaming --as-field=5
+    w.write-primitive _protobuf.PROTOBUF-TYPE-BOOL server-streaming --as-field=6
 
-  num_fields_set -> int:
-    return (name.is_empty ? 0 : 1)
-      + (input_type.is_empty ? 0 : 1)
-      + (output_type.is_empty ? 0 : 1)
-      + (options.is_empty ? 0 : 1)
-      + (client_streaming == false ? 0 : 1)
-      + (server_streaming == false ? 0 : 1)
+  num-fields-set -> int:
+    return (name.is-empty ? 0 : 1)
+      + (input-type.is-empty ? 0 : 1)
+      + (output-type.is-empty ? 0 : 1)
+      + (options.is-empty ? 0 : 1)
+      + (client-streaming == false ? 0 : 1)
+      + (server-streaming == false ? 0 : 1)
 
-  protobuf_size -> int:
-    return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING name --as_field=1)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING input_type --as_field=2)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING output_type --as_field=3)
-      + (_protobuf.size_embedded_message (options.protobuf_size) --as_field=4)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BOOL client_streaming --as_field=5)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BOOL server_streaming --as_field=6)
+  protobuf-size -> int:
+    return (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING name --as-field=1)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING input-type --as-field=2)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING output-type --as-field=3)
+      + (_protobuf.size-embedded-message (options.protobuf-size) --as-field=4)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-BOOL client-streaming --as-field=5)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-BOOL server-streaming --as-field=6)
 
 // MESSAGE END: .google.protobuf.MethodDescriptorProto
 
 // MESSAGE START: .google.protobuf.FileOptions
 // ENUM START: FileOptions_OptimizeMode
-FileOptions_OptimizeMode_SPEED/int/*enum<FileOptions_OptimizeMode>*/ ::= 1
-FileOptions_OptimizeMode_CODE_SIZE/int/*enum<FileOptions_OptimizeMode>*/ ::= 2
-FileOptions_OptimizeMode_LITE_RUNTIME/int/*enum<FileOptions_OptimizeMode>*/ ::= 3
+FileOptions-OptimizeMode-SPEED/int/*enum<FileOptions_OptimizeMode>*/ ::= 1
+FileOptions-OptimizeMode-CODE-SIZE/int/*enum<FileOptions_OptimizeMode>*/ ::= 2
+FileOptions-OptimizeMode-LITE-RUNTIME/int/*enum<FileOptions_OptimizeMode>*/ ::= 3
 // ENUM END: .google.protobuf.FileOptions.OptimizeMode
 
 class FileOptions extends _protobuf.Message:
-  java_package/string := ""
-  java_outer_classname/string := ""
-  java_multiple_files/bool := false
-  java_generate_equals_and_hash/bool := false
-  java_string_check_utf8/bool := false
-  optimize_for/int/*enum<FileOptions_OptimizeMode>*/ := 0
-  go_package/string := ""
-  cc_generic_services/bool := false
-  java_generic_services/bool := false
-  py_generic_services/bool := false
-  php_generic_services/bool := false
+  java-package/string := ""
+  java-outer-classname/string := ""
+  java-multiple-files/bool := false
+  java-generate-equals-and-hash/bool := false
+  java-string-check-utf8/bool := false
+  optimize-for/int/*enum<FileOptions_OptimizeMode>*/ := 0
+  go-package/string := ""
+  cc-generic-services/bool := false
+  java-generic-services/bool := false
+  py-generic-services/bool := false
+  php-generic-services/bool := false
   deprecated/bool := false
-  cc_enable_arenas/bool := false
-  objc_class_prefix/string := ""
-  csharp_namespace/string := ""
-  swift_prefix/string := ""
-  php_class_prefix/string := ""
-  php_namespace/string := ""
-  php_metadata_namespace/string := ""
-  ruby_package/string := ""
-  uninterpreted_option/List/*<UninterpretedOption>*/ := []
+  cc-enable-arenas/bool := false
+  objc-class-prefix/string := ""
+  csharp-namespace/string := ""
+  swift-prefix/string := ""
+  php-class-prefix/string := ""
+  php-namespace/string := ""
+  php-metadata-namespace/string := ""
+  ruby-package/string := ""
+  uninterpreted-option/List/*<UninterpretedOption>*/ := []
 
   constructor
-      --java_package/string?=null
-      --java_outer_classname/string?=null
-      --java_multiple_files/bool?=null
-      --java_generate_equals_and_hash/bool?=null
-      --java_string_check_utf8/bool?=null
-      --optimize_for/int?/*enum<FileOptions_OptimizeMode>?*/=null
-      --go_package/string?=null
-      --cc_generic_services/bool?=null
-      --java_generic_services/bool?=null
-      --py_generic_services/bool?=null
-      --php_generic_services/bool?=null
+      --java-package/string?=null
+      --java-outer-classname/string?=null
+      --java-multiple-files/bool?=null
+      --java-generate-equals-and-hash/bool?=null
+      --java-string-check-utf8/bool?=null
+      --optimize-for/int?/*enum<FileOptions_OptimizeMode>?*/=null
+      --go-package/string?=null
+      --cc-generic-services/bool?=null
+      --java-generic-services/bool?=null
+      --py-generic-services/bool?=null
+      --php-generic-services/bool?=null
       --deprecated/bool?=null
-      --cc_enable_arenas/bool?=null
-      --objc_class_prefix/string?=null
-      --csharp_namespace/string?=null
-      --swift_prefix/string?=null
-      --php_class_prefix/string?=null
-      --php_namespace/string?=null
-      --php_metadata_namespace/string?=null
-      --ruby_package/string?=null
-      --uninterpreted_option/List?/*<UninterpretedOption>*/=null:
-    if java_package != null:
-      this.java_package = java_package
-    if java_outer_classname != null:
-      this.java_outer_classname = java_outer_classname
-    if java_multiple_files != null:
-      this.java_multiple_files = java_multiple_files
-    if java_generate_equals_and_hash != null:
-      this.java_generate_equals_and_hash = java_generate_equals_and_hash
-    if java_string_check_utf8 != null:
-      this.java_string_check_utf8 = java_string_check_utf8
-    if optimize_for != null:
-      this.optimize_for = optimize_for
-    if go_package != null:
-      this.go_package = go_package
-    if cc_generic_services != null:
-      this.cc_generic_services = cc_generic_services
-    if java_generic_services != null:
-      this.java_generic_services = java_generic_services
-    if py_generic_services != null:
-      this.py_generic_services = py_generic_services
-    if php_generic_services != null:
-      this.php_generic_services = php_generic_services
+      --cc-enable-arenas/bool?=null
+      --objc-class-prefix/string?=null
+      --csharp-namespace/string?=null
+      --swift-prefix/string?=null
+      --php-class-prefix/string?=null
+      --php-namespace/string?=null
+      --php-metadata-namespace/string?=null
+      --ruby-package/string?=null
+      --uninterpreted-option/List?/*<UninterpretedOption>*/=null:
+    if java-package != null:
+      this.java-package = java-package
+    if java-outer-classname != null:
+      this.java-outer-classname = java-outer-classname
+    if java-multiple-files != null:
+      this.java-multiple-files = java-multiple-files
+    if java-generate-equals-and-hash != null:
+      this.java-generate-equals-and-hash = java-generate-equals-and-hash
+    if java-string-check-utf8 != null:
+      this.java-string-check-utf8 = java-string-check-utf8
+    if optimize-for != null:
+      this.optimize-for = optimize-for
+    if go-package != null:
+      this.go-package = go-package
+    if cc-generic-services != null:
+      this.cc-generic-services = cc-generic-services
+    if java-generic-services != null:
+      this.java-generic-services = java-generic-services
+    if py-generic-services != null:
+      this.py-generic-services = py-generic-services
+    if php-generic-services != null:
+      this.php-generic-services = php-generic-services
     if deprecated != null:
       this.deprecated = deprecated
-    if cc_enable_arenas != null:
-      this.cc_enable_arenas = cc_enable_arenas
-    if objc_class_prefix != null:
-      this.objc_class_prefix = objc_class_prefix
-    if csharp_namespace != null:
-      this.csharp_namespace = csharp_namespace
-    if swift_prefix != null:
-      this.swift_prefix = swift_prefix
-    if php_class_prefix != null:
-      this.php_class_prefix = php_class_prefix
-    if php_namespace != null:
-      this.php_namespace = php_namespace
-    if php_metadata_namespace != null:
-      this.php_metadata_namespace = php_metadata_namespace
-    if ruby_package != null:
-      this.ruby_package = ruby_package
-    if uninterpreted_option != null:
-      this.uninterpreted_option = uninterpreted_option
+    if cc-enable-arenas != null:
+      this.cc-enable-arenas = cc-enable-arenas
+    if objc-class-prefix != null:
+      this.objc-class-prefix = objc-class-prefix
+    if csharp-namespace != null:
+      this.csharp-namespace = csharp-namespace
+    if swift-prefix != null:
+      this.swift-prefix = swift-prefix
+    if php-class-prefix != null:
+      this.php-class-prefix = php-class-prefix
+    if php-namespace != null:
+      this.php-namespace = php-namespace
+    if php-metadata-namespace != null:
+      this.php-metadata-namespace = php-metadata-namespace
+    if ruby-package != null:
+      this.ruby-package = ruby-package
+    if uninterpreted-option != null:
+      this.uninterpreted-option = uninterpreted-option
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read_message:
-      r.read_field 1:
-        java_package = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
-      r.read_field 8:
-        java_outer_classname = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
-      r.read_field 10:
-        java_multiple_files = r.read_primitive _protobuf.PROTOBUF_TYPE_BOOL
-      r.read_field 20:
-        java_generate_equals_and_hash = r.read_primitive _protobuf.PROTOBUF_TYPE_BOOL
-      r.read_field 27:
-        java_string_check_utf8 = r.read_primitive _protobuf.PROTOBUF_TYPE_BOOL
-      r.read_field 9:
-        optimize_for = r.read_primitive _protobuf.PROTOBUF_TYPE_ENUM
-      r.read_field 11:
-        go_package = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
-      r.read_field 16:
-        cc_generic_services = r.read_primitive _protobuf.PROTOBUF_TYPE_BOOL
-      r.read_field 17:
-        java_generic_services = r.read_primitive _protobuf.PROTOBUF_TYPE_BOOL
-      r.read_field 18:
-        py_generic_services = r.read_primitive _protobuf.PROTOBUF_TYPE_BOOL
-      r.read_field 42:
-        php_generic_services = r.read_primitive _protobuf.PROTOBUF_TYPE_BOOL
-      r.read_field 23:
-        deprecated = r.read_primitive _protobuf.PROTOBUF_TYPE_BOOL
-      r.read_field 31:
-        cc_enable_arenas = r.read_primitive _protobuf.PROTOBUF_TYPE_BOOL
-      r.read_field 36:
-        objc_class_prefix = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
-      r.read_field 37:
-        csharp_namespace = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
-      r.read_field 39:
-        swift_prefix = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
-      r.read_field 40:
-        php_class_prefix = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
-      r.read_field 41:
-        php_namespace = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
-      r.read_field 44:
-        php_metadata_namespace = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
-      r.read_field 45:
-        ruby_package = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
-      r.read_field 999:
-        uninterpreted_option = r.read_array _protobuf.PROTOBUF_TYPE_MESSAGE uninterpreted_option:
+    r.read-message:
+      r.read-field 1:
+        java-package = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+      r.read-field 8:
+        java-outer-classname = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+      r.read-field 10:
+        java-multiple-files = r.read-primitive _protobuf.PROTOBUF-TYPE-BOOL
+      r.read-field 20:
+        java-generate-equals-and-hash = r.read-primitive _protobuf.PROTOBUF-TYPE-BOOL
+      r.read-field 27:
+        java-string-check-utf8 = r.read-primitive _protobuf.PROTOBUF-TYPE-BOOL
+      r.read-field 9:
+        optimize-for = r.read-primitive _protobuf.PROTOBUF-TYPE-ENUM
+      r.read-field 11:
+        go-package = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+      r.read-field 16:
+        cc-generic-services = r.read-primitive _protobuf.PROTOBUF-TYPE-BOOL
+      r.read-field 17:
+        java-generic-services = r.read-primitive _protobuf.PROTOBUF-TYPE-BOOL
+      r.read-field 18:
+        py-generic-services = r.read-primitive _protobuf.PROTOBUF-TYPE-BOOL
+      r.read-field 42:
+        php-generic-services = r.read-primitive _protobuf.PROTOBUF-TYPE-BOOL
+      r.read-field 23:
+        deprecated = r.read-primitive _protobuf.PROTOBUF-TYPE-BOOL
+      r.read-field 31:
+        cc-enable-arenas = r.read-primitive _protobuf.PROTOBUF-TYPE-BOOL
+      r.read-field 36:
+        objc-class-prefix = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+      r.read-field 37:
+        csharp-namespace = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+      r.read-field 39:
+        swift-prefix = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+      r.read-field 40:
+        php-class-prefix = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+      r.read-field 41:
+        php-namespace = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+      r.read-field 44:
+        php-metadata-namespace = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+      r.read-field 45:
+        ruby-package = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+      r.read-field 999:
+        uninterpreted-option = r.read-array _protobuf.PROTOBUF-TYPE-MESSAGE uninterpreted-option:
           UninterpretedOption.deserialize r
 
-  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
-    w.write_message_header this --as_field=as_field --oneof=oneof
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING java_package --as_field=1
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING java_outer_classname --as_field=8
-    w.write_primitive _protobuf.PROTOBUF_TYPE_BOOL java_multiple_files --as_field=10
-    w.write_primitive _protobuf.PROTOBUF_TYPE_BOOL java_generate_equals_and_hash --as_field=20
-    w.write_primitive _protobuf.PROTOBUF_TYPE_BOOL java_string_check_utf8 --as_field=27
-    w.write_primitive _protobuf.PROTOBUF_TYPE_ENUM optimize_for --as_field=9
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING go_package --as_field=11
-    w.write_primitive _protobuf.PROTOBUF_TYPE_BOOL cc_generic_services --as_field=16
-    w.write_primitive _protobuf.PROTOBUF_TYPE_BOOL java_generic_services --as_field=17
-    w.write_primitive _protobuf.PROTOBUF_TYPE_BOOL py_generic_services --as_field=18
-    w.write_primitive _protobuf.PROTOBUF_TYPE_BOOL php_generic_services --as_field=42
-    w.write_primitive _protobuf.PROTOBUF_TYPE_BOOL deprecated --as_field=23
-    w.write_primitive _protobuf.PROTOBUF_TYPE_BOOL cc_enable_arenas --as_field=31
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING objc_class_prefix --as_field=36
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING csharp_namespace --as_field=37
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING swift_prefix --as_field=39
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING php_class_prefix --as_field=40
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING php_namespace --as_field=41
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING php_metadata_namespace --as_field=44
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING ruby_package --as_field=45
-    w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE uninterpreted_option --as_field=999: | value/UninterpretedOption | 
+  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
+    w.write-message-header this --as-field=as-field --oneof=oneof
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING java-package --as-field=1
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING java-outer-classname --as-field=8
+    w.write-primitive _protobuf.PROTOBUF-TYPE-BOOL java-multiple-files --as-field=10
+    w.write-primitive _protobuf.PROTOBUF-TYPE-BOOL java-generate-equals-and-hash --as-field=20
+    w.write-primitive _protobuf.PROTOBUF-TYPE-BOOL java-string-check-utf8 --as-field=27
+    w.write-primitive _protobuf.PROTOBUF-TYPE-ENUM optimize-for --as-field=9
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING go-package --as-field=11
+    w.write-primitive _protobuf.PROTOBUF-TYPE-BOOL cc-generic-services --as-field=16
+    w.write-primitive _protobuf.PROTOBUF-TYPE-BOOL java-generic-services --as-field=17
+    w.write-primitive _protobuf.PROTOBUF-TYPE-BOOL py-generic-services --as-field=18
+    w.write-primitive _protobuf.PROTOBUF-TYPE-BOOL php-generic-services --as-field=42
+    w.write-primitive _protobuf.PROTOBUF-TYPE-BOOL deprecated --as-field=23
+    w.write-primitive _protobuf.PROTOBUF-TYPE-BOOL cc-enable-arenas --as-field=31
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING objc-class-prefix --as-field=36
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING csharp-namespace --as-field=37
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING swift-prefix --as-field=39
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING php-class-prefix --as-field=40
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING php-namespace --as-field=41
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING php-metadata-namespace --as-field=44
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING ruby-package --as-field=45
+    w.write-array _protobuf.PROTOBUF-TYPE-MESSAGE uninterpreted-option --as-field=999: | value/UninterpretedOption | 
       value.serialize w
 
-  num_fields_set -> int:
-    return (java_package.is_empty ? 0 : 1)
-      + (java_outer_classname.is_empty ? 0 : 1)
-      + (java_multiple_files == false ? 0 : 1)
-      + (java_generate_equals_and_hash == false ? 0 : 1)
-      + (java_string_check_utf8 == false ? 0 : 1)
-      + (optimize_for == 0 ? 0 : 1)
-      + (go_package.is_empty ? 0 : 1)
-      + (cc_generic_services == false ? 0 : 1)
-      + (java_generic_services == false ? 0 : 1)
-      + (py_generic_services == false ? 0 : 1)
-      + (php_generic_services == false ? 0 : 1)
+  num-fields-set -> int:
+    return (java-package.is-empty ? 0 : 1)
+      + (java-outer-classname.is-empty ? 0 : 1)
+      + (java-multiple-files == false ? 0 : 1)
+      + (java-generate-equals-and-hash == false ? 0 : 1)
+      + (java-string-check-utf8 == false ? 0 : 1)
+      + (optimize-for == 0 ? 0 : 1)
+      + (go-package.is-empty ? 0 : 1)
+      + (cc-generic-services == false ? 0 : 1)
+      + (java-generic-services == false ? 0 : 1)
+      + (py-generic-services == false ? 0 : 1)
+      + (php-generic-services == false ? 0 : 1)
       + (deprecated == false ? 0 : 1)
-      + (cc_enable_arenas == false ? 0 : 1)
-      + (objc_class_prefix.is_empty ? 0 : 1)
-      + (csharp_namespace.is_empty ? 0 : 1)
-      + (swift_prefix.is_empty ? 0 : 1)
-      + (php_class_prefix.is_empty ? 0 : 1)
-      + (php_namespace.is_empty ? 0 : 1)
-      + (php_metadata_namespace.is_empty ? 0 : 1)
-      + (ruby_package.is_empty ? 0 : 1)
-      + (uninterpreted_option.is_empty ? 0 : 1)
+      + (cc-enable-arenas == false ? 0 : 1)
+      + (objc-class-prefix.is-empty ? 0 : 1)
+      + (csharp-namespace.is-empty ? 0 : 1)
+      + (swift-prefix.is-empty ? 0 : 1)
+      + (php-class-prefix.is-empty ? 0 : 1)
+      + (php-namespace.is-empty ? 0 : 1)
+      + (php-metadata-namespace.is-empty ? 0 : 1)
+      + (ruby-package.is-empty ? 0 : 1)
+      + (uninterpreted-option.is-empty ? 0 : 1)
 
-  protobuf_size -> int:
-    return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING java_package --as_field=1)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING java_outer_classname --as_field=8)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BOOL java_multiple_files --as_field=10)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BOOL java_generate_equals_and_hash --as_field=20)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BOOL java_string_check_utf8 --as_field=27)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_ENUM optimize_for --as_field=9)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING go_package --as_field=11)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BOOL cc_generic_services --as_field=16)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BOOL java_generic_services --as_field=17)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BOOL py_generic_services --as_field=18)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BOOL php_generic_services --as_field=42)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BOOL deprecated --as_field=23)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BOOL cc_enable_arenas --as_field=31)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING objc_class_prefix --as_field=36)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING csharp_namespace --as_field=37)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING swift_prefix --as_field=39)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING php_class_prefix --as_field=40)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING php_namespace --as_field=41)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING php_metadata_namespace --as_field=44)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING ruby_package --as_field=45)
-      + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE uninterpreted_option --as_field=999)
+  protobuf-size -> int:
+    return (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING java-package --as-field=1)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING java-outer-classname --as-field=8)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-BOOL java-multiple-files --as-field=10)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-BOOL java-generate-equals-and-hash --as-field=20)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-BOOL java-string-check-utf8 --as-field=27)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-ENUM optimize-for --as-field=9)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING go-package --as-field=11)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-BOOL cc-generic-services --as-field=16)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-BOOL java-generic-services --as-field=17)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-BOOL py-generic-services --as-field=18)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-BOOL php-generic-services --as-field=42)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-BOOL deprecated --as-field=23)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-BOOL cc-enable-arenas --as-field=31)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING objc-class-prefix --as-field=36)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING csharp-namespace --as-field=37)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING swift-prefix --as-field=39)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING php-class-prefix --as-field=40)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING php-namespace --as-field=41)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING php-metadata-namespace --as-field=44)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING ruby-package --as-field=45)
+      + (_protobuf.size-array _protobuf.PROTOBUF-TYPE-MESSAGE uninterpreted-option --as-field=999)
 
 // MESSAGE END: .google.protobuf.FileOptions
 
 // MESSAGE START: .google.protobuf.MessageOptions
 class MessageOptions extends _protobuf.Message:
-  message_set_wire_format/bool := false
-  no_standard_descriptor_accessor/bool := false
+  message-set-wire-format/bool := false
+  no-standard-descriptor-accessor/bool := false
   deprecated/bool := false
-  map_entry/bool := false
-  uninterpreted_option/List/*<UninterpretedOption>*/ := []
+  map-entry/bool := false
+  uninterpreted-option/List/*<UninterpretedOption>*/ := []
 
   constructor
-      --message_set_wire_format/bool?=null
-      --no_standard_descriptor_accessor/bool?=null
+      --message-set-wire-format/bool?=null
+      --no-standard-descriptor-accessor/bool?=null
       --deprecated/bool?=null
-      --map_entry/bool?=null
-      --uninterpreted_option/List?/*<UninterpretedOption>*/=null:
-    if message_set_wire_format != null:
-      this.message_set_wire_format = message_set_wire_format
-    if no_standard_descriptor_accessor != null:
-      this.no_standard_descriptor_accessor = no_standard_descriptor_accessor
+      --map-entry/bool?=null
+      --uninterpreted-option/List?/*<UninterpretedOption>*/=null:
+    if message-set-wire-format != null:
+      this.message-set-wire-format = message-set-wire-format
+    if no-standard-descriptor-accessor != null:
+      this.no-standard-descriptor-accessor = no-standard-descriptor-accessor
     if deprecated != null:
       this.deprecated = deprecated
-    if map_entry != null:
-      this.map_entry = map_entry
-    if uninterpreted_option != null:
-      this.uninterpreted_option = uninterpreted_option
+    if map-entry != null:
+      this.map-entry = map-entry
+    if uninterpreted-option != null:
+      this.uninterpreted-option = uninterpreted-option
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read_message:
-      r.read_field 1:
-        message_set_wire_format = r.read_primitive _protobuf.PROTOBUF_TYPE_BOOL
-      r.read_field 2:
-        no_standard_descriptor_accessor = r.read_primitive _protobuf.PROTOBUF_TYPE_BOOL
-      r.read_field 3:
-        deprecated = r.read_primitive _protobuf.PROTOBUF_TYPE_BOOL
-      r.read_field 7:
-        map_entry = r.read_primitive _protobuf.PROTOBUF_TYPE_BOOL
-      r.read_field 999:
-        uninterpreted_option = r.read_array _protobuf.PROTOBUF_TYPE_MESSAGE uninterpreted_option:
+    r.read-message:
+      r.read-field 1:
+        message-set-wire-format = r.read-primitive _protobuf.PROTOBUF-TYPE-BOOL
+      r.read-field 2:
+        no-standard-descriptor-accessor = r.read-primitive _protobuf.PROTOBUF-TYPE-BOOL
+      r.read-field 3:
+        deprecated = r.read-primitive _protobuf.PROTOBUF-TYPE-BOOL
+      r.read-field 7:
+        map-entry = r.read-primitive _protobuf.PROTOBUF-TYPE-BOOL
+      r.read-field 999:
+        uninterpreted-option = r.read-array _protobuf.PROTOBUF-TYPE-MESSAGE uninterpreted-option:
           UninterpretedOption.deserialize r
 
-  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
-    w.write_message_header this --as_field=as_field --oneof=oneof
-    w.write_primitive _protobuf.PROTOBUF_TYPE_BOOL message_set_wire_format --as_field=1
-    w.write_primitive _protobuf.PROTOBUF_TYPE_BOOL no_standard_descriptor_accessor --as_field=2
-    w.write_primitive _protobuf.PROTOBUF_TYPE_BOOL deprecated --as_field=3
-    w.write_primitive _protobuf.PROTOBUF_TYPE_BOOL map_entry --as_field=7
-    w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE uninterpreted_option --as_field=999: | value/UninterpretedOption | 
+  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
+    w.write-message-header this --as-field=as-field --oneof=oneof
+    w.write-primitive _protobuf.PROTOBUF-TYPE-BOOL message-set-wire-format --as-field=1
+    w.write-primitive _protobuf.PROTOBUF-TYPE-BOOL no-standard-descriptor-accessor --as-field=2
+    w.write-primitive _protobuf.PROTOBUF-TYPE-BOOL deprecated --as-field=3
+    w.write-primitive _protobuf.PROTOBUF-TYPE-BOOL map-entry --as-field=7
+    w.write-array _protobuf.PROTOBUF-TYPE-MESSAGE uninterpreted-option --as-field=999: | value/UninterpretedOption | 
       value.serialize w
 
-  num_fields_set -> int:
-    return (message_set_wire_format == false ? 0 : 1)
-      + (no_standard_descriptor_accessor == false ? 0 : 1)
+  num-fields-set -> int:
+    return (message-set-wire-format == false ? 0 : 1)
+      + (no-standard-descriptor-accessor == false ? 0 : 1)
       + (deprecated == false ? 0 : 1)
-      + (map_entry == false ? 0 : 1)
-      + (uninterpreted_option.is_empty ? 0 : 1)
+      + (map-entry == false ? 0 : 1)
+      + (uninterpreted-option.is-empty ? 0 : 1)
 
-  protobuf_size -> int:
-    return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BOOL message_set_wire_format --as_field=1)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BOOL no_standard_descriptor_accessor --as_field=2)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BOOL deprecated --as_field=3)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BOOL map_entry --as_field=7)
-      + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE uninterpreted_option --as_field=999)
+  protobuf-size -> int:
+    return (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-BOOL message-set-wire-format --as-field=1)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-BOOL no-standard-descriptor-accessor --as-field=2)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-BOOL deprecated --as-field=3)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-BOOL map-entry --as-field=7)
+      + (_protobuf.size-array _protobuf.PROTOBUF-TYPE-MESSAGE uninterpreted-option --as-field=999)
 
 // MESSAGE END: .google.protobuf.MessageOptions
 
 // MESSAGE START: .google.protobuf.FieldOptions
 // ENUM START: FieldOptions_CType
-FieldOptions_CType_STRING/int/*enum<FieldOptions_CType>*/ ::= 0
-FieldOptions_CType_CORD/int/*enum<FieldOptions_CType>*/ ::= 1
-FieldOptions_CType_STRING_PIECE/int/*enum<FieldOptions_CType>*/ ::= 2
+FieldOptions-CType-STRING/int/*enum<FieldOptions_CType>*/ ::= 0
+FieldOptions-CType-CORD/int/*enum<FieldOptions_CType>*/ ::= 1
+FieldOptions-CType-STRING-PIECE/int/*enum<FieldOptions_CType>*/ ::= 2
 // ENUM END: .google.protobuf.FieldOptions.CType
 
 // ENUM START: FieldOptions_JSType
-FieldOptions_JSType_JS_NORMAL/int/*enum<FieldOptions_JSType>*/ ::= 0
-FieldOptions_JSType_JS_STRING/int/*enum<FieldOptions_JSType>*/ ::= 1
-FieldOptions_JSType_JS_NUMBER/int/*enum<FieldOptions_JSType>*/ ::= 2
+FieldOptions-JSType-JS-NORMAL/int/*enum<FieldOptions_JSType>*/ ::= 0
+FieldOptions-JSType-JS-STRING/int/*enum<FieldOptions_JSType>*/ ::= 1
+FieldOptions-JSType-JS-NUMBER/int/*enum<FieldOptions_JSType>*/ ::= 2
 // ENUM END: .google.protobuf.FieldOptions.JSType
 
 class FieldOptions extends _protobuf.Message:
@@ -1139,20 +1139,20 @@ class FieldOptions extends _protobuf.Message:
   packed/bool := false
   jstype/int/*enum<FieldOptions_JSType>*/ := 0
   lazy/bool := false
-  unverified_lazy/bool := false
+  unverified-lazy/bool := false
   deprecated/bool := false
   weak/bool := false
-  uninterpreted_option/List/*<UninterpretedOption>*/ := []
+  uninterpreted-option/List/*<UninterpretedOption>*/ := []
 
   constructor
       --ctype/int?/*enum<FieldOptions_CType>?*/=null
       --packed/bool?=null
       --jstype/int?/*enum<FieldOptions_JSType>?*/=null
       --lazy/bool?=null
-      --unverified_lazy/bool?=null
+      --unverified-lazy/bool?=null
       --deprecated/bool?=null
       --weak/bool?=null
-      --uninterpreted_option/List?/*<UninterpretedOption>*/=null:
+      --uninterpreted-option/List?/*<UninterpretedOption>*/=null:
     if ctype != null:
       this.ctype = ctype
     if packed != null:
@@ -1161,452 +1161,452 @@ class FieldOptions extends _protobuf.Message:
       this.jstype = jstype
     if lazy != null:
       this.lazy = lazy
-    if unverified_lazy != null:
-      this.unverified_lazy = unverified_lazy
+    if unverified-lazy != null:
+      this.unverified-lazy = unverified-lazy
     if deprecated != null:
       this.deprecated = deprecated
     if weak != null:
       this.weak = weak
-    if uninterpreted_option != null:
-      this.uninterpreted_option = uninterpreted_option
+    if uninterpreted-option != null:
+      this.uninterpreted-option = uninterpreted-option
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read_message:
-      r.read_field 1:
-        ctype = r.read_primitive _protobuf.PROTOBUF_TYPE_ENUM
-      r.read_field 2:
-        packed = r.read_primitive _protobuf.PROTOBUF_TYPE_BOOL
-      r.read_field 6:
-        jstype = r.read_primitive _protobuf.PROTOBUF_TYPE_ENUM
-      r.read_field 5:
-        lazy = r.read_primitive _protobuf.PROTOBUF_TYPE_BOOL
-      r.read_field 15:
-        unverified_lazy = r.read_primitive _protobuf.PROTOBUF_TYPE_BOOL
-      r.read_field 3:
-        deprecated = r.read_primitive _protobuf.PROTOBUF_TYPE_BOOL
-      r.read_field 10:
-        weak = r.read_primitive _protobuf.PROTOBUF_TYPE_BOOL
-      r.read_field 999:
-        uninterpreted_option = r.read_array _protobuf.PROTOBUF_TYPE_MESSAGE uninterpreted_option:
+    r.read-message:
+      r.read-field 1:
+        ctype = r.read-primitive _protobuf.PROTOBUF-TYPE-ENUM
+      r.read-field 2:
+        packed = r.read-primitive _protobuf.PROTOBUF-TYPE-BOOL
+      r.read-field 6:
+        jstype = r.read-primitive _protobuf.PROTOBUF-TYPE-ENUM
+      r.read-field 5:
+        lazy = r.read-primitive _protobuf.PROTOBUF-TYPE-BOOL
+      r.read-field 15:
+        unverified-lazy = r.read-primitive _protobuf.PROTOBUF-TYPE-BOOL
+      r.read-field 3:
+        deprecated = r.read-primitive _protobuf.PROTOBUF-TYPE-BOOL
+      r.read-field 10:
+        weak = r.read-primitive _protobuf.PROTOBUF-TYPE-BOOL
+      r.read-field 999:
+        uninterpreted-option = r.read-array _protobuf.PROTOBUF-TYPE-MESSAGE uninterpreted-option:
           UninterpretedOption.deserialize r
 
-  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
-    w.write_message_header this --as_field=as_field --oneof=oneof
-    w.write_primitive _protobuf.PROTOBUF_TYPE_ENUM ctype --as_field=1
-    w.write_primitive _protobuf.PROTOBUF_TYPE_BOOL packed --as_field=2
-    w.write_primitive _protobuf.PROTOBUF_TYPE_ENUM jstype --as_field=6
-    w.write_primitive _protobuf.PROTOBUF_TYPE_BOOL lazy --as_field=5
-    w.write_primitive _protobuf.PROTOBUF_TYPE_BOOL unverified_lazy --as_field=15
-    w.write_primitive _protobuf.PROTOBUF_TYPE_BOOL deprecated --as_field=3
-    w.write_primitive _protobuf.PROTOBUF_TYPE_BOOL weak --as_field=10
-    w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE uninterpreted_option --as_field=999: | value/UninterpretedOption | 
+  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
+    w.write-message-header this --as-field=as-field --oneof=oneof
+    w.write-primitive _protobuf.PROTOBUF-TYPE-ENUM ctype --as-field=1
+    w.write-primitive _protobuf.PROTOBUF-TYPE-BOOL packed --as-field=2
+    w.write-primitive _protobuf.PROTOBUF-TYPE-ENUM jstype --as-field=6
+    w.write-primitive _protobuf.PROTOBUF-TYPE-BOOL lazy --as-field=5
+    w.write-primitive _protobuf.PROTOBUF-TYPE-BOOL unverified-lazy --as-field=15
+    w.write-primitive _protobuf.PROTOBUF-TYPE-BOOL deprecated --as-field=3
+    w.write-primitive _protobuf.PROTOBUF-TYPE-BOOL weak --as-field=10
+    w.write-array _protobuf.PROTOBUF-TYPE-MESSAGE uninterpreted-option --as-field=999: | value/UninterpretedOption | 
       value.serialize w
 
-  num_fields_set -> int:
+  num-fields-set -> int:
     return (ctype == 0 ? 0 : 1)
       + (packed == false ? 0 : 1)
       + (jstype == 0 ? 0 : 1)
       + (lazy == false ? 0 : 1)
-      + (unverified_lazy == false ? 0 : 1)
+      + (unverified-lazy == false ? 0 : 1)
       + (deprecated == false ? 0 : 1)
       + (weak == false ? 0 : 1)
-      + (uninterpreted_option.is_empty ? 0 : 1)
+      + (uninterpreted-option.is-empty ? 0 : 1)
 
-  protobuf_size -> int:
-    return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_ENUM ctype --as_field=1)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BOOL packed --as_field=2)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_ENUM jstype --as_field=6)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BOOL lazy --as_field=5)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BOOL unverified_lazy --as_field=15)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BOOL deprecated --as_field=3)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BOOL weak --as_field=10)
-      + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE uninterpreted_option --as_field=999)
+  protobuf-size -> int:
+    return (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-ENUM ctype --as-field=1)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-BOOL packed --as-field=2)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-ENUM jstype --as-field=6)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-BOOL lazy --as-field=5)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-BOOL unverified-lazy --as-field=15)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-BOOL deprecated --as-field=3)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-BOOL weak --as-field=10)
+      + (_protobuf.size-array _protobuf.PROTOBUF-TYPE-MESSAGE uninterpreted-option --as-field=999)
 
 // MESSAGE END: .google.protobuf.FieldOptions
 
 // MESSAGE START: .google.protobuf.OneofOptions
 class OneofOptions extends _protobuf.Message:
-  uninterpreted_option/List/*<UninterpretedOption>*/ := []
+  uninterpreted-option/List/*<UninterpretedOption>*/ := []
 
   constructor
-      --uninterpreted_option/List?/*<UninterpretedOption>*/=null:
-    if uninterpreted_option != null:
-      this.uninterpreted_option = uninterpreted_option
+      --uninterpreted-option/List?/*<UninterpretedOption>*/=null:
+    if uninterpreted-option != null:
+      this.uninterpreted-option = uninterpreted-option
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read_message:
-      r.read_field 999:
-        uninterpreted_option = r.read_array _protobuf.PROTOBUF_TYPE_MESSAGE uninterpreted_option:
+    r.read-message:
+      r.read-field 999:
+        uninterpreted-option = r.read-array _protobuf.PROTOBUF-TYPE-MESSAGE uninterpreted-option:
           UninterpretedOption.deserialize r
 
-  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
-    w.write_message_header this --as_field=as_field --oneof=oneof
-    w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE uninterpreted_option --as_field=999: | value/UninterpretedOption | 
+  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
+    w.write-message-header this --as-field=as-field --oneof=oneof
+    w.write-array _protobuf.PROTOBUF-TYPE-MESSAGE uninterpreted-option --as-field=999: | value/UninterpretedOption | 
       value.serialize w
 
-  num_fields_set -> int:
-    return (uninterpreted_option.is_empty ? 0 : 1)
+  num-fields-set -> int:
+    return (uninterpreted-option.is-empty ? 0 : 1)
 
-  protobuf_size -> int:
-    return (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE uninterpreted_option --as_field=999)
+  protobuf-size -> int:
+    return (_protobuf.size-array _protobuf.PROTOBUF-TYPE-MESSAGE uninterpreted-option --as-field=999)
 
 // MESSAGE END: .google.protobuf.OneofOptions
 
 // MESSAGE START: .google.protobuf.EnumOptions
 class EnumOptions extends _protobuf.Message:
-  allow_alias/bool := false
+  allow-alias/bool := false
   deprecated/bool := false
-  uninterpreted_option/List/*<UninterpretedOption>*/ := []
+  uninterpreted-option/List/*<UninterpretedOption>*/ := []
 
   constructor
-      --allow_alias/bool?=null
+      --allow-alias/bool?=null
       --deprecated/bool?=null
-      --uninterpreted_option/List?/*<UninterpretedOption>*/=null:
-    if allow_alias != null:
-      this.allow_alias = allow_alias
+      --uninterpreted-option/List?/*<UninterpretedOption>*/=null:
+    if allow-alias != null:
+      this.allow-alias = allow-alias
     if deprecated != null:
       this.deprecated = deprecated
-    if uninterpreted_option != null:
-      this.uninterpreted_option = uninterpreted_option
+    if uninterpreted-option != null:
+      this.uninterpreted-option = uninterpreted-option
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read_message:
-      r.read_field 2:
-        allow_alias = r.read_primitive _protobuf.PROTOBUF_TYPE_BOOL
-      r.read_field 3:
-        deprecated = r.read_primitive _protobuf.PROTOBUF_TYPE_BOOL
-      r.read_field 999:
-        uninterpreted_option = r.read_array _protobuf.PROTOBUF_TYPE_MESSAGE uninterpreted_option:
+    r.read-message:
+      r.read-field 2:
+        allow-alias = r.read-primitive _protobuf.PROTOBUF-TYPE-BOOL
+      r.read-field 3:
+        deprecated = r.read-primitive _protobuf.PROTOBUF-TYPE-BOOL
+      r.read-field 999:
+        uninterpreted-option = r.read-array _protobuf.PROTOBUF-TYPE-MESSAGE uninterpreted-option:
           UninterpretedOption.deserialize r
 
-  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
-    w.write_message_header this --as_field=as_field --oneof=oneof
-    w.write_primitive _protobuf.PROTOBUF_TYPE_BOOL allow_alias --as_field=2
-    w.write_primitive _protobuf.PROTOBUF_TYPE_BOOL deprecated --as_field=3
-    w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE uninterpreted_option --as_field=999: | value/UninterpretedOption | 
+  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
+    w.write-message-header this --as-field=as-field --oneof=oneof
+    w.write-primitive _protobuf.PROTOBUF-TYPE-BOOL allow-alias --as-field=2
+    w.write-primitive _protobuf.PROTOBUF-TYPE-BOOL deprecated --as-field=3
+    w.write-array _protobuf.PROTOBUF-TYPE-MESSAGE uninterpreted-option --as-field=999: | value/UninterpretedOption | 
       value.serialize w
 
-  num_fields_set -> int:
-    return (allow_alias == false ? 0 : 1)
+  num-fields-set -> int:
+    return (allow-alias == false ? 0 : 1)
       + (deprecated == false ? 0 : 1)
-      + (uninterpreted_option.is_empty ? 0 : 1)
+      + (uninterpreted-option.is-empty ? 0 : 1)
 
-  protobuf_size -> int:
-    return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BOOL allow_alias --as_field=2)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BOOL deprecated --as_field=3)
-      + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE uninterpreted_option --as_field=999)
+  protobuf-size -> int:
+    return (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-BOOL allow-alias --as-field=2)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-BOOL deprecated --as-field=3)
+      + (_protobuf.size-array _protobuf.PROTOBUF-TYPE-MESSAGE uninterpreted-option --as-field=999)
 
 // MESSAGE END: .google.protobuf.EnumOptions
 
 // MESSAGE START: .google.protobuf.EnumValueOptions
 class EnumValueOptions extends _protobuf.Message:
   deprecated/bool := false
-  uninterpreted_option/List/*<UninterpretedOption>*/ := []
+  uninterpreted-option/List/*<UninterpretedOption>*/ := []
 
   constructor
       --deprecated/bool?=null
-      --uninterpreted_option/List?/*<UninterpretedOption>*/=null:
+      --uninterpreted-option/List?/*<UninterpretedOption>*/=null:
     if deprecated != null:
       this.deprecated = deprecated
-    if uninterpreted_option != null:
-      this.uninterpreted_option = uninterpreted_option
+    if uninterpreted-option != null:
+      this.uninterpreted-option = uninterpreted-option
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read_message:
-      r.read_field 1:
-        deprecated = r.read_primitive _protobuf.PROTOBUF_TYPE_BOOL
-      r.read_field 999:
-        uninterpreted_option = r.read_array _protobuf.PROTOBUF_TYPE_MESSAGE uninterpreted_option:
+    r.read-message:
+      r.read-field 1:
+        deprecated = r.read-primitive _protobuf.PROTOBUF-TYPE-BOOL
+      r.read-field 999:
+        uninterpreted-option = r.read-array _protobuf.PROTOBUF-TYPE-MESSAGE uninterpreted-option:
           UninterpretedOption.deserialize r
 
-  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
-    w.write_message_header this --as_field=as_field --oneof=oneof
-    w.write_primitive _protobuf.PROTOBUF_TYPE_BOOL deprecated --as_field=1
-    w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE uninterpreted_option --as_field=999: | value/UninterpretedOption | 
+  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
+    w.write-message-header this --as-field=as-field --oneof=oneof
+    w.write-primitive _protobuf.PROTOBUF-TYPE-BOOL deprecated --as-field=1
+    w.write-array _protobuf.PROTOBUF-TYPE-MESSAGE uninterpreted-option --as-field=999: | value/UninterpretedOption | 
       value.serialize w
 
-  num_fields_set -> int:
+  num-fields-set -> int:
     return (deprecated == false ? 0 : 1)
-      + (uninterpreted_option.is_empty ? 0 : 1)
+      + (uninterpreted-option.is-empty ? 0 : 1)
 
-  protobuf_size -> int:
-    return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BOOL deprecated --as_field=1)
-      + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE uninterpreted_option --as_field=999)
+  protobuf-size -> int:
+    return (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-BOOL deprecated --as-field=1)
+      + (_protobuf.size-array _protobuf.PROTOBUF-TYPE-MESSAGE uninterpreted-option --as-field=999)
 
 // MESSAGE END: .google.protobuf.EnumValueOptions
 
 // MESSAGE START: .google.protobuf.ServiceOptions
 class ServiceOptions extends _protobuf.Message:
   deprecated/bool := false
-  uninterpreted_option/List/*<UninterpretedOption>*/ := []
+  uninterpreted-option/List/*<UninterpretedOption>*/ := []
 
   constructor
       --deprecated/bool?=null
-      --uninterpreted_option/List?/*<UninterpretedOption>*/=null:
+      --uninterpreted-option/List?/*<UninterpretedOption>*/=null:
     if deprecated != null:
       this.deprecated = deprecated
-    if uninterpreted_option != null:
-      this.uninterpreted_option = uninterpreted_option
+    if uninterpreted-option != null:
+      this.uninterpreted-option = uninterpreted-option
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read_message:
-      r.read_field 33:
-        deprecated = r.read_primitive _protobuf.PROTOBUF_TYPE_BOOL
-      r.read_field 999:
-        uninterpreted_option = r.read_array _protobuf.PROTOBUF_TYPE_MESSAGE uninterpreted_option:
+    r.read-message:
+      r.read-field 33:
+        deprecated = r.read-primitive _protobuf.PROTOBUF-TYPE-BOOL
+      r.read-field 999:
+        uninterpreted-option = r.read-array _protobuf.PROTOBUF-TYPE-MESSAGE uninterpreted-option:
           UninterpretedOption.deserialize r
 
-  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
-    w.write_message_header this --as_field=as_field --oneof=oneof
-    w.write_primitive _protobuf.PROTOBUF_TYPE_BOOL deprecated --as_field=33
-    w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE uninterpreted_option --as_field=999: | value/UninterpretedOption | 
+  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
+    w.write-message-header this --as-field=as-field --oneof=oneof
+    w.write-primitive _protobuf.PROTOBUF-TYPE-BOOL deprecated --as-field=33
+    w.write-array _protobuf.PROTOBUF-TYPE-MESSAGE uninterpreted-option --as-field=999: | value/UninterpretedOption | 
       value.serialize w
 
-  num_fields_set -> int:
+  num-fields-set -> int:
     return (deprecated == false ? 0 : 1)
-      + (uninterpreted_option.is_empty ? 0 : 1)
+      + (uninterpreted-option.is-empty ? 0 : 1)
 
-  protobuf_size -> int:
-    return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BOOL deprecated --as_field=33)
-      + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE uninterpreted_option --as_field=999)
+  protobuf-size -> int:
+    return (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-BOOL deprecated --as-field=33)
+      + (_protobuf.size-array _protobuf.PROTOBUF-TYPE-MESSAGE uninterpreted-option --as-field=999)
 
 // MESSAGE END: .google.protobuf.ServiceOptions
 
 // MESSAGE START: .google.protobuf.MethodOptions
 // ENUM START: MethodOptions_IdempotencyLevel
-MethodOptions_IdempotencyLevel_IDEMPOTENCY_UNKNOWN/int/*enum<MethodOptions_IdempotencyLevel>*/ ::= 0
-MethodOptions_IdempotencyLevel_NO_SIDE_EFFECTS/int/*enum<MethodOptions_IdempotencyLevel>*/ ::= 1
-MethodOptions_IdempotencyLevel_IDEMPOTENT/int/*enum<MethodOptions_IdempotencyLevel>*/ ::= 2
+MethodOptions-IdempotencyLevel-IDEMPOTENCY-UNKNOWN/int/*enum<MethodOptions_IdempotencyLevel>*/ ::= 0
+MethodOptions-IdempotencyLevel-NO-SIDE-EFFECTS/int/*enum<MethodOptions_IdempotencyLevel>*/ ::= 1
+MethodOptions-IdempotencyLevel-IDEMPOTENT/int/*enum<MethodOptions_IdempotencyLevel>*/ ::= 2
 // ENUM END: .google.protobuf.MethodOptions.IdempotencyLevel
 
 class MethodOptions extends _protobuf.Message:
   deprecated/bool := false
-  idempotency_level/int/*enum<MethodOptions_IdempotencyLevel>*/ := 0
-  uninterpreted_option/List/*<UninterpretedOption>*/ := []
+  idempotency-level/int/*enum<MethodOptions_IdempotencyLevel>*/ := 0
+  uninterpreted-option/List/*<UninterpretedOption>*/ := []
 
   constructor
       --deprecated/bool?=null
-      --idempotency_level/int?/*enum<MethodOptions_IdempotencyLevel>?*/=null
-      --uninterpreted_option/List?/*<UninterpretedOption>*/=null:
+      --idempotency-level/int?/*enum<MethodOptions_IdempotencyLevel>?*/=null
+      --uninterpreted-option/List?/*<UninterpretedOption>*/=null:
     if deprecated != null:
       this.deprecated = deprecated
-    if idempotency_level != null:
-      this.idempotency_level = idempotency_level
-    if uninterpreted_option != null:
-      this.uninterpreted_option = uninterpreted_option
+    if idempotency-level != null:
+      this.idempotency-level = idempotency-level
+    if uninterpreted-option != null:
+      this.uninterpreted-option = uninterpreted-option
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read_message:
-      r.read_field 33:
-        deprecated = r.read_primitive _protobuf.PROTOBUF_TYPE_BOOL
-      r.read_field 34:
-        idempotency_level = r.read_primitive _protobuf.PROTOBUF_TYPE_ENUM
-      r.read_field 999:
-        uninterpreted_option = r.read_array _protobuf.PROTOBUF_TYPE_MESSAGE uninterpreted_option:
+    r.read-message:
+      r.read-field 33:
+        deprecated = r.read-primitive _protobuf.PROTOBUF-TYPE-BOOL
+      r.read-field 34:
+        idempotency-level = r.read-primitive _protobuf.PROTOBUF-TYPE-ENUM
+      r.read-field 999:
+        uninterpreted-option = r.read-array _protobuf.PROTOBUF-TYPE-MESSAGE uninterpreted-option:
           UninterpretedOption.deserialize r
 
-  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
-    w.write_message_header this --as_field=as_field --oneof=oneof
-    w.write_primitive _protobuf.PROTOBUF_TYPE_BOOL deprecated --as_field=33
-    w.write_primitive _protobuf.PROTOBUF_TYPE_ENUM idempotency_level --as_field=34
-    w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE uninterpreted_option --as_field=999: | value/UninterpretedOption | 
+  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
+    w.write-message-header this --as-field=as-field --oneof=oneof
+    w.write-primitive _protobuf.PROTOBUF-TYPE-BOOL deprecated --as-field=33
+    w.write-primitive _protobuf.PROTOBUF-TYPE-ENUM idempotency-level --as-field=34
+    w.write-array _protobuf.PROTOBUF-TYPE-MESSAGE uninterpreted-option --as-field=999: | value/UninterpretedOption | 
       value.serialize w
 
-  num_fields_set -> int:
+  num-fields-set -> int:
     return (deprecated == false ? 0 : 1)
-      + (idempotency_level == 0 ? 0 : 1)
-      + (uninterpreted_option.is_empty ? 0 : 1)
+      + (idempotency-level == 0 ? 0 : 1)
+      + (uninterpreted-option.is-empty ? 0 : 1)
 
-  protobuf_size -> int:
-    return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BOOL deprecated --as_field=33)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_ENUM idempotency_level --as_field=34)
-      + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE uninterpreted_option --as_field=999)
+  protobuf-size -> int:
+    return (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-BOOL deprecated --as-field=33)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-ENUM idempotency-level --as-field=34)
+      + (_protobuf.size-array _protobuf.PROTOBUF-TYPE-MESSAGE uninterpreted-option --as-field=999)
 
 // MESSAGE END: .google.protobuf.MethodOptions
 
 // MESSAGE START: .google.protobuf.UninterpretedOption
 // MESSAGE START: .google.protobuf.UninterpretedOption.NamePart
-class UninterpretedOption_NamePart extends _protobuf.Message:
-  name_part/string := ""
-  is_extension/bool := false
+class UninterpretedOption-NamePart extends _protobuf.Message:
+  name-part/string := ""
+  is-extension/bool := false
 
   constructor
-      --name_part/string?=null
-      --is_extension/bool?=null:
-    if name_part != null:
-      this.name_part = name_part
-    if is_extension != null:
-      this.is_extension = is_extension
+      --name-part/string?=null
+      --is-extension/bool?=null:
+    if name-part != null:
+      this.name-part = name-part
+    if is-extension != null:
+      this.is-extension = is-extension
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read_message:
-      r.read_field 1:
-        name_part = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
-      r.read_field 2:
-        is_extension = r.read_primitive _protobuf.PROTOBUF_TYPE_BOOL
+    r.read-message:
+      r.read-field 1:
+        name-part = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+      r.read-field 2:
+        is-extension = r.read-primitive _protobuf.PROTOBUF-TYPE-BOOL
 
-  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
-    w.write_message_header this --as_field=as_field --oneof=oneof
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING name_part --as_field=1
-    w.write_primitive _protobuf.PROTOBUF_TYPE_BOOL is_extension --as_field=2
+  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
+    w.write-message-header this --as-field=as-field --oneof=oneof
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING name-part --as-field=1
+    w.write-primitive _protobuf.PROTOBUF-TYPE-BOOL is-extension --as-field=2
 
-  num_fields_set -> int:
-    return (name_part.is_empty ? 0 : 1)
-      + (is_extension == false ? 0 : 1)
+  num-fields-set -> int:
+    return (name-part.is-empty ? 0 : 1)
+      + (is-extension == false ? 0 : 1)
 
-  protobuf_size -> int:
-    return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING name_part --as_field=1)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BOOL is_extension --as_field=2)
+  protobuf-size -> int:
+    return (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING name-part --as-field=1)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-BOOL is-extension --as-field=2)
 
 // MESSAGE END: .google.protobuf.UninterpretedOption.NamePart
 
 class UninterpretedOption extends _protobuf.Message:
   name/List/*<UninterpretedOption_NamePart>*/ := []
-  identifier_value/string := ""
-  positive_int_value/int := 0
-  negative_int_value/int := 0
-  double_value/float := 0.0
-  string_value/ByteArray := ByteArray 0
-  aggregate_value/string := ""
+  identifier-value/string := ""
+  positive-int-value/int := 0
+  negative-int-value/int := 0
+  double-value/float := 0.0
+  string-value/ByteArray := ByteArray 0
+  aggregate-value/string := ""
 
   constructor
       --name/List?/*<UninterpretedOption_NamePart>*/=null
-      --identifier_value/string?=null
-      --positive_int_value/int?=null
-      --negative_int_value/int?=null
-      --double_value/float?=null
-      --string_value/ByteArray?=null
-      --aggregate_value/string?=null:
+      --identifier-value/string?=null
+      --positive-int-value/int?=null
+      --negative-int-value/int?=null
+      --double-value/float?=null
+      --string-value/ByteArray?=null
+      --aggregate-value/string?=null:
     if name != null:
       this.name = name
-    if identifier_value != null:
-      this.identifier_value = identifier_value
-    if positive_int_value != null:
-      this.positive_int_value = positive_int_value
-    if negative_int_value != null:
-      this.negative_int_value = negative_int_value
-    if double_value != null:
-      this.double_value = double_value
-    if string_value != null:
-      this.string_value = string_value
-    if aggregate_value != null:
-      this.aggregate_value = aggregate_value
+    if identifier-value != null:
+      this.identifier-value = identifier-value
+    if positive-int-value != null:
+      this.positive-int-value = positive-int-value
+    if negative-int-value != null:
+      this.negative-int-value = negative-int-value
+    if double-value != null:
+      this.double-value = double-value
+    if string-value != null:
+      this.string-value = string-value
+    if aggregate-value != null:
+      this.aggregate-value = aggregate-value
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read_message:
-      r.read_field 2:
-        name = r.read_array _protobuf.PROTOBUF_TYPE_MESSAGE name:
-          UninterpretedOption_NamePart.deserialize r
-      r.read_field 3:
-        identifier_value = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
-      r.read_field 4:
-        positive_int_value = r.read_primitive _protobuf.PROTOBUF_TYPE_UINT64
-      r.read_field 5:
-        negative_int_value = r.read_primitive _protobuf.PROTOBUF_TYPE_INT64
-      r.read_field 6:
-        double_value = r.read_primitive _protobuf.PROTOBUF_TYPE_DOUBLE
-      r.read_field 7:
-        string_value = r.read_primitive _protobuf.PROTOBUF_TYPE_BYTES
-      r.read_field 8:
-        aggregate_value = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
+    r.read-message:
+      r.read-field 2:
+        name = r.read-array _protobuf.PROTOBUF-TYPE-MESSAGE name:
+          UninterpretedOption-NamePart.deserialize r
+      r.read-field 3:
+        identifier-value = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+      r.read-field 4:
+        positive-int-value = r.read-primitive _protobuf.PROTOBUF-TYPE-UINT64
+      r.read-field 5:
+        negative-int-value = r.read-primitive _protobuf.PROTOBUF-TYPE-INT64
+      r.read-field 6:
+        double-value = r.read-primitive _protobuf.PROTOBUF-TYPE-DOUBLE
+      r.read-field 7:
+        string-value = r.read-primitive _protobuf.PROTOBUF-TYPE-BYTES
+      r.read-field 8:
+        aggregate-value = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
 
-  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
-    w.write_message_header this --as_field=as_field --oneof=oneof
-    w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE name --as_field=2: | value/UninterpretedOption_NamePart | 
+  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
+    w.write-message-header this --as-field=as-field --oneof=oneof
+    w.write-array _protobuf.PROTOBUF-TYPE-MESSAGE name --as-field=2: | value/UninterpretedOption-NamePart | 
       value.serialize w
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING identifier_value --as_field=3
-    w.write_primitive _protobuf.PROTOBUF_TYPE_UINT64 positive_int_value --as_field=4
-    w.write_primitive _protobuf.PROTOBUF_TYPE_INT64 negative_int_value --as_field=5
-    w.write_primitive _protobuf.PROTOBUF_TYPE_DOUBLE double_value --as_field=6
-    w.write_primitive _protobuf.PROTOBUF_TYPE_BYTES string_value --as_field=7
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING aggregate_value --as_field=8
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING identifier-value --as-field=3
+    w.write-primitive _protobuf.PROTOBUF-TYPE-UINT64 positive-int-value --as-field=4
+    w.write-primitive _protobuf.PROTOBUF-TYPE-INT64 negative-int-value --as-field=5
+    w.write-primitive _protobuf.PROTOBUF-TYPE-DOUBLE double-value --as-field=6
+    w.write-primitive _protobuf.PROTOBUF-TYPE-BYTES string-value --as-field=7
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING aggregate-value --as-field=8
 
-  num_fields_set -> int:
-    return (name.is_empty ? 0 : 1)
-      + (identifier_value.is_empty ? 0 : 1)
-      + (positive_int_value == 0 ? 0 : 1)
-      + (negative_int_value == 0 ? 0 : 1)
-      + (double_value == 0.0 ? 0 : 1)
-      + (string_value.is_empty ? 0 : 1)
-      + (aggregate_value.is_empty ? 0 : 1)
+  num-fields-set -> int:
+    return (name.is-empty ? 0 : 1)
+      + (identifier-value.is-empty ? 0 : 1)
+      + (positive-int-value == 0 ? 0 : 1)
+      + (negative-int-value == 0 ? 0 : 1)
+      + (double-value == 0.0 ? 0 : 1)
+      + (string-value.is-empty ? 0 : 1)
+      + (aggregate-value.is-empty ? 0 : 1)
 
-  protobuf_size -> int:
-    return (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE name --as_field=2)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING identifier_value --as_field=3)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_UINT64 positive_int_value --as_field=4)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_INT64 negative_int_value --as_field=5)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_DOUBLE double_value --as_field=6)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BYTES string_value --as_field=7)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING aggregate_value --as_field=8)
+  protobuf-size -> int:
+    return (_protobuf.size-array _protobuf.PROTOBUF-TYPE-MESSAGE name --as-field=2)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING identifier-value --as-field=3)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-UINT64 positive-int-value --as-field=4)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-INT64 negative-int-value --as-field=5)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-DOUBLE double-value --as-field=6)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-BYTES string-value --as-field=7)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING aggregate-value --as-field=8)
 
 // MESSAGE END: .google.protobuf.UninterpretedOption
 
 // MESSAGE START: .google.protobuf.SourceCodeInfo
 // MESSAGE START: .google.protobuf.SourceCodeInfo.Location
-class SourceCodeInfo_Location extends _protobuf.Message:
+class SourceCodeInfo-Location extends _protobuf.Message:
   path/List/*<int>*/ := []
   span/List/*<int>*/ := []
-  leading_comments/string := ""
-  trailing_comments/string := ""
-  leading_detached_comments/List/*<string>*/ := []
+  leading-comments/string := ""
+  trailing-comments/string := ""
+  leading-detached-comments/List/*<string>*/ := []
 
   constructor
       --path/List?/*<int>*/=null
       --span/List?/*<int>*/=null
-      --leading_comments/string?=null
-      --trailing_comments/string?=null
-      --leading_detached_comments/List?/*<string>*/=null:
+      --leading-comments/string?=null
+      --trailing-comments/string?=null
+      --leading-detached-comments/List?/*<string>*/=null:
     if path != null:
       this.path = path
     if span != null:
       this.span = span
-    if leading_comments != null:
-      this.leading_comments = leading_comments
-    if trailing_comments != null:
-      this.trailing_comments = trailing_comments
-    if leading_detached_comments != null:
-      this.leading_detached_comments = leading_detached_comments
+    if leading-comments != null:
+      this.leading-comments = leading-comments
+    if trailing-comments != null:
+      this.trailing-comments = trailing-comments
+    if leading-detached-comments != null:
+      this.leading-detached-comments = leading-detached-comments
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read_message:
-      r.read_field 1:
-        path = r.read_array _protobuf.PROTOBUF_TYPE_INT32 path:
-          r.read_primitive _protobuf.PROTOBUF_TYPE_INT32
-      r.read_field 2:
-        span = r.read_array _protobuf.PROTOBUF_TYPE_INT32 span:
-          r.read_primitive _protobuf.PROTOBUF_TYPE_INT32
-      r.read_field 3:
-        leading_comments = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
-      r.read_field 4:
-        trailing_comments = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
-      r.read_field 6:
-        leading_detached_comments = r.read_array _protobuf.PROTOBUF_TYPE_STRING leading_detached_comments:
-          r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
+    r.read-message:
+      r.read-field 1:
+        path = r.read-array _protobuf.PROTOBUF-TYPE-INT32 path:
+          r.read-primitive _protobuf.PROTOBUF-TYPE-INT32
+      r.read-field 2:
+        span = r.read-array _protobuf.PROTOBUF-TYPE-INT32 span:
+          r.read-primitive _protobuf.PROTOBUF-TYPE-INT32
+      r.read-field 3:
+        leading-comments = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+      r.read-field 4:
+        trailing-comments = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+      r.read-field 6:
+        leading-detached-comments = r.read-array _protobuf.PROTOBUF-TYPE-STRING leading-detached-comments:
+          r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
 
-  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
-    w.write_message_header this --as_field=as_field --oneof=oneof
-    w.write_array _protobuf.PROTOBUF_TYPE_INT32 path --as_field=1: | value/int | 
-      w.write_primitive _protobuf.PROTOBUF_TYPE_INT32 value --in_array
-    w.write_array _protobuf.PROTOBUF_TYPE_INT32 span --as_field=2: | value/int | 
-      w.write_primitive _protobuf.PROTOBUF_TYPE_INT32 value --in_array
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING leading_comments --as_field=3
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING trailing_comments --as_field=4
-    w.write_array _protobuf.PROTOBUF_TYPE_STRING leading_detached_comments --as_field=6: | value/string | 
-      w.write_primitive _protobuf.PROTOBUF_TYPE_STRING value --in_array
+  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
+    w.write-message-header this --as-field=as-field --oneof=oneof
+    w.write-array _protobuf.PROTOBUF-TYPE-INT32 path --as-field=1: | value/int | 
+      w.write-primitive _protobuf.PROTOBUF-TYPE-INT32 value --in-array
+    w.write-array _protobuf.PROTOBUF-TYPE-INT32 span --as-field=2: | value/int | 
+      w.write-primitive _protobuf.PROTOBUF-TYPE-INT32 value --in-array
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING leading-comments --as-field=3
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING trailing-comments --as-field=4
+    w.write-array _protobuf.PROTOBUF-TYPE-STRING leading-detached-comments --as-field=6: | value/string | 
+      w.write-primitive _protobuf.PROTOBUF-TYPE-STRING value --in-array
 
-  num_fields_set -> int:
-    return (path.is_empty ? 0 : 1)
-      + (span.is_empty ? 0 : 1)
-      + (leading_comments.is_empty ? 0 : 1)
-      + (trailing_comments.is_empty ? 0 : 1)
-      + (leading_detached_comments.is_empty ? 0 : 1)
+  num-fields-set -> int:
+    return (path.is-empty ? 0 : 1)
+      + (span.is-empty ? 0 : 1)
+      + (leading-comments.is-empty ? 0 : 1)
+      + (trailing-comments.is-empty ? 0 : 1)
+      + (leading-detached-comments.is-empty ? 0 : 1)
 
-  protobuf_size -> int:
-    return (_protobuf.size_array _protobuf.PROTOBUF_TYPE_INT32 path --as_field=1)
-      + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_INT32 span --as_field=2)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING leading_comments --as_field=3)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING trailing_comments --as_field=4)
-      + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_STRING leading_detached_comments --as_field=6)
+  protobuf-size -> int:
+    return (_protobuf.size-array _protobuf.PROTOBUF-TYPE-INT32 path --as-field=1)
+      + (_protobuf.size-array _protobuf.PROTOBUF-TYPE-INT32 span --as-field=2)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING leading-comments --as-field=3)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING trailing-comments --as-field=4)
+      + (_protobuf.size-array _protobuf.PROTOBUF-TYPE-STRING leading-detached-comments --as-field=6)
 
 // MESSAGE END: .google.protobuf.SourceCodeInfo.Location
 
@@ -1619,77 +1619,77 @@ class SourceCodeInfo extends _protobuf.Message:
       this.location = location
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read_message:
-      r.read_field 1:
-        location = r.read_array _protobuf.PROTOBUF_TYPE_MESSAGE location:
-          SourceCodeInfo_Location.deserialize r
+    r.read-message:
+      r.read-field 1:
+        location = r.read-array _protobuf.PROTOBUF-TYPE-MESSAGE location:
+          SourceCodeInfo-Location.deserialize r
 
-  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
-    w.write_message_header this --as_field=as_field --oneof=oneof
-    w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE location --as_field=1: | value/SourceCodeInfo_Location | 
+  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
+    w.write-message-header this --as-field=as-field --oneof=oneof
+    w.write-array _protobuf.PROTOBUF-TYPE-MESSAGE location --as-field=1: | value/SourceCodeInfo-Location | 
       value.serialize w
 
-  num_fields_set -> int:
-    return (location.is_empty ? 0 : 1)
+  num-fields-set -> int:
+    return (location.is-empty ? 0 : 1)
 
-  protobuf_size -> int:
-    return (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE location --as_field=1)
+  protobuf-size -> int:
+    return (_protobuf.size-array _protobuf.PROTOBUF-TYPE-MESSAGE location --as-field=1)
 
 // MESSAGE END: .google.protobuf.SourceCodeInfo
 
 // MESSAGE START: .google.protobuf.GeneratedCodeInfo
 // MESSAGE START: .google.protobuf.GeneratedCodeInfo.Annotation
-class GeneratedCodeInfo_Annotation extends _protobuf.Message:
+class GeneratedCodeInfo-Annotation extends _protobuf.Message:
   path/List/*<int>*/ := []
-  source_file/string := ""
+  source-file/string := ""
   begin/int := 0
   end/int := 0
 
   constructor
       --path/List?/*<int>*/=null
-      --source_file/string?=null
+      --source-file/string?=null
       --begin/int?=null
       --end/int?=null:
     if path != null:
       this.path = path
-    if source_file != null:
-      this.source_file = source_file
+    if source-file != null:
+      this.source-file = source-file
     if begin != null:
       this.begin = begin
     if end != null:
       this.end = end
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read_message:
-      r.read_field 1:
-        path = r.read_array _protobuf.PROTOBUF_TYPE_INT32 path:
-          r.read_primitive _protobuf.PROTOBUF_TYPE_INT32
-      r.read_field 2:
-        source_file = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
-      r.read_field 3:
-        begin = r.read_primitive _protobuf.PROTOBUF_TYPE_INT32
-      r.read_field 4:
-        end = r.read_primitive _protobuf.PROTOBUF_TYPE_INT32
+    r.read-message:
+      r.read-field 1:
+        path = r.read-array _protobuf.PROTOBUF-TYPE-INT32 path:
+          r.read-primitive _protobuf.PROTOBUF-TYPE-INT32
+      r.read-field 2:
+        source-file = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+      r.read-field 3:
+        begin = r.read-primitive _protobuf.PROTOBUF-TYPE-INT32
+      r.read-field 4:
+        end = r.read-primitive _protobuf.PROTOBUF-TYPE-INT32
 
-  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
-    w.write_message_header this --as_field=as_field --oneof=oneof
-    w.write_array _protobuf.PROTOBUF_TYPE_INT32 path --as_field=1: | value/int | 
-      w.write_primitive _protobuf.PROTOBUF_TYPE_INT32 value --in_array
-    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING source_file --as_field=2
-    w.write_primitive _protobuf.PROTOBUF_TYPE_INT32 begin --as_field=3
-    w.write_primitive _protobuf.PROTOBUF_TYPE_INT32 end --as_field=4
+  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
+    w.write-message-header this --as-field=as-field --oneof=oneof
+    w.write-array _protobuf.PROTOBUF-TYPE-INT32 path --as-field=1: | value/int | 
+      w.write-primitive _protobuf.PROTOBUF-TYPE-INT32 value --in-array
+    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING source-file --as-field=2
+    w.write-primitive _protobuf.PROTOBUF-TYPE-INT32 begin --as-field=3
+    w.write-primitive _protobuf.PROTOBUF-TYPE-INT32 end --as-field=4
 
-  num_fields_set -> int:
-    return (path.is_empty ? 0 : 1)
-      + (source_file.is_empty ? 0 : 1)
+  num-fields-set -> int:
+    return (path.is-empty ? 0 : 1)
+      + (source-file.is-empty ? 0 : 1)
       + (begin == 0 ? 0 : 1)
       + (end == 0 ? 0 : 1)
 
-  protobuf_size -> int:
-    return (_protobuf.size_array _protobuf.PROTOBUF_TYPE_INT32 path --as_field=1)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING source_file --as_field=2)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_INT32 begin --as_field=3)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_INT32 end --as_field=4)
+  protobuf-size -> int:
+    return (_protobuf.size-array _protobuf.PROTOBUF-TYPE-INT32 path --as-field=1)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING source-file --as-field=2)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-INT32 begin --as-field=3)
+      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-INT32 end --as-field=4)
 
 // MESSAGE END: .google.protobuf.GeneratedCodeInfo.Annotation
 
@@ -1702,21 +1702,21 @@ class GeneratedCodeInfo extends _protobuf.Message:
       this.annotation = annotation
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read_message:
-      r.read_field 1:
-        annotation = r.read_array _protobuf.PROTOBUF_TYPE_MESSAGE annotation:
-          GeneratedCodeInfo_Annotation.deserialize r
+    r.read-message:
+      r.read-field 1:
+        annotation = r.read-array _protobuf.PROTOBUF-TYPE-MESSAGE annotation:
+          GeneratedCodeInfo-Annotation.deserialize r
 
-  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
-    w.write_message_header this --as_field=as_field --oneof=oneof
-    w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE annotation --as_field=1: | value/GeneratedCodeInfo_Annotation | 
+  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
+    w.write-message-header this --as-field=as-field --oneof=oneof
+    w.write-array _protobuf.PROTOBUF-TYPE-MESSAGE annotation --as-field=1: | value/GeneratedCodeInfo-Annotation | 
       value.serialize w
 
-  num_fields_set -> int:
-    return (annotation.is_empty ? 0 : 1)
+  num-fields-set -> int:
+    return (annotation.is-empty ? 0 : 1)
 
-  protobuf_size -> int:
-    return (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE annotation --as_field=1)
+  protobuf-size -> int:
+    return (_protobuf.size-array _protobuf.PROTOBUF-TYPE-MESSAGE annotation --as-field=1)
 
 // MESSAGE END: .google.protobuf.GeneratedCodeInfo
 

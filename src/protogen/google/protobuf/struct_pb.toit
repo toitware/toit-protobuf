@@ -5,7 +5,7 @@ import ....protobuf as _protobuf
 import core as _core
 
 // ENUM START: NullValue
-NullValue_NULL_VALUE/int/*enum<NullValue>*/ ::= 0
+NullValue-NULL-VALUE/int/*enum<NullValue>*/ ::= 0
 // ENUM END: .google.protobuf.NullValue
 
 // MESSAGE START: .google.protobuf.Struct
@@ -18,27 +18,27 @@ class Struct extends _protobuf.Message:
       this.fields = fields
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read_message:
-      r.read_field 1:
-        fields = r.read_map fields
+    r.read-message:
+      r.read-field 1:
+        fields = r.read-map fields
           :
-            r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
+            r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
           :
             Value.deserialize r
 
-  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
-    w.write_message_header this --as_field=as_field --oneof=oneof
-    w.write_map _protobuf.PROTOBUF_TYPE_STRING _protobuf.PROTOBUF_TYPE_MESSAGE fields --as_field=1
+  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
+    w.write-message-header this --as-field=as-field --oneof=oneof
+    w.write-map _protobuf.PROTOBUF-TYPE-STRING _protobuf.PROTOBUF-TYPE-MESSAGE fields --as-field=1
       : | key/string | 
-        w.write_primitive _protobuf.PROTOBUF_TYPE_STRING key
+        w.write-primitive _protobuf.PROTOBUF-TYPE-STRING key
       : | value/Value | 
         value.serialize w
 
-  num_fields_set -> int:
-    return (fields.is_empty ? 0 : 1)
+  num-fields-set -> int:
+    return (fields.is-empty ? 0 : 1)
 
-  protobuf_size -> int:
-    return (_protobuf.size_map _protobuf.PROTOBUF_TYPE_STRING _protobuf.PROTOBUF_TYPE_MESSAGE fields --as_field=1)
+  protobuf-size -> int:
+    return (_protobuf.size-map _protobuf.PROTOBUF-TYPE-STRING _protobuf.PROTOBUF-TYPE-MESSAGE fields --as-field=1)
 
 // MESSAGE END: .google.protobuf.Struct
 
@@ -46,126 +46,126 @@ class Struct extends _protobuf.Message:
 class Value extends _protobuf.Message:
   // ONEOF START: .google.protobuf.Value.kind
   kind_ := null
-  kind_oneof_case_/int? := null
+  kind-oneof-case_/int? := null
 
-  kind_oneof_clear -> none:
+  kind-oneof-clear -> none:
     kind_ = null
-    kind_oneof_case_ = null
+    kind-oneof-case_ = null
 
-  static KIND_NULL_VALUE/int ::= 1
-  static KIND_NUMBER_VALUE/int ::= 2
-  static KIND_STRING_VALUE/int ::= 3
-  static KIND_BOOL_VALUE/int ::= 4
-  static KIND_STRUCT_VALUE/int ::= 5
-  static KIND_LIST_VALUE/int ::= 6
+  static KIND-NULL-VALUE/int ::= 1
+  static KIND-NUMBER-VALUE/int ::= 2
+  static KIND-STRING-VALUE/int ::= 3
+  static KIND-BOOL-VALUE/int ::= 4
+  static KIND-STRUCT-VALUE/int ::= 5
+  static KIND-LIST-VALUE/int ::= 6
 
-  kind_oneof_case -> int?:
-    return kind_oneof_case_
+  kind-oneof-case -> int?:
+    return kind-oneof-case_
 
-  kind_null_value -> int/*enum<NullValue>*/:
+  kind-null-value -> int/*enum<NullValue>*/:
     return kind_
 
-  kind_null_value= kind/int/*enum<NullValue>*/ -> none:
+  kind-null-value= kind/int/*enum<NullValue>*/ -> none:
     kind_ = kind
-    kind_oneof_case_ = KIND_NULL_VALUE
+    kind-oneof-case_ = KIND-NULL-VALUE
 
-  kind_number_value -> float:
+  kind-number-value -> float:
     return kind_
 
-  kind_number_value= kind/float -> none:
+  kind-number-value= kind/float -> none:
     kind_ = kind
-    kind_oneof_case_ = KIND_NUMBER_VALUE
+    kind-oneof-case_ = KIND-NUMBER-VALUE
 
-  kind_string_value -> string:
+  kind-string-value -> string:
     return kind_
 
-  kind_string_value= kind/string -> none:
+  kind-string-value= kind/string -> none:
     kind_ = kind
-    kind_oneof_case_ = KIND_STRING_VALUE
+    kind-oneof-case_ = KIND-STRING-VALUE
 
-  kind_bool_value -> bool:
+  kind-bool-value -> bool:
     return kind_
 
-  kind_bool_value= kind/bool -> none:
+  kind-bool-value= kind/bool -> none:
     kind_ = kind
-    kind_oneof_case_ = KIND_BOOL_VALUE
+    kind-oneof-case_ = KIND-BOOL-VALUE
 
-  kind_struct_value -> Struct:
+  kind-struct-value -> Struct:
     return kind_
 
-  kind_struct_value= kind/Struct -> none:
+  kind-struct-value= kind/Struct -> none:
     kind_ = kind
-    kind_oneof_case_ = KIND_STRUCT_VALUE
+    kind-oneof-case_ = KIND-STRUCT-VALUE
 
-  kind_list_value -> ListValue:
+  kind-list-value -> ListValue:
     return kind_
 
-  kind_list_value= kind/ListValue -> none:
+  kind-list-value= kind/ListValue -> none:
     kind_ = kind
-    kind_oneof_case_ = KIND_LIST_VALUE
+    kind-oneof-case_ = KIND-LIST-VALUE
 
   // ONEOF END: .google.protobuf.Value.kind
 
   constructor
-      --kind_null_value/int?/*enum<NullValue>?*/=null
-      --kind_number_value/float?=null
-      --kind_string_value/string?=null
-      --kind_bool_value/bool?=null
-      --kind_struct_value/Struct?=null
-      --kind_list_value/ListValue?=null:
-    if kind_null_value != null:
-      this.kind_null_value = kind_null_value
-    if kind_number_value != null:
-      this.kind_number_value = kind_number_value
-    if kind_string_value != null:
-      this.kind_string_value = kind_string_value
-    if kind_bool_value != null:
-      this.kind_bool_value = kind_bool_value
-    if kind_struct_value != null:
-      this.kind_struct_value = kind_struct_value
-    if kind_list_value != null:
-      this.kind_list_value = kind_list_value
+      --kind-null-value/int?/*enum<NullValue>?*/=null
+      --kind-number-value/float?=null
+      --kind-string-value/string?=null
+      --kind-bool-value/bool?=null
+      --kind-struct-value/Struct?=null
+      --kind-list-value/ListValue?=null:
+    if kind-null-value != null:
+      this.kind-null-value = kind-null-value
+    if kind-number-value != null:
+      this.kind-number-value = kind-number-value
+    if kind-string-value != null:
+      this.kind-string-value = kind-string-value
+    if kind-bool-value != null:
+      this.kind-bool-value = kind-bool-value
+    if kind-struct-value != null:
+      this.kind-struct-value = kind-struct-value
+    if kind-list-value != null:
+      this.kind-list-value = kind-list-value
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read_message:
-      r.read_field 1:
-        kind_null_value = r.read_primitive _protobuf.PROTOBUF_TYPE_ENUM
-      r.read_field 2:
-        kind_number_value = r.read_primitive _protobuf.PROTOBUF_TYPE_DOUBLE
-      r.read_field 3:
-        kind_string_value = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
-      r.read_field 4:
-        kind_bool_value = r.read_primitive _protobuf.PROTOBUF_TYPE_BOOL
-      r.read_field 5:
-        kind_struct_value = Struct.deserialize r
-      r.read_field 6:
-        kind_list_value = ListValue.deserialize r
+    r.read-message:
+      r.read-field 1:
+        kind-null-value = r.read-primitive _protobuf.PROTOBUF-TYPE-ENUM
+      r.read-field 2:
+        kind-number-value = r.read-primitive _protobuf.PROTOBUF-TYPE-DOUBLE
+      r.read-field 3:
+        kind-string-value = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+      r.read-field 4:
+        kind-bool-value = r.read-primitive _protobuf.PROTOBUF-TYPE-BOOL
+      r.read-field 5:
+        kind-struct-value = Struct.deserialize r
+      r.read-field 6:
+        kind-list-value = ListValue.deserialize r
 
-  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
-    w.write_message_header this --as_field=as_field --oneof=oneof
-    if kind_oneof_case_ == KIND_NULL_VALUE:
-      w.write_primitive _protobuf.PROTOBUF_TYPE_ENUM kind_ --as_field=KIND_NULL_VALUE --oneof
-    if kind_oneof_case_ == KIND_NUMBER_VALUE:
-      w.write_primitive _protobuf.PROTOBUF_TYPE_DOUBLE kind_ --as_field=KIND_NUMBER_VALUE --oneof
-    if kind_oneof_case_ == KIND_STRING_VALUE:
-      w.write_primitive _protobuf.PROTOBUF_TYPE_STRING kind_ --as_field=KIND_STRING_VALUE --oneof
-    if kind_oneof_case_ == KIND_BOOL_VALUE:
-      w.write_primitive _protobuf.PROTOBUF_TYPE_BOOL kind_ --as_field=KIND_BOOL_VALUE --oneof
-    if kind_oneof_case_ == KIND_STRUCT_VALUE:
-      kind_.serialize w --as_field=KIND_STRUCT_VALUE --oneof
-    if kind_oneof_case_ == KIND_LIST_VALUE:
-      kind_.serialize w --as_field=KIND_LIST_VALUE --oneof
+  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
+    w.write-message-header this --as-field=as-field --oneof=oneof
+    if kind-oneof-case_ == KIND-NULL-VALUE:
+      w.write-primitive _protobuf.PROTOBUF-TYPE-ENUM kind_ --as-field=KIND-NULL-VALUE --oneof
+    if kind-oneof-case_ == KIND-NUMBER-VALUE:
+      w.write-primitive _protobuf.PROTOBUF-TYPE-DOUBLE kind_ --as-field=KIND-NUMBER-VALUE --oneof
+    if kind-oneof-case_ == KIND-STRING-VALUE:
+      w.write-primitive _protobuf.PROTOBUF-TYPE-STRING kind_ --as-field=KIND-STRING-VALUE --oneof
+    if kind-oneof-case_ == KIND-BOOL-VALUE:
+      w.write-primitive _protobuf.PROTOBUF-TYPE-BOOL kind_ --as-field=KIND-BOOL-VALUE --oneof
+    if kind-oneof-case_ == KIND-STRUCT-VALUE:
+      kind_.serialize w --as-field=KIND-STRUCT-VALUE --oneof
+    if kind-oneof-case_ == KIND-LIST-VALUE:
+      kind_.serialize w --as-field=KIND-LIST-VALUE --oneof
 
-  num_fields_set -> int:
-    return (kind_oneof_case_ == null ? 0 : 1)
+  num-fields-set -> int:
+    return (kind-oneof-case_ == null ? 0 : 1)
 
-  protobuf_size -> int:
-    return (kind_oneof_case_ == KIND_NULL_VALUE ? (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_ENUM kind_null_value --as_field=1) : 0)
-      + (kind_oneof_case_ == KIND_NUMBER_VALUE ? (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_DOUBLE kind_number_value --as_field=2) : 0)
-      + (kind_oneof_case_ == KIND_STRING_VALUE ? (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING kind_string_value --as_field=3) : 0)
-      + (kind_oneof_case_ == KIND_BOOL_VALUE ? (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BOOL kind_bool_value --as_field=4) : 0)
-      + (kind_oneof_case_ == KIND_STRUCT_VALUE ? (_protobuf.size_embedded_message (kind_struct_value.protobuf_size) --as_field=5) : 0)
-      + (kind_oneof_case_ == KIND_LIST_VALUE ? (_protobuf.size_embedded_message (kind_list_value.protobuf_size) --as_field=6) : 0)
+  protobuf-size -> int:
+    return (kind-oneof-case_ == KIND-NULL-VALUE ? (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-ENUM kind-null-value --as-field=1) : 0)
+      + (kind-oneof-case_ == KIND-NUMBER-VALUE ? (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-DOUBLE kind-number-value --as-field=2) : 0)
+      + (kind-oneof-case_ == KIND-STRING-VALUE ? (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING kind-string-value --as-field=3) : 0)
+      + (kind-oneof-case_ == KIND-BOOL-VALUE ? (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-BOOL kind-bool-value --as-field=4) : 0)
+      + (kind-oneof-case_ == KIND-STRUCT-VALUE ? (_protobuf.size-embedded-message (kind-struct-value.protobuf-size) --as-field=5) : 0)
+      + (kind-oneof-case_ == KIND-LIST-VALUE ? (_protobuf.size-embedded-message (kind-list-value.protobuf-size) --as-field=6) : 0)
 
 // MESSAGE END: .google.protobuf.Value
 
@@ -179,21 +179,21 @@ class ListValue extends _protobuf.Message:
       this.values = values
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read_message:
-      r.read_field 1:
-        values = r.read_array _protobuf.PROTOBUF_TYPE_MESSAGE values:
+    r.read-message:
+      r.read-field 1:
+        values = r.read-array _protobuf.PROTOBUF-TYPE-MESSAGE values:
           Value.deserialize r
 
-  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
-    w.write_message_header this --as_field=as_field --oneof=oneof
-    w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE values --as_field=1: | value/Value | 
+  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
+    w.write-message-header this --as-field=as-field --oneof=oneof
+    w.write-array _protobuf.PROTOBUF-TYPE-MESSAGE values --as-field=1: | value/Value | 
       value.serialize w
 
-  num_fields_set -> int:
-    return (values.is_empty ? 0 : 1)
+  num-fields-set -> int:
+    return (values.is-empty ? 0 : 1)
 
-  protobuf_size -> int:
-    return (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE values --as_field=1)
+  protobuf-size -> int:
+    return (_protobuf.size-array _protobuf.PROTOBUF-TYPE-MESSAGE values --as-field=1)
 
 // MESSAGE END: .google.protobuf.ListValue
 
