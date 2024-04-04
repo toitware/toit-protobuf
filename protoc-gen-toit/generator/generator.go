@@ -546,9 +546,13 @@ func (g *generator) writeDefaultConstructor(w *toit.Writer, fields []*fieldType,
 		}
 
 		fieldName := fieldType.FieldName(oneofTypes)
+		parameterName := fieldName
+		if strings.HasPrefix(parameterName, "no_") {
+			parameterName = "x" + parameterName
+		}
 		if err := util.FirstError(
 			w.EndLine(),
-			w.ParameterWithDefault("--"+fieldName, t, "null"),
+			w.ParameterWithDefault("--"+parameterName, t, "null"),
 		); err != nil {
 			return err
 		}
@@ -559,12 +563,16 @@ func (g *generator) writeDefaultConstructor(w *toit.Writer, fields []*fieldType,
 	}
 
 	for _, fieldName := range fieldNames {
+		parameterName := fieldName
+		if strings.HasPrefix(parameterName, "no_") {
+			parameterName = "x" + parameterName
+		}
 		if err := util.FirstError(
 			w.StartCall("if"),
-			w.Argument(fieldName+" != null"),
+			w.Argument(parameterName+" != null"),
 			w.StartBlock(false),
 			w.StartAssignment("this."+fieldName),
-			w.Argument(fieldName),
+			w.Argument(parameterName),
 			w.EndAssignment(),
 			w.EndBlock(false),
 			w.EndCall(true),
