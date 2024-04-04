@@ -3,8 +3,8 @@
 
 import ....protobuf as _protobuf
 import core as _core
-import ...google.protobuf.source-context-pb as _source-context
-import ...google.protobuf.type-pb as _type
+import ...google.protobuf.source_context_pb as _source_context
+import ...google.protobuf.type_pb as _type
 
 // MESSAGE START: .google.protobuf.Api
 class Api extends _protobuf.Message:
@@ -12,7 +12,7 @@ class Api extends _protobuf.Message:
   methods/List/*<Method>*/ := []
   options/List/*<_type.Option>*/ := []
   version/string := ""
-  source-context/_source-context.SourceContext := _source-context.SourceContext
+  source_context/_source_context.SourceContext := _source_context.SourceContext
   mixins/List/*<Mixin>*/ := []
   syntax/int/*enum<_type.Syntax>*/ := 0
 
@@ -21,7 +21,7 @@ class Api extends _protobuf.Message:
       --methods/List?/*<Method>*/=null
       --options/List?/*<_type.Option>*/=null
       --version/string?=null
-      --source-context/_source-context.SourceContext?=null
+      --source_context/_source_context.SourceContext?=null
       --mixins/List?/*<Mixin>*/=null
       --syntax/int?/*enum<_type.Syntax>?*/=null:
     if name != null:
@@ -32,145 +32,145 @@ class Api extends _protobuf.Message:
       this.options = options
     if version != null:
       this.version = version
-    if source-context != null:
-      this.source-context = source-context
+    if source_context != null:
+      this.source_context = source_context
     if mixins != null:
       this.mixins = mixins
     if syntax != null:
       this.syntax = syntax
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read-message:
-      r.read-field 1:
-        name = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
-      r.read-field 2:
-        methods = r.read-array _protobuf.PROTOBUF-TYPE-MESSAGE methods:
+    r.read_message:
+      r.read_field 1:
+        name = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
+      r.read_field 2:
+        methods = r.read_array _protobuf.PROTOBUF_TYPE_MESSAGE methods:
           Method.deserialize r
-      r.read-field 3:
-        options = r.read-array _protobuf.PROTOBUF-TYPE-MESSAGE options:
+      r.read_field 3:
+        options = r.read_array _protobuf.PROTOBUF_TYPE_MESSAGE options:
           _type.Option.deserialize r
-      r.read-field 4:
-        version = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
-      r.read-field 5:
-        source-context = _source-context.SourceContext.deserialize r
-      r.read-field 6:
-        mixins = r.read-array _protobuf.PROTOBUF-TYPE-MESSAGE mixins:
+      r.read_field 4:
+        version = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
+      r.read_field 5:
+        source_context = _source_context.SourceContext.deserialize r
+      r.read_field 6:
+        mixins = r.read_array _protobuf.PROTOBUF_TYPE_MESSAGE mixins:
           Mixin.deserialize r
-      r.read-field 7:
-        syntax = r.read-primitive _protobuf.PROTOBUF-TYPE-ENUM
+      r.read_field 7:
+        syntax = r.read_primitive _protobuf.PROTOBUF_TYPE_ENUM
 
-  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
-    w.write-message-header this --as-field=as-field --oneof=oneof
-    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING name --as-field=1
-    w.write-array _protobuf.PROTOBUF-TYPE-MESSAGE methods --as-field=2: | value/Method | 
+  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
+    w.write_message_header this --as_field=as_field --oneof=oneof
+    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING name --as_field=1
+    w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE methods --as_field=2: | value/Method | 
       value.serialize w
-    w.write-array _protobuf.PROTOBUF-TYPE-MESSAGE options --as-field=3: | value/_type.Option | 
+    w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE options --as_field=3: | value/_type.Option | 
       value.serialize w
-    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING version --as-field=4
-    source-context.serialize w --as-field=5
-    w.write-array _protobuf.PROTOBUF-TYPE-MESSAGE mixins --as-field=6: | value/Mixin | 
+    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING version --as_field=4
+    source_context.serialize w --as_field=5
+    w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE mixins --as_field=6: | value/Mixin | 
       value.serialize w
-    w.write-primitive _protobuf.PROTOBUF-TYPE-ENUM syntax --as-field=7
+    w.write_primitive _protobuf.PROTOBUF_TYPE_ENUM syntax --as_field=7
 
-  num-fields-set -> int:
-    return (name.is-empty ? 0 : 1)
-      + (methods.is-empty ? 0 : 1)
-      + (options.is-empty ? 0 : 1)
-      + (version.is-empty ? 0 : 1)
-      + (source-context.is-empty ? 0 : 1)
-      + (mixins.is-empty ? 0 : 1)
+  num_fields_set -> int:
+    return (name.is_empty ? 0 : 1)
+      + (methods.is_empty ? 0 : 1)
+      + (options.is_empty ? 0 : 1)
+      + (version.is_empty ? 0 : 1)
+      + (source_context.is_empty ? 0 : 1)
+      + (mixins.is_empty ? 0 : 1)
       + (syntax == 0 ? 0 : 1)
 
-  protobuf-size -> int:
-    return (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING name --as-field=1)
-      + (_protobuf.size-array _protobuf.PROTOBUF-TYPE-MESSAGE methods --as-field=2)
-      + (_protobuf.size-array _protobuf.PROTOBUF-TYPE-MESSAGE options --as-field=3)
-      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING version --as-field=4)
-      + (_protobuf.size-embedded-message (source-context.protobuf-size) --as-field=5)
-      + (_protobuf.size-array _protobuf.PROTOBUF-TYPE-MESSAGE mixins --as-field=6)
-      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-ENUM syntax --as-field=7)
+  protobuf_size -> int:
+    return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING name --as_field=1)
+      + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE methods --as_field=2)
+      + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE options --as_field=3)
+      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING version --as_field=4)
+      + (_protobuf.size_embedded_message (source_context.protobuf_size) --as_field=5)
+      + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE mixins --as_field=6)
+      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_ENUM syntax --as_field=7)
 
 // MESSAGE END: .google.protobuf.Api
 
 // MESSAGE START: .google.protobuf.Method
 class Method extends _protobuf.Message:
   name/string := ""
-  request-type-url/string := ""
-  request-streaming/bool := false
-  response-type-url/string := ""
-  response-streaming/bool := false
+  request_type_url/string := ""
+  request_streaming/bool := false
+  response_type_url/string := ""
+  response_streaming/bool := false
   options/List/*<_type.Option>*/ := []
   syntax/int/*enum<_type.Syntax>*/ := 0
 
   constructor
       --name/string?=null
-      --request-type-url/string?=null
-      --request-streaming/bool?=null
-      --response-type-url/string?=null
-      --response-streaming/bool?=null
+      --request_type_url/string?=null
+      --request_streaming/bool?=null
+      --response_type_url/string?=null
+      --response_streaming/bool?=null
       --options/List?/*<_type.Option>*/=null
       --syntax/int?/*enum<_type.Syntax>?*/=null:
     if name != null:
       this.name = name
-    if request-type-url != null:
-      this.request-type-url = request-type-url
-    if request-streaming != null:
-      this.request-streaming = request-streaming
-    if response-type-url != null:
-      this.response-type-url = response-type-url
-    if response-streaming != null:
-      this.response-streaming = response-streaming
+    if request_type_url != null:
+      this.request_type_url = request_type_url
+    if request_streaming != null:
+      this.request_streaming = request_streaming
+    if response_type_url != null:
+      this.response_type_url = response_type_url
+    if response_streaming != null:
+      this.response_streaming = response_streaming
     if options != null:
       this.options = options
     if syntax != null:
       this.syntax = syntax
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read-message:
-      r.read-field 1:
-        name = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
-      r.read-field 2:
-        request-type-url = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
-      r.read-field 3:
-        request-streaming = r.read-primitive _protobuf.PROTOBUF-TYPE-BOOL
-      r.read-field 4:
-        response-type-url = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
-      r.read-field 5:
-        response-streaming = r.read-primitive _protobuf.PROTOBUF-TYPE-BOOL
-      r.read-field 6:
-        options = r.read-array _protobuf.PROTOBUF-TYPE-MESSAGE options:
+    r.read_message:
+      r.read_field 1:
+        name = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
+      r.read_field 2:
+        request_type_url = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
+      r.read_field 3:
+        request_streaming = r.read_primitive _protobuf.PROTOBUF_TYPE_BOOL
+      r.read_field 4:
+        response_type_url = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
+      r.read_field 5:
+        response_streaming = r.read_primitive _protobuf.PROTOBUF_TYPE_BOOL
+      r.read_field 6:
+        options = r.read_array _protobuf.PROTOBUF_TYPE_MESSAGE options:
           _type.Option.deserialize r
-      r.read-field 7:
-        syntax = r.read-primitive _protobuf.PROTOBUF-TYPE-ENUM
+      r.read_field 7:
+        syntax = r.read_primitive _protobuf.PROTOBUF_TYPE_ENUM
 
-  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
-    w.write-message-header this --as-field=as-field --oneof=oneof
-    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING name --as-field=1
-    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING request-type-url --as-field=2
-    w.write-primitive _protobuf.PROTOBUF-TYPE-BOOL request-streaming --as-field=3
-    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING response-type-url --as-field=4
-    w.write-primitive _protobuf.PROTOBUF-TYPE-BOOL response-streaming --as-field=5
-    w.write-array _protobuf.PROTOBUF-TYPE-MESSAGE options --as-field=6: | value/_type.Option | 
+  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
+    w.write_message_header this --as_field=as_field --oneof=oneof
+    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING name --as_field=1
+    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING request_type_url --as_field=2
+    w.write_primitive _protobuf.PROTOBUF_TYPE_BOOL request_streaming --as_field=3
+    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING response_type_url --as_field=4
+    w.write_primitive _protobuf.PROTOBUF_TYPE_BOOL response_streaming --as_field=5
+    w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE options --as_field=6: | value/_type.Option | 
       value.serialize w
-    w.write-primitive _protobuf.PROTOBUF-TYPE-ENUM syntax --as-field=7
+    w.write_primitive _protobuf.PROTOBUF_TYPE_ENUM syntax --as_field=7
 
-  num-fields-set -> int:
-    return (name.is-empty ? 0 : 1)
-      + (request-type-url.is-empty ? 0 : 1)
-      + (request-streaming == false ? 0 : 1)
-      + (response-type-url.is-empty ? 0 : 1)
-      + (response-streaming == false ? 0 : 1)
-      + (options.is-empty ? 0 : 1)
+  num_fields_set -> int:
+    return (name.is_empty ? 0 : 1)
+      + (request_type_url.is_empty ? 0 : 1)
+      + (request_streaming == false ? 0 : 1)
+      + (response_type_url.is_empty ? 0 : 1)
+      + (response_streaming == false ? 0 : 1)
+      + (options.is_empty ? 0 : 1)
       + (syntax == 0 ? 0 : 1)
 
-  protobuf-size -> int:
-    return (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING name --as-field=1)
-      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING request-type-url --as-field=2)
-      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-BOOL request-streaming --as-field=3)
-      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING response-type-url --as-field=4)
-      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-BOOL response-streaming --as-field=5)
-      + (_protobuf.size-array _protobuf.PROTOBUF-TYPE-MESSAGE options --as-field=6)
-      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-ENUM syntax --as-field=7)
+  protobuf_size -> int:
+    return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING name --as_field=1)
+      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING request_type_url --as_field=2)
+      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BOOL request_streaming --as_field=3)
+      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING response_type_url --as_field=4)
+      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BOOL response_streaming --as_field=5)
+      + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE options --as_field=6)
+      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_ENUM syntax --as_field=7)
 
 // MESSAGE END: .google.protobuf.Method
 
@@ -188,24 +188,24 @@ class Mixin extends _protobuf.Message:
       this.root = root
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read-message:
-      r.read-field 1:
-        name = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
-      r.read-field 2:
-        root = r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+    r.read_message:
+      r.read_field 1:
+        name = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
+      r.read_field 2:
+        root = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
 
-  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
-    w.write-message-header this --as-field=as-field --oneof=oneof
-    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING name --as-field=1
-    w.write-primitive _protobuf.PROTOBUF-TYPE-STRING root --as-field=2
+  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
+    w.write_message_header this --as_field=as_field --oneof=oneof
+    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING name --as_field=1
+    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING root --as_field=2
 
-  num-fields-set -> int:
-    return (name.is-empty ? 0 : 1)
-      + (root.is-empty ? 0 : 1)
+  num_fields_set -> int:
+    return (name.is_empty ? 0 : 1)
+      + (root.is_empty ? 0 : 1)
 
-  protobuf-size -> int:
-    return (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING name --as-field=1)
-      + (_protobuf.size-primitive _protobuf.PROTOBUF-TYPE-STRING root --as-field=2)
+  protobuf_size -> int:
+    return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING name --as_field=1)
+      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING root --as_field=2)
 
 // MESSAGE END: .google.protobuf.Mixin
 

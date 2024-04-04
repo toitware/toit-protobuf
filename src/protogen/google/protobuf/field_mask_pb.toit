@@ -14,21 +14,21 @@ class FieldMask extends _protobuf.Message:
       this.paths = paths
 
   constructor.deserialize r/_protobuf.Reader:
-    r.read-message:
-      r.read-field 1:
-        paths = r.read-array _protobuf.PROTOBUF-TYPE-STRING paths:
-          r.read-primitive _protobuf.PROTOBUF-TYPE-STRING
+    r.read_message:
+      r.read_field 1:
+        paths = r.read_array _protobuf.PROTOBUF_TYPE_STRING paths:
+          r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
 
-  serialize w/_protobuf.Writer --as-field/int?=null --oneof/bool=false -> none:
-    w.write-message-header this --as-field=as-field --oneof=oneof
-    w.write-array _protobuf.PROTOBUF-TYPE-STRING paths --as-field=1: | value/string | 
-      w.write-primitive _protobuf.PROTOBUF-TYPE-STRING value --in-array
+  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
+    w.write_message_header this --as_field=as_field --oneof=oneof
+    w.write_array _protobuf.PROTOBUF_TYPE_STRING paths --as_field=1: | value/string | 
+      w.write_primitive _protobuf.PROTOBUF_TYPE_STRING value --in_array
 
-  num-fields-set -> int:
-    return (paths.is-empty ? 0 : 1)
+  num_fields_set -> int:
+    return (paths.is_empty ? 0 : 1)
 
-  protobuf-size -> int:
-    return (_protobuf.size-array _protobuf.PROTOBUF-TYPE-STRING paths --as-field=1)
+  protobuf_size -> int:
+    return (_protobuf.size_array _protobuf.PROTOBUF_TYPE_STRING paths --as_field=1)
 
 // MESSAGE END: .google.protobuf.FieldMask
 
