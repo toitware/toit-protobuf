@@ -189,16 +189,24 @@ class CodeGeneratorResponse_File extends _protobuf.Message:
 class CodeGeneratorResponse extends _protobuf.Message:
   error/string := ""
   supported_features/int := 0
+  minimum_edition/int := 0
+  maximum_edition/int := 0
   file/List/*<CodeGeneratorResponse_File>*/ := []
 
   constructor
       --error/string?=null
       --supported_features/int?=null
+      --minimum_edition/int?=null
+      --maximum_edition/int?=null
       --file/List?/*<CodeGeneratorResponse_File>*/=null:
     if error != null:
       this.error = error
     if supported_features != null:
       this.supported_features = supported_features
+    if minimum_edition != null:
+      this.minimum_edition = minimum_edition
+    if maximum_edition != null:
+      this.maximum_edition = maximum_edition
     if file != null:
       this.file = file
 
@@ -208,6 +216,10 @@ class CodeGeneratorResponse extends _protobuf.Message:
         error = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
       r.read_field 2:
         supported_features = r.read_primitive _protobuf.PROTOBUF_TYPE_UINT64
+      r.read_field 3:
+        minimum_edition = r.read_primitive _protobuf.PROTOBUF_TYPE_INT32
+      r.read_field 4:
+        maximum_edition = r.read_primitive _protobuf.PROTOBUF_TYPE_INT32
       r.read_field 15:
         file = r.read_array _protobuf.PROTOBUF_TYPE_MESSAGE file:
           CodeGeneratorResponse_File.deserialize r
@@ -216,17 +228,23 @@ class CodeGeneratorResponse extends _protobuf.Message:
     w.write_message_header this --as_field=as_field --oneof=oneof
     w.write_primitive _protobuf.PROTOBUF_TYPE_STRING error --as_field=1
     w.write_primitive _protobuf.PROTOBUF_TYPE_UINT64 supported_features --as_field=2
+    w.write_primitive _protobuf.PROTOBUF_TYPE_INT32 minimum_edition --as_field=3
+    w.write_primitive _protobuf.PROTOBUF_TYPE_INT32 maximum_edition --as_field=4
     w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE file --as_field=15: | value/CodeGeneratorResponse_File | 
       value.serialize w
 
   num_fields_set -> int:
     return (error.is_empty ? 0 : 1)
       + (supported_features == 0 ? 0 : 1)
+      + (minimum_edition == 0 ? 0 : 1)
+      + (maximum_edition == 0 ? 0 : 1)
       + (file.is_empty ? 0 : 1)
 
   protobuf_size -> int:
     return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING error --as_field=1)
       + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_UINT64 supported_features --as_field=2)
+      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_INT32 minimum_edition --as_field=3)
+      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_INT32 maximum_edition --as_field=4)
       + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE file --as_field=15)
 
 // MESSAGE END: .google.protobuf.compiler.CodeGeneratorResponse
