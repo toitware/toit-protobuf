@@ -37,7 +37,7 @@ test-required:
   msg.required-string-piece = "gee"
   msg.required-cord = "cord!"
 
-  buffer := bytes.Buffer
+  buffer := io.Buffer
   writer := protobuf.Writer buffer
   msg.serialize writer
   result := buffer.bytes
