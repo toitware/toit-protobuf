@@ -3,13 +3,24 @@ on:
   release:
     types: [published]
 
+env:
+  GO_VERSION: '1.22'
+
 name: CI
 jobs:
   test:
     strategy:
       matrix:
-        go-version: ['1.15', '1.18']
-        os: [ubuntu-latest, macos-13, windows-latest]
+        toit-version: [ v2.0.0-alpha.144, latest ]
+        os: [ubuntu-latest, macos-13, macos-latest, windows-latest]
+
+        include:
+          - toit-version: v2.0.0-alpha.144
+            version-name: old
+          - toit-version: latest
+            version-name: new
+
+    name: CI - ${{ matrix.os }} - ${{ matrix.version-name }}
 
     runs-on: ${{ matrix.os }}
 
@@ -19,7 +30,7 @@ jobs:
 
     - uses: toitlang/action-setup@v1
       with:
-        toit-version: v2.0.0-alpha.144
+        toit-version: ${{ matrix.toit-version }}
 
     # Fetch the dependencies. Different for each platform.
     - name: Install dependencies - Linux
@@ -45,7 +56,7 @@ jobs:
     - name: Install Go
       uses: actions/setup-go@v5
       with:
-        go-version: ${{ matrix.go-version }}
+        go-version: ${{ env.GO_VERSION }}
 
     - name: Install packages
       shell: bash
