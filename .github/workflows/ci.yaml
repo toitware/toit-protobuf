@@ -4,7 +4,7 @@ on:
     types: [published]
 
 env:
-  GO_VERSION: '1.21'
+  GO_VERSION: '1.22'
 
 name: CI
 jobs:
@@ -56,7 +56,7 @@ jobs:
     - name: Install Go
       uses: actions/setup-go@v5
       with:
-        go-version: env.GO_VERSION
+        go-version: ${{ env.GO_VERSION }}
 
     - name: Install packages
       shell: bash
