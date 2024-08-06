@@ -92,7 +92,7 @@ class FakeMessage_ extends Message:
 
   serialize writer/Writer --as-field/int?=null --oneof/bool=false -> none:
 
-  with num-fields-set .protobuf-size -> Message:
+  with num-fields-set/int protobuf-size/int -> Message:
     this.num-fields-set = num-fields-set
     this.protobuf-size = protobuf-size
     return this
