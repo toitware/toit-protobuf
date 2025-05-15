@@ -11,11 +11,11 @@ jobs:
   test:
     strategy:
       matrix:
-        toit-version: [ v2.0.0-alpha.144, latest ]
+        toit-version: [ v2.0.0-alpha.170, latest ]
         os: [ubuntu-latest, macos-13, macos-latest, windows-latest]
 
         include:
-          - toit-version: v2.0.0-alpha.144
+          - toit-version: v2.0.0-alpha.170
             version-name: old
           - toit-version: latest
             version-name: new

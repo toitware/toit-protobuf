@@ -6,14 +6,17 @@ import core as _core
 
 // ENUM START: Edition
 Edition_EDITION_UNKNOWN/int/*enum<Edition>*/ ::= 0
+Edition_EDITION_LEGACY/int/*enum<Edition>*/ ::= 900
 Edition_EDITION_PROTO2/int/*enum<Edition>*/ ::= 998
 Edition_EDITION_PROTO3/int/*enum<Edition>*/ ::= 999
 Edition_EDITION_2023/int/*enum<Edition>*/ ::= 1000
+Edition_EDITION_2024/int/*enum<Edition>*/ ::= 1001
 Edition_EDITION_1_TEST_ONLY/int/*enum<Edition>*/ ::= 1
 Edition_EDITION_2_TEST_ONLY/int/*enum<Edition>*/ ::= 2
 Edition_EDITION_99997_TEST_ONLY/int/*enum<Edition>*/ ::= 99997
 Edition_EDITION_99998_TEST_ONLY/int/*enum<Edition>*/ ::= 99998
 Edition_EDITION_99999_TEST_ONLY/int/*enum<Edition>*/ ::= 99999
+Edition_EDITION_MAX/int/*enum<Edition>*/ ::= 2147483647
 // ENUM END: .google.protobuf.Edition
 
 // MESSAGE START: .google.protobuf.FileDescriptorSet
@@ -978,7 +981,6 @@ class FileOptions extends _protobuf.Message:
   cc_generic_services/bool := false
   java_generic_services/bool := false
   py_generic_services/bool := false
-  php_generic_services/bool := false
   deprecated/bool := false
   cc_enable_arenas/bool := false
   objc_class_prefix/string := ""
@@ -1002,7 +1004,6 @@ class FileOptions extends _protobuf.Message:
       --cc_generic_services/bool?=null
       --java_generic_services/bool?=null
       --py_generic_services/bool?=null
-      --php_generic_services/bool?=null
       --deprecated/bool?=null
       --cc_enable_arenas/bool?=null
       --objc_class_prefix/string?=null
@@ -1034,8 +1035,6 @@ class FileOptions extends _protobuf.Message:
       this.java_generic_services = java_generic_services
     if py_generic_services != null:
       this.py_generic_services = py_generic_services
-    if php_generic_services != null:
-      this.php_generic_services = php_generic_services
     if deprecated != null:
       this.deprecated = deprecated
     if cc_enable_arenas != null:
@@ -1081,8 +1080,6 @@ class FileOptions extends _protobuf.Message:
         java_generic_services = r.read_primitive _protobuf.PROTOBUF_TYPE_BOOL
       r.read_field 18:
         py_generic_services = r.read_primitive _protobuf.PROTOBUF_TYPE_BOOL
-      r.read_field 42:
-        php_generic_services = r.read_primitive _protobuf.PROTOBUF_TYPE_BOOL
       r.read_field 23:
         deprecated = r.read_primitive _protobuf.PROTOBUF_TYPE_BOOL
       r.read_field 31:
@@ -1119,7 +1116,6 @@ class FileOptions extends _protobuf.Message:
     w.write_primitive _protobuf.PROTOBUF_TYPE_BOOL cc_generic_services --as_field=16
     w.write_primitive _protobuf.PROTOBUF_TYPE_BOOL java_generic_services --as_field=17
     w.write_primitive _protobuf.PROTOBUF_TYPE_BOOL py_generic_services --as_field=18
-    w.write_primitive _protobuf.PROTOBUF_TYPE_BOOL php_generic_services --as_field=42
     w.write_primitive _protobuf.PROTOBUF_TYPE_BOOL deprecated --as_field=23
     w.write_primitive _protobuf.PROTOBUF_TYPE_BOOL cc_enable_arenas --as_field=31
     w.write_primitive _protobuf.PROTOBUF_TYPE_STRING objc_class_prefix --as_field=36
@@ -1144,7 +1140,6 @@ class FileOptions extends _protobuf.Message:
       + (cc_generic_services == false ? 0 : 1)
       + (java_generic_services == false ? 0 : 1)
       + (py_generic_services == false ? 0 : 1)
-      + (php_generic_services == false ? 0 : 1)
       + (deprecated == false ? 0 : 1)
       + (cc_enable_arenas == false ? 0 : 1)
       + (objc_class_prefix.is_empty ? 0 : 1)
@@ -1168,7 +1163,6 @@ class FileOptions extends _protobuf.Message:
       + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BOOL cc_generic_services --as_field=16)
       + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BOOL java_generic_services --as_field=17)
       + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BOOL py_generic_services --as_field=18)
-      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BOOL php_generic_services --as_field=42)
       + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BOOL deprecated --as_field=23)
       + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BOOL cc_enable_arenas --as_field=31)
       + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING objc_class_prefix --as_field=36)
@@ -1332,6 +1326,59 @@ class FieldOptions_EditionDefault extends _protobuf.Message:
 
 // MESSAGE END: .google.protobuf.FieldOptions.EditionDefault
 
+// MESSAGE START: .google.protobuf.FieldOptions.FeatureSupport
+class FieldOptions_FeatureSupport extends _protobuf.Message:
+  edition_introduced/int/*enum<Edition>*/ := 0
+  edition_deprecated/int/*enum<Edition>*/ := 0
+  deprecation_warning/string := ""
+  edition_removed/int/*enum<Edition>*/ := 0
+
+  constructor
+      --edition_introduced/int?/*enum<Edition>?*/=null
+      --edition_deprecated/int?/*enum<Edition>?*/=null
+      --deprecation_warning/string?=null
+      --edition_removed/int?/*enum<Edition>?*/=null:
+    if edition_introduced != null:
+      this.edition_introduced = edition_introduced
+    if edition_deprecated != null:
+      this.edition_deprecated = edition_deprecated
+    if deprecation_warning != null:
+      this.deprecation_warning = deprecation_warning
+    if edition_removed != null:
+      this.edition_removed = edition_removed
+
+  constructor.deserialize r/_protobuf.Reader:
+    r.read_message:
+      r.read_field 1:
+        edition_introduced = r.read_primitive _protobuf.PROTOBUF_TYPE_ENUM
+      r.read_field 2:
+        edition_deprecated = r.read_primitive _protobuf.PROTOBUF_TYPE_ENUM
+      r.read_field 3:
+        deprecation_warning = r.read_primitive _protobuf.PROTOBUF_TYPE_STRING
+      r.read_field 4:
+        edition_removed = r.read_primitive _protobuf.PROTOBUF_TYPE_ENUM
+
+  serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
+    w.write_message_header this --as_field=as_field --oneof=oneof
+    w.write_primitive _protobuf.PROTOBUF_TYPE_ENUM edition_introduced --as_field=1
+    w.write_primitive _protobuf.PROTOBUF_TYPE_ENUM edition_deprecated --as_field=2
+    w.write_primitive _protobuf.PROTOBUF_TYPE_STRING deprecation_warning --as_field=3
+    w.write_primitive _protobuf.PROTOBUF_TYPE_ENUM edition_removed --as_field=4
+
+  num_fields_set -> int:
+    return (edition_introduced == 0 ? 0 : 1)
+      + (edition_deprecated == 0 ? 0 : 1)
+      + (deprecation_warning.is_empty ? 0 : 1)
+      + (edition_removed == 0 ? 0 : 1)
+
+  protobuf_size -> int:
+    return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_ENUM edition_introduced --as_field=1)
+      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_ENUM edition_deprecated --as_field=2)
+      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_STRING deprecation_warning --as_field=3)
+      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_ENUM edition_removed --as_field=4)
+
+// MESSAGE END: .google.protobuf.FieldOptions.FeatureSupport
+
 class FieldOptions extends _protobuf.Message:
   ctype/int/*enum<FieldOptions_CType>*/ := 0
   packed/bool := false
@@ -1345,6 +1392,7 @@ class FieldOptions extends _protobuf.Message:
   targets/List/*<enum<FieldOptions_OptionTargetType>>*/ := []
   edition_defaults/List/*<FieldOptions_EditionDefault>*/ := []
   features/FeatureSet := FeatureSet
+  feature_support/FieldOptions_FeatureSupport := FieldOptions_FeatureSupport
   uninterpreted_option/List/*<UninterpretedOption>*/ := []
 
   constructor
@@ -1360,6 +1408,7 @@ class FieldOptions extends _protobuf.Message:
       --targets/List?/*<enum<FieldOptions_OptionTargetType>>*/=null
       --edition_defaults/List?/*<FieldOptions_EditionDefault>*/=null
       --features/FeatureSet?=null
+      --feature_support/FieldOptions_FeatureSupport?=null
       --uninterpreted_option/List?/*<UninterpretedOption>*/=null:
     if ctype != null:
       this.ctype = ctype
@@ -1385,6 +1434,8 @@ class FieldOptions extends _protobuf.Message:
       this.edition_defaults = edition_defaults
     if features != null:
       this.features = features
+    if feature_support != null:
+      this.feature_support = feature_support
     if uninterpreted_option != null:
       this.uninterpreted_option = uninterpreted_option
 
@@ -1416,6 +1467,8 @@ class FieldOptions extends _protobuf.Message:
           FieldOptions_EditionDefault.deserialize r
       r.read_field 21:
         features = FeatureSet.deserialize r
+      r.read_field 22:
+        feature_support = FieldOptions_FeatureSupport.deserialize r
       r.read_field 999:
         uninterpreted_option = r.read_array _protobuf.PROTOBUF_TYPE_MESSAGE uninterpreted_option:
           UninterpretedOption.deserialize r
@@ -1436,6 +1489,7 @@ class FieldOptions extends _protobuf.Message:
     w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE edition_defaults --as_field=20: | value/FieldOptions_EditionDefault | 
       value.serialize w
     features.serialize w --as_field=21
+    feature_support.serialize w --as_field=22
     w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE uninterpreted_option --as_field=999: | value/UninterpretedOption | 
       value.serialize w
 
@@ -1452,6 +1506,7 @@ class FieldOptions extends _protobuf.Message:
       + (targets.is_empty ? 0 : 1)
       + (edition_defaults.is_empty ? 0 : 1)
       + (features.is_empty ? 0 : 1)
+      + (feature_support.is_empty ? 0 : 1)
       + (uninterpreted_option.is_empty ? 0 : 1)
 
   protobuf_size -> int:
@@ -1467,6 +1522,7 @@ class FieldOptions extends _protobuf.Message:
       + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_ENUM targets --as_field=19)
       + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE edition_defaults --as_field=20)
       + (_protobuf.size_embedded_message (features.protobuf_size) --as_field=21)
+      + (_protobuf.size_embedded_message (feature_support.protobuf_size) --as_field=22)
       + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE uninterpreted_option --as_field=999)
 
 // MESSAGE END: .google.protobuf.FieldOptions
@@ -1577,12 +1633,14 @@ class EnumValueOptions extends _protobuf.Message:
   deprecated/bool := false
   features/FeatureSet := FeatureSet
   debug_redact/bool := false
+  feature_support/FieldOptions_FeatureSupport := FieldOptions_FeatureSupport
   uninterpreted_option/List/*<UninterpretedOption>*/ := []
 
   constructor
       --deprecated/bool?=null
       --features/FeatureSet?=null
       --debug_redact/bool?=null
+      --feature_support/FieldOptions_FeatureSupport?=null
       --uninterpreted_option/List?/*<UninterpretedOption>*/=null:
     if deprecated != null:
       this.deprecated = deprecated
@@ -1590,6 +1648,8 @@ class EnumValueOptions extends _protobuf.Message:
       this.features = features
     if debug_redact != null:
       this.debug_redact = debug_redact
+    if feature_support != null:
+      this.feature_support = feature_support
     if uninterpreted_option != null:
       this.uninterpreted_option = uninterpreted_option
 
@@ -1601,6 +1661,8 @@ class EnumValueOptions extends _protobuf.Message:
         features = FeatureSet.deserialize r
       r.read_field 3:
         debug_redact = r.read_primitive _protobuf.PROTOBUF_TYPE_BOOL
+      r.read_field 4:
+        feature_support = FieldOptions_FeatureSupport.deserialize r
       r.read_field 999:
         uninterpreted_option = r.read_array _protobuf.PROTOBUF_TYPE_MESSAGE uninterpreted_option:
           UninterpretedOption.deserialize r
@@ -1610,6 +1672,7 @@ class EnumValueOptions extends _protobuf.Message:
     w.write_primitive _protobuf.PROTOBUF_TYPE_BOOL deprecated --as_field=1
     features.serialize w --as_field=2
     w.write_primitive _protobuf.PROTOBUF_TYPE_BOOL debug_redact --as_field=3
+    feature_support.serialize w --as_field=4
     w.write_array _protobuf.PROTOBUF_TYPE_MESSAGE uninterpreted_option --as_field=999: | value/UninterpretedOption | 
       value.serialize w
 
@@ -1617,12 +1680,14 @@ class EnumValueOptions extends _protobuf.Message:
     return (deprecated == false ? 0 : 1)
       + (features.is_empty ? 0 : 1)
       + (debug_redact == false ? 0 : 1)
+      + (feature_support.is_empty ? 0 : 1)
       + (uninterpreted_option.is_empty ? 0 : 1)
 
   protobuf_size -> int:
     return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BOOL deprecated --as_field=1)
       + (_protobuf.size_embedded_message (features.protobuf_size) --as_field=2)
       + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_BOOL debug_redact --as_field=3)
+      + (_protobuf.size_embedded_message (feature_support.protobuf_size) --as_field=4)
       + (_protobuf.size_array _protobuf.PROTOBUF_TYPE_MESSAGE uninterpreted_option --as_field=999)
 
 // MESSAGE END: .google.protobuf.EnumValueOptions
@@ -1873,8 +1938,8 @@ FeatureSet_RepeatedFieldEncoding_EXPANDED/int/*enum<FeatureSet_RepeatedFieldEnco
 
 // ENUM START: FeatureSet_Utf8Validation
 FeatureSet_Utf8Validation_UTF8_VALIDATION_UNKNOWN/int/*enum<FeatureSet_Utf8Validation>*/ ::= 0
-FeatureSet_Utf8Validation_NONE/int/*enum<FeatureSet_Utf8Validation>*/ ::= 1
 FeatureSet_Utf8Validation_VERIFY/int/*enum<FeatureSet_Utf8Validation>*/ ::= 2
+FeatureSet_Utf8Validation_NONE/int/*enum<FeatureSet_Utf8Validation>*/ ::= 3
 // ENUM END: .google.protobuf.FeatureSet.Utf8Validation
 
 // ENUM START: FeatureSet_MessageEncoding
@@ -1889,6 +1954,12 @@ FeatureSet_JsonFormat_ALLOW/int/*enum<FeatureSet_JsonFormat>*/ ::= 1
 FeatureSet_JsonFormat_LEGACY_BEST_EFFORT/int/*enum<FeatureSet_JsonFormat>*/ ::= 2
 // ENUM END: .google.protobuf.FeatureSet.JsonFormat
 
+// ENUM START: FeatureSet_EnforceNamingStyle
+FeatureSet_EnforceNamingStyle_ENFORCE_NAMING_STYLE_UNKNOWN/int/*enum<FeatureSet_EnforceNamingStyle>*/ ::= 0
+FeatureSet_EnforceNamingStyle_STYLE2024/int/*enum<FeatureSet_EnforceNamingStyle>*/ ::= 1
+FeatureSet_EnforceNamingStyle_STYLE_LEGACY/int/*enum<FeatureSet_EnforceNamingStyle>*/ ::= 2
+// ENUM END: .google.protobuf.FeatureSet.EnforceNamingStyle
+
 class FeatureSet extends _protobuf.Message:
   field_presence/int/*enum<FeatureSet_FieldPresence>*/ := 0
   enum_type/int/*enum<FeatureSet_EnumType>*/ := 0
@@ -1896,6 +1967,7 @@ class FeatureSet extends _protobuf.Message:
   utf8_validation/int/*enum<FeatureSet_Utf8Validation>*/ := 0
   message_encoding/int/*enum<FeatureSet_MessageEncoding>*/ := 0
   json_format/int/*enum<FeatureSet_JsonFormat>*/ := 0
+  enforce_naming_style/int/*enum<FeatureSet_EnforceNamingStyle>*/ := 0
 
   constructor
       --field_presence/int?/*enum<FeatureSet_FieldPresence>?*/=null
@@ -1903,7 +1975,8 @@ class FeatureSet extends _protobuf.Message:
       --repeated_field_encoding/int?/*enum<FeatureSet_RepeatedFieldEncoding>?*/=null
       --utf8_validation/int?/*enum<FeatureSet_Utf8Validation>?*/=null
       --message_encoding/int?/*enum<FeatureSet_MessageEncoding>?*/=null
-      --json_format/int?/*enum<FeatureSet_JsonFormat>?*/=null:
+      --json_format/int?/*enum<FeatureSet_JsonFormat>?*/=null
+      --enforce_naming_style/int?/*enum<FeatureSet_EnforceNamingStyle>?*/=null:
     if field_presence != null:
       this.field_presence = field_presence
     if enum_type != null:
@@ -1916,6 +1989,8 @@ class FeatureSet extends _protobuf.Message:
       this.message_encoding = message_encoding
     if json_format != null:
       this.json_format = json_format
+    if enforce_naming_style != null:
+      this.enforce_naming_style = enforce_naming_style
 
   constructor.deserialize r/_protobuf.Reader:
     r.read_message:
@@ -1931,6 +2006,8 @@ class FeatureSet extends _protobuf.Message:
         message_encoding = r.read_primitive _protobuf.PROTOBUF_TYPE_ENUM
       r.read_field 6:
         json_format = r.read_primitive _protobuf.PROTOBUF_TYPE_ENUM
+      r.read_field 7:
+        enforce_naming_style = r.read_primitive _protobuf.PROTOBUF_TYPE_ENUM
 
   serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
     w.write_message_header this --as_field=as_field --oneof=oneof
@@ -1940,6 +2017,7 @@ class FeatureSet extends _protobuf.Message:
     w.write_primitive _protobuf.PROTOBUF_TYPE_ENUM utf8_validation --as_field=4
     w.write_primitive _protobuf.PROTOBUF_TYPE_ENUM message_encoding --as_field=5
     w.write_primitive _protobuf.PROTOBUF_TYPE_ENUM json_format --as_field=6
+    w.write_primitive _protobuf.PROTOBUF_TYPE_ENUM enforce_naming_style --as_field=7
 
   num_fields_set -> int:
     return (field_presence == 0 ? 0 : 1)
@@ -1948,6 +2026,7 @@ class FeatureSet extends _protobuf.Message:
       + (utf8_validation == 0 ? 0 : 1)
       + (message_encoding == 0 ? 0 : 1)
       + (json_format == 0 ? 0 : 1)
+      + (enforce_naming_style == 0 ? 0 : 1)
 
   protobuf_size -> int:
     return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_ENUM field_presence --as_field=1)
@@ -1956,6 +2035,7 @@ class FeatureSet extends _protobuf.Message:
       + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_ENUM utf8_validation --as_field=4)
       + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_ENUM message_encoding --as_field=5)
       + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_ENUM json_format --as_field=6)
+      + (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_ENUM enforce_naming_style --as_field=7)
 
 // MESSAGE END: .google.protobuf.FeatureSet
 
@@ -1963,35 +2043,44 @@ class FeatureSet extends _protobuf.Message:
 // MESSAGE START: .google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault
 class FeatureSetDefaults_FeatureSetEditionDefault extends _protobuf.Message:
   edition/int/*enum<Edition>*/ := 0
-  features/FeatureSet := FeatureSet
+  overridable_features/FeatureSet := FeatureSet
+  fixed_features/FeatureSet := FeatureSet
 
   constructor
       --edition/int?/*enum<Edition>?*/=null
-      --features/FeatureSet?=null:
+      --overridable_features/FeatureSet?=null
+      --fixed_features/FeatureSet?=null:
     if edition != null:
       this.edition = edition
-    if features != null:
-      this.features = features
+    if overridable_features != null:
+      this.overridable_features = overridable_features
+    if fixed_features != null:
+      this.fixed_features = fixed_features
 
   constructor.deserialize r/_protobuf.Reader:
     r.read_message:
       r.read_field 3:
         edition = r.read_primitive _protobuf.PROTOBUF_TYPE_ENUM
-      r.read_field 2:
-        features = FeatureSet.deserialize r
+      r.read_field 4:
+        overridable_features = FeatureSet.deserialize r
+      r.read_field 5:
+        fixed_features = FeatureSet.deserialize r
 
   serialize w/_protobuf.Writer --as_field/int?=null --oneof/bool=false -> none:
     w.write_message_header this --as_field=as_field --oneof=oneof
     w.write_primitive _protobuf.PROTOBUF_TYPE_ENUM edition --as_field=3
-    features.serialize w --as_field=2
+    overridable_features.serialize w --as_field=4
+    fixed_features.serialize w --as_field=5
 
   num_fields_set -> int:
     return (edition == 0 ? 0 : 1)
-      + (features.is_empty ? 0 : 1)
+      + (overridable_features.is_empty ? 0 : 1)
+      + (fixed_features.is_empty ? 0 : 1)
 
   protobuf_size -> int:
     return (_protobuf.size_primitive _protobuf.PROTOBUF_TYPE_ENUM edition --as_field=3)
-      + (_protobuf.size_embedded_message (features.protobuf_size) --as_field=2)
+      + (_protobuf.size_embedded_message (overridable_features.protobuf_size) --as_field=4)
+      + (_protobuf.size_embedded_message (fixed_features.protobuf_size) --as_field=5)
 
 // MESSAGE END: .google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault
 
