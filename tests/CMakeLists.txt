@@ -5,13 +5,12 @@
 # We use the suffix "test_no_external" to avoid running the test in the opentoit repository.
 file(GLOB TESTS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*_test.toit" "*_test_no_external.toit")
 
-set(TOIT_EXEC "toit.run${CMAKE_EXECUTABLE_SUFFIX}" CACHE FILEPATH "The executable used to run the tests")
-set(TPKG_EXEC "toit.pkg${CMAKE_EXECUTABLE_SUFFIX}" CACHE FILEPATH "The executable used to install the packages")
+set(TOIT_EXEC "toit${CMAKE_EXECUTABLE_SUFFIX}" CACHE FILEPATH "The 'toit' executable")
 set(TEST_TIMEOUT 40 CACHE STRING "The maximal amount of time each test is allowed to run")
 
 add_custom_target(
   "install-pkgs"
-  COMMAND "${TPKG_EXEC}" install
+  COMMAND "${TOIT_EXEC}" pkg install
   WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
 )
 

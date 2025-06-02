@@ -1,5 +1,4 @@
 name: protobuf
 description: Tools to use protobuf files in Toit.
-
 environment:
-  sdk: ^2.0.0-alpha.144
+  sdk: ^2.0.0-alpha.170
